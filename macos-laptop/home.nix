@@ -16,15 +16,19 @@
     lynx
     minikube
     neofetch
+    neovim
     nerdfonts
     # Useful for getting sha256 hashes for github repos
     nix-prefetch-github
-    neovim
     nmap
+    nodePackages.neovim
+    nodePackages.prettier
+    nodejs
     # podman # -- Currently doesn't work due to being unable to find gvproxy
     # quickemu
     qemu 
     ripgrep
+    stylua
     tanka
     wget
     youtube-dl
@@ -46,4 +50,9 @@
     ../shared/home-manager/jq.nix
     ../shared/home-manager/starship.nix
   ];
+
+  xdg.configFile.nvim = {
+    source = ../shared/nvim;
+    recursive = true;
+  };
 }
