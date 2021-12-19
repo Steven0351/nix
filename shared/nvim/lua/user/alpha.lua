@@ -49,7 +49,6 @@ dashboard.section.buttons.val = {
   dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
   dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
   dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
-  dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
 }
 
 local function footer()
@@ -65,7 +64,7 @@ end
 dashboard.section.footer.val = footer()
 
 dashboard.section.footer.opts.hl = "Type"
-dashboard.section.header.opts.hl = "String"
+dashboard.section.header.opts.hl = "Type"
 dashboard.section.buttons.opts.hl = "Keyword"
 
 dashboard.opts.opts.noautocmd = true

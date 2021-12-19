@@ -2,8 +2,8 @@
   description = "My Nix Environment";
 
   nixConfig = {
-    extra-substituters = [ 
-      "https://cachix.cachix.org" 
+    extra-substituters = [
+      "https://cachix.cachix.org"
       "https://nix-community.cachix.org"
     ];
 
@@ -25,11 +25,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "unstable";
     };
-
-    my-nixpkgs = {
-      url = "github:Steven0351/nixpkgs-srs/main";
-      inputs.nixpkgs.follows = "unstable";
-    };
   };
 
   outputs = inputs: {
@@ -43,5 +38,20 @@
         ];
       };
     };
+
+    devShell =
+      let mkDevShell = pkgs:
+        pkgs.mkShell {
+          buildInputs = with pkgs; [
+            nixpkgs-fmt
+          ];
+        };
+      in
+      {
+        "x86_64-darwin" = mkDevShell inputs.unstable.legacyPackages."x86_64-darwin";
+        "aarch64-darwin" = mkDevShell inputs.unstable.legacyPackages."aarch64-darwin";
+        "x86_64-linux" = mkDevShell inputs.unstable.legacyPackages."x86_64-linux";
+        "aarch64-linux" = mkDevShell inputs.unstable.legacyPackages."aarch64-linux";
+      };
   };
 }

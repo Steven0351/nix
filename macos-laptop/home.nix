@@ -5,6 +5,7 @@
     any-nix-shell
     argocd
     babelfish
+    # (callPackage ../shared/btop {})
     drone-cli
     exercism
     ffmpeg
