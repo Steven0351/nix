@@ -1,5 +1,5 @@
 {
-  description = "My Nix Environment"; 
+  description = "My Nix Environment";
 
   nixConfig = {
     extra-substituters = [
@@ -39,19 +39,20 @@
       };
     };
 
-    devShell =
-      let mkDevShell = pkgs:
+    devShell = let
+      mkDevShell = pkgs:
         pkgs.mkShell {
-          buildInputs = with pkgs; [
-            nixpkgs-fmt
-          ];
+          buildInputs = with pkgs; [ nixfmt ];
         };
-      in
-      {
-        "x86_64-darwin" = mkDevShell inputs.unstable.legacyPackages."x86_64-darwin";
-        "aarch64-darwin" = mkDevShell inputs.unstable.legacyPackages."aarch64-darwin";
-        "x86_64-linux" = mkDevShell inputs.unstable.legacyPackages."x86_64-linux";
-        "aarch64-linux" = mkDevShell inputs.unstable.legacyPackages."aarch64-linux";
-      };
+    in {
+      "x86_64-darwin" = mkDevShell
+        inputs.unstable.legacyPackages."x86_64-darwin";
+      "aarch64-darwin" = mkDevShell
+        inputs.unstable.legacyPackages."aarch64-darwin";
+      "x86_64-linux" = mkDevShell
+        inputs.unstable.legacyPackages."x86_64-linux";
+      "aarch64-linux" = mkDevShell
+        inputs.unstable.legacyPackages."aarch64-linux";
+    };
   };
 }
