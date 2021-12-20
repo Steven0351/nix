@@ -1,5 +1,5 @@
 {
-  description = "My Nix Environment";
+  description = "My Nix Environment"; 
 
   nixConfig = {
     extra-substituters = [
