@@ -5,10 +5,11 @@
     any-nix-shell
     argocd
     babelfish
-    # (callPackage ../shared/btop {})
+    (callPackage ../shared/btop {})
     drone-cli
     exercism
     ffmpeg
+    fzf
     glow
     go-task
     imagemagick
