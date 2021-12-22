@@ -5,7 +5,7 @@
     fzf
     neofetch
     neovim
-    nerdfots
+    nerdfonts
     nixpkgs-review
     nmap
     nodePackages.neovim
