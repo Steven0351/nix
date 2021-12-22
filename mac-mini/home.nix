@@ -1,7 +1,7 @@
 { pkgs, ...}: {
   home.packages = with pkgs; [
     babelfish
-    (callPackage ../shared/btop {})
+    # (callPackage ../shared/btop {}) need to figure out build issues on aarch64-darwin
     fzf
     neofetch
     neovim
