@@ -37,6 +37,15 @@
           inputs.home-manager.darwinModules.home-manager
         ];
       };
+
+      mac-mini = inputs.darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        inputs = inputs;
+        modules = [
+          (import ./mac-mini/configuration.nix)
+          inputs.home-manager.darwinModules.home-manager
+        ];
+      };
     };
 
     devShell = let
