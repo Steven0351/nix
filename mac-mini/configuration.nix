@@ -11,7 +11,9 @@
   system.stateVersion = 4;
 
   nix = {
-    package = pkgs.nix_2_4;
+    maxJobs = 16;
+    buildCores = 16;
+    package = pkgs.nix_2_5;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -32,6 +34,4 @@
   home-manager.users.stevensherry = import ./home.nix;
 
   nixpkgs.config.allowUnfree = true;
-
-  networking.hostName = "macmini.dev";
 }
