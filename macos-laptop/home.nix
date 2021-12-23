@@ -27,6 +27,7 @@
     nodePackages.neovim
     nodePackages.prettier
     nodejs
+    pinentry-curses
     # podman # -- Currently doesn't work due to being unable to find gvproxy
     # quickemu
     qemu 
@@ -49,6 +50,8 @@
     ../shared/home-manager/fish.nix
     ../shared/home-manager/gh.nix
     ../shared/home-manager/git.nix
+    ../shared/home-manager/gpg.nix
+    ../shared/home-manager/gpg-agent.nix
     ../shared/home-manager/home-manager.nix
     ../shared/home-manager/jq.nix
     ../shared/home-manager/starship.nix
