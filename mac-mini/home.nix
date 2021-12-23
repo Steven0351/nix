@@ -27,6 +27,7 @@
     ../shared/home-manager/exa.nix
     ../shared/home-manager/fish.nix
     ../shared/home-manager/gh.nix
+    ../shared/home-manager/git.nix
     ../shared/home-manager/home-manager.nix
     ../shared/home-manager/starship.nix
   ];
