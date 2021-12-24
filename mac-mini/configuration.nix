@@ -11,8 +11,9 @@
   system.stateVersion = 4;
 
   nix = {
-    maxJobs = 16;
-    buildCores = 16;
+    maxJobs = 8;
+    buildCores = 8;
+    useSandbox = true;
     package = pkgs.nix_2_5;
     extraOptions = ''
       experimental-features = nix-command flakes
