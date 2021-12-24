@@ -20,6 +20,7 @@
     neofetch
     neovim
     nerdfonts
+    nixpkgs-fmt
     nixpkgs-review
     # Useful for getting sha256 hashes for github repos
     nix-prefetch-github
