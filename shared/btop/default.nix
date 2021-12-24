@@ -14,6 +14,8 @@ stdenv.mkDerivation rec {
   nativeBuildInputs =
     lib.optionals stdenv.isDarwin [ gcc11 ];
 
+  hardeningDisable = lib.optionals (stdenv.isAarch64 && stdenv.isDarwin) [ "stackprotector" ];
+
   ADDFLAGS = with pkgs.darwin.apple_sdk;
     lib.optional stdenv.isDarwin
     "-F${frameworks.IOKit}/Library/Frameworks/";
