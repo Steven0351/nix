@@ -6,8 +6,8 @@
     '';
 
     onChange = ''
-      ./${config.home.homeDirectory}/.nix-profile/bin/gpgconf --kill gpg-agent
-      ./${config.home.homeDirectory}/.nix-profile/bin/gpg-agent --daemon
+      gpgconf --kill gpg-agent
+      gpg-agent --daemon
     '';
   };
 }
