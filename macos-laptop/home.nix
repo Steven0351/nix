@@ -5,7 +5,8 @@
     any-nix-shell
     argocd
     babelfish
-    (callPackage ../shared/btop {})
+    btop
+    # (callPackage ../shared/btop {})
     drone-cli
     exercism
     ffmpeg
@@ -28,7 +29,7 @@
     nodePackages.neovim
     nodePackages.prettier
     nodejs
-    pinentry-curses
+    (callPackage ../shared/pinentry { enabledFlavors = ["curses"]; })
     # podman # -- Currently doesn't work due to being unable to find gvproxy
     # quickemu
     qemu 

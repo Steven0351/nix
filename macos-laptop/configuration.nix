@@ -14,7 +14,7 @@
     maxJobs = 16;
     buildCores = 16;
     package = pkgs.nix_2_4;
-    useSandbox = true;
+    # useSandbox = true;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
