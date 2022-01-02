@@ -1,7 +1,7 @@
 { pkgs, ...}: {
   home.packages = with pkgs; [
     babelfish
-    (callPackage ../shared/btop {}) 
+    btop
     fzf
     neofetch
     neovim
@@ -11,8 +11,7 @@
     nodePackages.neovim
     nodePackages.prettier
     nodejs
-    pinentry
-    pinentry-curses
+    (callPackage ../shared/pinentry { enabledFlavors = [ "curses" ]; })
     ripgrep
     stylua
     wget

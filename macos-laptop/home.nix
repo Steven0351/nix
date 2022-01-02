@@ -6,7 +6,6 @@
     argocd
     babelfish
     btop
-    # (callPackage ../shared/btop {})
     drone-cli
     exercism
     ffmpeg
