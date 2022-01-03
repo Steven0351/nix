@@ -1,5 +1,5 @@
-local cokeline = require("cokeline")
-local colors = require("onenord/colors")
+local cokeline = require "cokeline"
+local colors = require "onenord/colors"
 local get_hex = require("cokeline/utils").get_hex
 
 local space = {
@@ -107,7 +107,7 @@ local readonly = {
   },
 }
 
-cokeline.setup({
+cokeline.setup {
   mappings = {
     cycle_prev_next = true,
   },
@@ -122,6 +122,21 @@ cokeline.setup({
       bg = get_hex("ColorColumn", "bg"),
     },
   },
+  rendering = {
+    left_sidebar = {
+      filetype = "NvimTree",
+      components = {
+        {
+          text = "  NvimTree",
+          hl = {
+            fg = colors.yellow,
+            bg = get_hex("NvimTreeNormal", "bg"),
+            style = "bold",
+          },
+        },
+      },
+    },
+  },
   components = {
     separator,
     space,
@@ -133,4 +148,4 @@ cokeline.setup({
     space,
     space,
   },
-})
+}
