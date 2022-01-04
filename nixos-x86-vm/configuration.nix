@@ -1,4 +1,4 @@
-inputs: { config, lib, pkgs, nixos-pkgs, ...}: {
+inputs: { config, lib, pkgs, ...}: {
   
   imports = [ ];
   
@@ -42,8 +42,8 @@ inputs: { config, lib, pkgs, nixos-pkgs, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    registry.nixpkgs.flake = nixos-pkgs;
-    nixPath = [ "nixpkgs=${nixos-pkgs}" ];
+    registry.nixpkgs.flake = inputs.nixos-pkgs;
+    nixPath = [ "nixpkgs=${inputs.nixos-pkgs}" ];
     gc = {
       automatic = true;
       dates = "weekly";
