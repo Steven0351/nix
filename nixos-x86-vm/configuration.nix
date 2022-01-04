@@ -26,7 +26,7 @@ inputs: { config, lib, pkgs, nixos-pkgs, ...}: {
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  networking.hostname = "nixos-x86-vm";
+  networking.hostName = "nixos-x86-vm";
   networking.useDHCP = false;
   networking.interfaces.ens33.useDHCP = true;
 
