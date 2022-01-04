@@ -46,7 +46,7 @@ inputs: { config, lib, pkgs, nixos-pkgs, ...}: {
     nixPath = [ "nixpkgs=${nixos-pkgs}" ];
     gc = {
       automatic = true;
-      date = "weekly";
+      dates = "weekly";
       options = "--delete-older-than 7d";
     };
     package = pkgs.nix_2_4;
