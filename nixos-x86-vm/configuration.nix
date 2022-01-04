@@ -60,7 +60,7 @@ inputs: { config, lib, pkgs, nixos-pkgs, ...}: {
   users.users.steven0351 = {
     isNormalUser = true;
     home = "/home/steven0351";
-    groups = [ "wheel" ];
+    extraGroups = [ "wheel" ];
     hashedPassword = "$6$ovF47m7mqBGepnA0$/eeLRGyyOiIOEcdZS8iPxGnFH.VjWOWVGe.NDaCeYYdzJc16QN/nHalUGfe.fo2RxgF06RA4y5V.pefFgx04.1";
   };
 
