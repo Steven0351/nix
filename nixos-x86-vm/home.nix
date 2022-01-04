@@ -6,7 +6,16 @@
     fzf
     glow
     neofetch
-    neovim
+    (neovim-unwrapped.overrideAttrs (old: rec {
+      version = "0.6.1";
+
+      src = pkgs.fetchFromGitHub {
+        owner = "neovim";
+        repo = "neovim";
+        rev = "v${version}";
+        sha256 = "sha256-0XCW047WopPr3pRTy9rF3Ff6MvNRHT4FletzOERD41A=";
+      };
+    }))
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
     nixpkgs-fmt
     nixpkgs-review
