@@ -64,7 +64,7 @@ inputs: { config, lib, pkgs, nixos-pkgs, ...}: {
     hashedPassword = "$6$ovF47m7mqBGepnA0$/eeLRGyyOiIOEcdZS8iPxGnFH.VjWOWVGe.NDaCeYYdzJc16QN/nHalUGfe.fo2RxgF06RA4y5V.pefFgx04.1";
   };
 
-  home-manager.useGlobalPackages = true;
+  home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.steven0351 = import ./home.nix;
   
