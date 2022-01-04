@@ -11,7 +11,7 @@ inputs: { config, lib, pkgs, ...}: {
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = { 
-    device = "/dev/disk/by-uuid/ed518c26-fe9f-4223-8532-c305fb50daec";
+    device = "/dev/disk/by-uuid/ed518c26-fe9f-4423-8532-c305fb50daec";
     fsType = "btrfs";
   };
 
