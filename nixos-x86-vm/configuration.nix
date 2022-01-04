@@ -11,17 +11,17 @@ inputs: { config, lib, pkgs, ...}: {
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = { 
-    device = "/dev/disk/by-uuid/ed518c26-fe9f-4423-8532-c305fb50daec";
+    device = "/dev/sda1";
     fsType = "btrfs";
   };
 
   fileSystems."/boot" = { 
-    device = "/dev/disk/by-uuid/1853-0E5B";
+    device = "/dev/sda3";
     fsType = "vfat";
   };
 
   swapDevices = [ 
-    { device = "/dev/disk/by-uuid/bce1002e-ebab-4f87-ab29-62da9f6770de"; }
+    { device = "/dev/sda2"; }
   ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
