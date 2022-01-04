@@ -49,7 +49,7 @@
       date = "weekly";
       options = "--delete-older-than 7d";
     };
-    package = pkgs.nix_2_5;
+    package = pkgs.nix_2_4;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
