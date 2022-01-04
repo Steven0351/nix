@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixos-pkgs, ...}: {
+inputs: { config, lib, pkgs, nixos-pkgs, ...}: {
   
   imports = [ ];
   
