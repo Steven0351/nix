@@ -15,7 +15,7 @@
 
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
+ 
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "unstable";
@@ -24,6 +24,13 @@
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "unstable";
+    };
+
+    nixos-pkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+
+    home-manager-nixos = {
+      url = "github:nix-community/home-manager/release-21.11";
+      inputs.nixpkgs.follows = "nixos-pkgs";
     };
   };
 
@@ -44,6 +51,16 @@
         modules = [
           (import ./mac-mini/configuration.nix)
           inputs.home-manager.darwinModules.home-manager
+        ];
+      };
+    };
+
+    nixosConfigurations = {
+      nixos-x86-vm = inputs.nixos-pkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          (import ./nixos-x86-vm/configuration.nix inputs)
+          inputs.home-manager-nixos.nixosModules.home-manager
         ];
       };
     };
