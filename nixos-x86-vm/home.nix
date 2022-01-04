@@ -2,20 +2,20 @@
 
 {
   home.packages = with pkgs; [
-    btop 
+    btop
     fzf
     glow
     neofetch
     neovim
-    nerdfonts
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
     nixpkgs-fmt
     nixpkgs-review
     nix-prefetch-github
-    nodePackages.neovim 
+    nodePackages.neovim
     nodePackages.prettier
     # pinentry-curses
     ripgrep
-    stylua 
+    stylua
   ];
 
   home.sessionVariables = {
