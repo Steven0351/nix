@@ -11,7 +11,7 @@
     nodePackages.neovim
     nodePackages.prettier
     nodejs
-    (callPackage ../shared/pinentry { enabledFlavors = [ "curses" ]; })
+    pinentry-curses
     ripgrep
     stylua
     wget
