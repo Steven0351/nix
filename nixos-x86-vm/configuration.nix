@@ -1,6 +1,6 @@
 inputs: { config, lib, pkgs, ...}: {
   
-  imports = [ ];
+  imports = [ ./sys-xmonad.nix ];
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
