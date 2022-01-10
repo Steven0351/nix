@@ -152,6 +152,8 @@ return packer.startup(function(use)
       require("surround").setup { mappings_style = "sandwich" }
     end,
   }
+
+  use { "ggandor/lightspeed.nvim" }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
