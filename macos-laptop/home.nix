@@ -28,9 +28,8 @@
     nodePackages.neovim
     nodePackages.prettier
     nodejs
-    (callPackage ../shared/pinentry { enabledFlavors = ["curses"]; })
+    pinentry-curses
     # podman # -- Currently doesn't work due to being unable to find gvproxy
-    # quickemu
     qemu 
     ripgrep
     stylua
