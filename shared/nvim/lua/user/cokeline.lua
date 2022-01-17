@@ -1,5 +1,5 @@
 local cokeline = require "cokeline"
-local colors = require "onenord/colors"
+local colors = require "onenord.colors.onenord"
 local get_hex = require("cokeline/utils").get_hex
 
 local space = {
