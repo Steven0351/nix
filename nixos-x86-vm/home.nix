@@ -47,7 +47,7 @@ in
 
     font = {
       name = "Fira Code Nerd Font";
-      size = "13.0"
+      size = "13.0";
     };
 
     settings = {
