@@ -8,7 +8,7 @@
       enabled = true;
       socketActivated = true;
       packages = [ pkgs.gnome3.dconf ];
-    }
+    };
 
     xserver = {
       enabled = true;
