@@ -19,6 +19,7 @@ let
     btop
     font-awesome
     fzf
+    gcc
     glow
     neofetch
     nixpkgs-fmt
@@ -41,13 +42,14 @@ in
   };
 
   programs.feh.enable = true;
+  programs.qutebrowser.enable = true;
 
   programs.kitty = {
     enable = true;
 
     font = {
       name = "Fira Code Nerd Font";
-      size = "13.0";
+      size = 12;
     };
 
     settings = {
@@ -74,8 +76,8 @@ in
       color10 = "#8FBCBB";
 
       # yellow
-      color3 = "#EBCB88B";
-      color11 = "#EBCB88B";
+      color3 = "#EBCB8B";
+      color11 = "#EBCB8B";
 
       # blue
       color4 = "#81A2C1";

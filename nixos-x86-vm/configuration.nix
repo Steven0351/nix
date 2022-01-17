@@ -1,4 +1,4 @@
-inputs: { config, lib, pkgs, ...}: {
+{ nixos-pkgs, ... }: { config, lib, pkgs, ... }: {
   
   imports = [ ./sys-xmonad.nix ];
   
@@ -53,8 +53,8 @@ inputs: { config, lib, pkgs, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    registry.nixpkgs.flake = inputs.nixos-pkgs;
-    nixPath = [ "nixpkgs=${inputs.nixos-pkgs}" ];
+    registry.nixpkgs.flake = nixos-pkgs;
+    nixPath = [ "nixpkgs=${nixos-pkgs}" ];
     gc = {
       automatic = true;
       dates = "weekly";
@@ -76,6 +76,8 @@ inputs: { config, lib, pkgs, ...}: {
       hashedPassword = "$6$ovF47m7mqBGepnA0$/eeLRGyyOiIOEcdZS8iPxGnFH.VjWOWVGe.NDaCeYYdzJc16QN/nHalUGfe.fo2RxgF06RA4y5V.pefFgx04.1";
     };
   };
+
+  virtualisation.vmware.guest.enable = true;
 
   home-manager = {
     useGlobalPkgs = true;

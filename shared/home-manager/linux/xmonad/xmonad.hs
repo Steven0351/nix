@@ -40,7 +40,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask -- Sets modkey to super/windows/cmd key
 
 myTerminal :: String
-myTerminal = "kitty -e /usr/bin/fish"
+myTerminal = "kitty -e /etc/profiles/per-user/steven0351/bin/fish"
 
 myBrowser :: String
 myBrowser = "qutebrowser"
@@ -211,7 +211,6 @@ myKeys =
     modShift xK_Tab rotSlavesDown, -- Rotates all windows except master
     modControl xK_Tab rotAllDown,
     control xK_Tab $ sendMessage NextLayout, -- Toggles next layout
-    control xK_h $ sendMessage Shrink,
     mod' xK_l $ sendMessage Expand,
     mod'' mod1Mask xK_j $ sendMessage MirrorShrink,
     mod'' mod1Mask xK_k $ sendMessage MirrorExpand
@@ -221,7 +220,7 @@ myKeys =
 main :: IO ()
 main = do
   -- Launching three instances of xmobar on their monitors.
-  xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc0"
+  xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/.xmobarrc"
   -- the xmonad, ya know...what the WM is named after!
   xmonad $
     ewmh
