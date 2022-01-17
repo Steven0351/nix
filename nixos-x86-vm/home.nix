@@ -14,12 +14,8 @@ let
   firaCode = pkgs.nerdfonts.override {
     fonts = [ "FiraCode" ];
   };
-in
-{
-  home.packages = [
-    firaCode
-    neovim-0_6_1
-  ] ++ with pkgs; [
+  
+  packages = with pkgs; [
     btop
     font-awesome
     fzf
@@ -32,6 +28,12 @@ in
     ripgrep
     stylua
   ];
+in
+{
+  home.packages = [
+    firaCode
+    neovim-0_6_1
+  ] ++ packages;
 
   home.sessionVariables = {
     EDITOR = "nvim";
