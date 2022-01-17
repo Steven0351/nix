@@ -19,6 +19,13 @@ nix build .#darwinConfigurations.mac-mini.system
 ./result/sw/bin/darwin-rebuild switch --flake .#mac-mini
 ```
 
+**nixos-x86-vm**
+
+```fish
+nix build .#nixosConfigurations.nixos-x86-vm.config.system.build.toplevel
+sudo ./result/sw/bin/nixos-rebuild switch --flake .#nixos-x86-vm
+```
+
 ### Updating neovim configuration
 
 It's a pain to edit neovim configuration and then have to create a new generation
