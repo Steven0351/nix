@@ -5,13 +5,13 @@
     upower.enable = true;
 
     dbus = {
-      enabled = true;
+      enable = true;
       socketActivated = true;
       packages = [ pkgs.gnome3.dconf ];
     };
 
     xserver = {
-      enabled = true;
+      enable = true;
       startDbusSession = true;
       layout = "us";
 
