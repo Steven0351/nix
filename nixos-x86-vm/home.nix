@@ -21,6 +21,7 @@ in
     neovim-0_6_1
   ] ++ with pkgs; [
     btop
+    font-awesome
     fzf
     glow
     neofetch
@@ -36,6 +37,8 @@ in
     EDITOR = "nvim";
     MANPAGER = "nvim +Man!";
   };
+
+  programs.feh.enable = true;
 
   programs.kitty = {
     enable = true;
@@ -131,6 +134,11 @@ in
 
   xdg.configFile.nvim = {
     source = ../shared/nvim;
+    recursive = true;
+  };
+  
+  xdg.dataFile.wallpapers = {
+    source = ../shared/wallpapers;
     recursive = true;
   };
 }
