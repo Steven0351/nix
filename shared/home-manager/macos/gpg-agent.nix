@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ pkgs, config, ...}: {
   home.file.".gnupg/gpg-agent.conf" = {
     text = ''
       no-grab 
