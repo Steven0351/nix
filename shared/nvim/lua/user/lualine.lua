@@ -1,5 +1,9 @@
 local status_ok, lualine = pcall(require, "lualine")
-local colors = require("onenord/colors")
+local colors_ok, colors = pcall(require, "onenord.colors.onenord")
+
+if not colors_ok then
+  return
+end
 
 if not status_ok then
   return
@@ -72,8 +76,8 @@ local location = {
 
 -- cool function for progress
 local progress = function()
-  local current_line = vim.fn.line(".")
-  local total_lines = vim.fn.line("$")
+  local current_line = vim.fn.line "."
+  local total_lines = vim.fn.line "$"
   local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
   local line_ratio = current_line / total_lines
   local index = math.ceil(line_ratio * #chars)
@@ -114,7 +118,7 @@ local lsp = {
     local buf_client_names = {}
 
     for _, client in pairs(buf_clients) do
-      if client.name ~= "null-ls" then
+      if client.name ~= "null-ls" and #buf_clients > 1 then
         table.insert(buf_client_names, client.name)
       end
     end
@@ -123,7 +127,7 @@ local lsp = {
   end,
 }
 
-lualine.setup({
+lualine.setup {
   options = {
     icons_enabled = true,
     theme = "auto",
@@ -150,4 +154,4 @@ lualine.setup({
   },
   tabline = {},
   extensions = {},
-})
+}
