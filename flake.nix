@@ -15,7 +15,7 @@
 
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
- 
+
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "unstable";
@@ -65,20 +65,25 @@
       };
     };
 
-    devShell = let
-      mkDevShell = pkgs:
-        pkgs.mkShell {
-          buildInputs = with pkgs; [ nixfmt ];
-        };
-    in {
-      "x86_64-darwin" = mkDevShell
-        inputs.unstable.legacyPackages."x86_64-darwin";
-      "aarch64-darwin" = mkDevShell
-        inputs.unstable.legacyPackages."aarch64-darwin";
-      "x86_64-linux" = mkDevShell
-        inputs.unstable.legacyPackages."x86_64-linux";
-      "aarch64-linux" = mkDevShell
-        inputs.unstable.legacyPackages."aarch64-linux";
-    };
+    devShell =
+      let
+        mkDevShell = pkgs:
+          pkgs.mkShell {
+            buildInputs = with pkgs; [
+              sumneko-lua-language-server
+              rnix-lsp
+            ];
+          };
+      in
+      {
+        "x86_64-darwin" = mkDevShell
+          inputs.unstable.legacyPackages."x86_64-darwin";
+        "aarch64-darwin" = mkDevShell
+          inputs.unstable.legacyPackages."aarch64-darwin";
+        "x86_64-linux" = mkDevShell
+          inputs.nixos-pkgs.legacyPackages."x86_64-linux";
+        "aarch64-linux" = mkDevShell
+          inputs.nixos-pkgs.legacyPackages."aarch64-linux";
+      };
   };
 }

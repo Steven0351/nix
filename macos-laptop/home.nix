@@ -39,7 +39,6 @@
   
   imports = [
     ../shared/home-manager/bat.nix
-    ../shared/home-manager/direnv.nix
     ../shared/home-manager/exa.nix
     ../shared/home-manager/fish.nix
     ../shared/home-manager/gh.nix
@@ -49,6 +48,7 @@
     ../shared/home-manager/jq.nix
     ../shared/home-manager/nvim.nix
     ../shared/home-manager/starship.nix
+    ../shared/home-manager/macos/direnv.nix
     ../shared/home-manager/macos/gpg-agent.nix
   ];
 }

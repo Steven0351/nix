@@ -26,8 +26,12 @@ let
     nixpkgs-review
     nix-prefetch-github
     nodePackages.prettier
+    nodejs # needed for tree-sitter cli
     ripgrep
     stylua
+    tree-sitter
+    wget
+    unzip
   ];
 in
 {
@@ -38,7 +42,6 @@ in
 
   imports = [
     ../shared/home-manager/bat.nix
-    ../shared/home-manager/direnv.nix
     ../shared/home-manager/exa.nix
     ../shared/home-manager/fish.nix
     ../shared/home-manager/gh.nix
@@ -48,6 +51,7 @@ in
     ../shared/home-manager/jq.nix
     ../shared/home-manager/nvim.nix
     ../shared/home-manager/starship.nix
+    ../shared/home-manager/linux/direnv.nix
     ../shared/home-manager/linux/feh.nix
     ../shared/home-manager/linux/gpg-agent.nix
     ../shared/home-manager/linux/kitty.nix

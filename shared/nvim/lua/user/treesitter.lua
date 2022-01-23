@@ -4,7 +4,56 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {
+    -- Shell
+    "bash",
+    "fish",
+    -- C Family
+    "c",
+    "cpp",
+    "llvm",
+    -- Erlang/Elixir
+    "heex",
+    "surface",
+    "elixir",
+    "erlang",
+    -- Web
+    "css",
+    "elm",
+    "graphql",
+    "html",
+    "javascript",
+    "jsdoc",
+    "json",
+    "svelte",
+    "tsx",
+    "typescript",
+    -- JVM
+    "java",
+    "kotlin",
+    -- Configuration
+    "rasi",
+    "toml",
+    "yaml",
+    -- Build
+    "make",
+    "nix",
+    -- Go
+    "go",
+    "gomod",
+    -- General
+    "comment",
+    "dart",
+    "dockerfile",
+    "haskell",
+    "lua",
+    "python",
+    "ruby",
+    "rust",
+    "teal",
+    "vim",
+    "zig",
+  }, 
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "" }, -- List of parsers to ignore installing
   autopairs = {

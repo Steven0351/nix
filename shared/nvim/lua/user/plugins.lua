@@ -119,6 +119,10 @@ return packer.startup(function(use)
     end,
   }
 
+  -- Makes sumneko_lua lsp configuration for working with neovim configuration
+  -- and plugin development easier
+  use { "folke/lua-dev.nvim" }
+
   use {
     "simrat39/rust-tools.nvim",
     config = function()

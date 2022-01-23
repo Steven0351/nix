@@ -118,12 +118,17 @@ local lsp = {
     local buf_client_names = {}
 
     for _, client in pairs(buf_clients) do
-      if client.name ~= "null-ls" and #buf_clients > 1 then
+      if #buf_clients == 1 then
+        table.insert(buf_client_names, client.name)
+        break
+      end
+
+      if client.name ~= "null-ls" then
         table.insert(buf_client_names, client.name)
       end
     end
 
-    return " " .. table.concat(buf_client_names, "  ")
+    return "  " .. table.concat(buf_client_names, "  ")
   end,
 }
 
