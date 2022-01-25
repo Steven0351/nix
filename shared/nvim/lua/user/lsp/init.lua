@@ -3,21 +3,9 @@ if not status_ok then
   return
 end
 
-local handlers = require "user.lsp.handlers"
-
-local sumneko_opts = {
-  on_attach = handlers.on_attach,
-  capabilities = handlers.capabilities,
-}
-
-local lua_dev_opts = require("lua-dev").setup {
-  lspconfig = sumneko_opts,
-  runtime_path = true,
-}
-
-lspconfig.sumneko_lua.setup(lua_dev_opts)
+local sumneko_opts = require "user.lsp.settings.sumneko_lua"
+lspconfig.sumneko_lua.setup(sumneko_opts)
 lspconfig.rnix.setup {}
 
-require "user.lsp.lsp-installer"
-handlers.setup()
+require "user.lsp.diagnostics"
 require "user.lsp.null-ls"

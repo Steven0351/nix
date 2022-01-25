@@ -33,6 +33,7 @@
     ripgrep
     stylua
     tanka
+    tree-sitter
     wget
     youtube-dl
   ];

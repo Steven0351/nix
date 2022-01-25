@@ -176,8 +176,10 @@ local function extend(tab1, tab2)
 end
 
 local extended_schemas = extend(schemas, default_schemas)
-
+local handlers = require("user.lsp.handlers")
 local opts = {
+  on_attach = handlers.on_attach,
+  capabilities = handlers.capabilities,
   settings = {
     json = {
       schemas = extended_schemas,

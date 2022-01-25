@@ -1,15 +1,12 @@
-return {
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.stdpath("config") .. "/lua"] = true,
-        },
-      },
-    },
+local handlers = require("user.lsp.handlers")
+
+return require("lua-dev").setup {
+  library = {
+    vimruntime = true,
+  },
+  runtime_path = true,
+  lspconfig = {
+    on_attach = handlers.on_attach,
+    capabilities = handlers.capabilities,
   },
 }

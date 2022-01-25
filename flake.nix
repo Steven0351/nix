@@ -68,9 +68,24 @@
     devShell =
       let
         mkDevShell = pkgs:
+          # let
+          # sumneko-lua = pkgs.sumneko-lua-language-server.overrideAttrs(old: rec {
+          #   version = "2.6.1";
+          #
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "sumneko";
+          #     repo = "lua-language-server";
+          #     rev = version;
+          #     sha256 = "z7YkiwJS5HDJ2w8i42QrZ66aMR0MbbQXxcXlT/rrrPg=";
+          #     fetchSubmodules = true;
+          #   };
+          # });
+          # in 
           pkgs.mkShell {
             buildInputs = with pkgs; [
-              sumneko-lua-language-server
+              (callPackage ./shared/sumneko-lua-ls {})
+              # sumneko-lua-language-server
+              # sumneko-lua
               rnix-lsp
             ];
           };

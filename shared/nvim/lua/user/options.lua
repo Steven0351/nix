@@ -36,7 +36,7 @@ local options = {
   -- set term gui colors (most terminals support this)
   termguicolors = true,
   -- time to wait for a mapped sequence to complete (in milliseconds)
-  timeoutlen = 100,
+  timeoutlen = 250,
   -- enable persistent undo
   undofile = true,
   -- faster completion (4000ms default)
@@ -68,12 +68,12 @@ local options = {
   guifont = "monospace:h17",
 }
 
-vim.opt.shortmess:append("c")
+vim.opt.shortmess:append "c"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
-vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd [[set iskeyword+=-]]
+vim.cmd [[set formatoptions-=cro]]
