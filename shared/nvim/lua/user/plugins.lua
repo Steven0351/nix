@@ -47,22 +47,19 @@ return packer.startup(function(use)
   use { "numToStr/Comment.nvim" } -- Easily comment stuff
   use { "kyazdani42/nvim-web-devicons" }
   use { "kyazdani42/nvim-tree.lua" }
-  -- use "akinsho/bufferline.nvim"
   use { "noib3/nvim-cokeline" }
   use { "moll/vim-bbye" }
   use { "nvim-lualine/lualine.nvim" }
   use { "Famiu/feline.nvim" }
   use { "akinsho/toggleterm.nvim" }
   use { "ahmedkhalf/project.nvim" }
-  -- use("lewis6991/impatient.nvim")
   use { "lukas-reineke/indent-blankline.nvim" }
   use { "goolord/alpha-nvim" }
   use { "antoinemadec/FixCursorHold.nvim" } -- This is needed to fix lsp doc highlight
   use { "folke/which-key.nvim" }
   use { "stevearc/dressing.nvim" }
   use { "mhartington/formatter.nvim" }
-  -- Colorschemes
-  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+
   use {
     "rmehri01/onenord.nvim",
     config = function()
@@ -99,7 +96,6 @@ return packer.startup(function(use)
 
   -- LSP
   use { "neovim/nvim-lspconfig" } -- enable LSP
-  use { "williamboman/nvim-lsp-installer" } -- simple to use language server installer
   use { "tamago324/nlsp-settings.nvim" } -- language server settings defined in json for
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
 
