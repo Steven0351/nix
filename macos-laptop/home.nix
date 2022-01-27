@@ -15,6 +15,7 @@
     imagemagick
     kubernetes-helm
     kubectl
+    libfido2
     lynx
     minikube
     neofetch
