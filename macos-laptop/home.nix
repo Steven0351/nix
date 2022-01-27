@@ -15,7 +15,6 @@
     imagemagick
     kubernetes-helm
     kubectl
-    libfido2
     lynx
     minikube
     neofetch
@@ -28,6 +27,7 @@
     nodePackages.neovim
     nodePackages.prettier
     nodejs
+    openssh
     pinentry-curses
     # podman # -- Currently doesn't work due to being unable to find gvproxy
     qemu 
