@@ -37,6 +37,7 @@
     tree-sitter
     wget
     youtube-dl
+    yubikey-manager
   ];
   
   imports = [
