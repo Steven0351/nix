@@ -38,6 +38,7 @@
     wget
     youtube-dl
     yubikey-manager
+    zathura
   ];
   
   imports = [
