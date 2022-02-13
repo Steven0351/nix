@@ -1,12 +1,11 @@
 { pkgs, config, ...}: {
   home.file.".gnupg/gpg-agent.conf" = {
     text = ''
-      pinentry-program ${config.home.homeDirectory}/.nix-profile/bin/pinentry
+      pinentry-program ${config.home.homeDirectory}/.nix-profile/bin/pinentry-curses
     '';
 
     onChange = ''
-      gpgconf --kill gpg-agent
-      gpg-agent --daemon
+      ${config.home.homeDirectory}/.nix-profile/bin/gpg-connect-agent reloadagent /bye
     '';
   };
 }

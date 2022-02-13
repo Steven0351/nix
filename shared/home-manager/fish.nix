@@ -9,7 +9,7 @@
     };
 
     shellInit = ''
-      set GPG_TTY (tty)
+      set -x GPG_TTY (tty)
       set fish_color_autosuggestion 4c566a
       set fish_color_cancel \x2dr
       set fish_color_command 81a1c1
