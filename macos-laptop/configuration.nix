@@ -1,4 +1,6 @@
 { config, pkgs, inputs, ...}: {
+  imports = [ ./brew.nix ];
+
   environment.systemPackages = [];
 
   services.nix-daemon.enable = true;
