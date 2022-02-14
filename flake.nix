@@ -54,6 +54,15 @@
           inputs.home-manager.darwinModules.home-manager
         ];
       };
+      
+      atomic = inputs.darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        inputs = inputs;
+        modules = [
+          (import ./atomic/configuration.nix)
+          inputs.home-manager.darwinModules.home-manager
+        ];
+      };
     };
 
     nixosConfigurations = {
