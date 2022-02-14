@@ -6,6 +6,11 @@
 
   programs.bash.enable = true;
   programs.fish.enable = true;
+  programs.openssh = {
+    enable = true;
+    stdoutPath = "/Users/steven0351/.ssh/stdout.log";
+    stderrPath = "/Users/steven0351/.ssh/stderr.log";
+  };
 
   environment.pathsToLink = [ "/share/fish" ];
 

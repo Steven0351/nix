@@ -24,7 +24,7 @@ in
           Path to store logging output for the ssh-agent.
           Defaults to ~/.ssh/stdout.log.
         '';
-        type = types.str;
+        type = types.path;
       };
 
       stderrPath = mkOption {
@@ -33,7 +33,7 @@ in
           Path to store stderr output for the ssh-agent.
           Defaults to ~/.ssh/stderr.log.
         '';
-        type = types.str;
+        type = types.path;
       };
     };
   };

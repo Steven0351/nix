@@ -59,6 +59,7 @@
         system = "aarch64-darwin";
         inputs = inputs;
         modules = [
+          ./shared/modules/nix-darwin
           (import ./atomic/configuration.nix)
           inputs.home-manager.darwinModules.home-manager
         ];
