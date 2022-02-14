@@ -13,13 +13,12 @@ in
         description = ''
           Whether to configure openssh. Enabling openssh through nix-darwin will disable the Apple openssh services. 
           The system openssh will need to manually be disabled via launchctl and new agent will have to be manually
-          started via `launchctl kickstart system/dev.stevensherry.openssh.ssh-agent`.
+          started via `launchctl kickstart gui/501/dev.stevensherry.openssh.ssh-agent`.
         '';
         type = types.bool;
       };
 
       stdoutPath = mkOption {
-        default = "~/.ssh/stdout.log";
         description = ''
           Path to store logging output for the ssh-agent.
           Defaults to ~/.ssh/stdout.log.
@@ -28,7 +27,6 @@ in
       };
 
       stderrPath = mkOption {
-        default = "~/.ssh/stderr.log";
         description = ''
           Path to store stderr output for the ssh-agent.
           Defaults to ~/.ssh/stderr.log.
