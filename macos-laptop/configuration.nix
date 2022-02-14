@@ -7,9 +7,15 @@
 
   programs.bash.enable = true;
   programs.fish.enable = true;
+  programs.openssh = {
+    enable = true;
+    stdoutPath = "/usr/local/var/log/ssh-agent1.log";
+    stderrPath = "/usr/local/var/log/ssh-agent2.log";
+  };
 
+  environment.systemPath = [ "/run/current-system/sw/bin" ];
   environment.pathsToLink = [ "/share/fish" ];
-
+  
   system.stateVersion = 4;
 
   nix = {

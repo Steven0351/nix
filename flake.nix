@@ -40,6 +40,7 @@
         system = "x86_64-darwin";
         inputs = inputs;
         modules = [
+          ./shared/modules/nix-darwin
           (import ./macos-laptop/configuration.nix)
           inputs.home-manager.darwinModules.home-manager
         ];

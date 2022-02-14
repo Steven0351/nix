@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   programs.fish = {
     enable = true;
 
@@ -37,8 +37,11 @@
       set fish_pager_color_description B3A06D\x1eyellow
       set fish_pager_color_prefix normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
       set fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
-    '';
 
+      fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/current-system/sw/bin /nix/var/nix/profiles/default/bin 
+    '' + lib.optionalString pkgs.stdenv.isDarwin ''
+      set -x SSH_AUTH_SOCK ~/.ssh/agent
+    '';
 
     plugins = [{
       name = "nix-env";

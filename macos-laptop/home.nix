@@ -1,4 +1,5 @@
 { pkgs, ...}: {
+    
   home.packages = with pkgs; [
     _1password
     ansible
@@ -27,7 +28,6 @@
     nodePackages.neovim
     nodePackages.prettier
     nodejs
-    openssh
     pinentry-curses
     # podman # -- Currently doesn't work due to being unable to find gvproxy
     qemu 

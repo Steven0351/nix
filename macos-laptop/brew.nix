@@ -16,6 +16,7 @@
       "amethyst"
       "hammerspoon"
       "kitty"
+      "launchcontrol"
       "qutebrowser"
     ];
 
