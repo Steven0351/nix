@@ -8,6 +8,7 @@ lspconfig.sumneko_lua.setup(sumneko_opts)
 lspconfig.rnix.setup {}
 lspconfig.tailwindcss.setup {}
 lspconfig.svelte.setup {}
+lspconfig.tsserver.setup {}
 
 require "user.lsp.diagnostics"
 require "user.lsp.null-ls"
