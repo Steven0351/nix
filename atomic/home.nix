@@ -21,6 +21,7 @@ let
     wget
     yubikey-manager
     zathura
+    zellij
   ];
 in 
 {
