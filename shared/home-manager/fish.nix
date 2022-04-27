@@ -52,5 +52,13 @@
         sha256 = "RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=";
       };
     }];
+
+    functions = {
+      xcode = lib.optionalString pkgs.stdenv.isDarwin ''
+        set -l xversion $argv[1]
+        set -l command_length (count $argv)
+        env DEVELOPER_DIR=/Applications/Xcode-$xversion.app/Contents/Developer $argv[2..$command_length]
+      '';
+    };
   };
 }
