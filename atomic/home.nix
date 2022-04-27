@@ -59,6 +59,7 @@ in
     ../shared/home-manager/nvim.nix
     ../shared/home-manager/starship.nix
     ../shared/home-manager/wallpapers.nix
+    ../shared/home-manager/zellij.nix
     ../shared/home-manager/macos/direnv.nix
     ../shared/home-manager/macos/gpg-agent.nix
   ];
