@@ -112,27 +112,25 @@ cokeline.setup {
     cycle_prev_next = true,
   },
   default_hl = {
-    focused = {
-      fg = get_hex("Normal", "fg"),
-      bg = get_hex("ColorColumn", "bg"),
-      style = "bold",
-    },
-    unfocused = {
-      fg = get_hex("Comment", "fg"),
-      bg = get_hex("ColorColumn", "bg"),
-    },
+    fg = function(buffer)
+      return buffer.is_focused and get_hex("Normal", "fg") or get_hex("Comment", "fg")
+    end,
+
+    bg = get_hex("ColorColumn", "bg"),
+
+    style = function(buffer)
+      return buffer.is_focused and "bold"
+    end,
   },
-  rendering = {
-    left_sidebar = {
-      filetype = "NvimTree",
-      components = {
-        {
-          text = "  NvimTree",
-          hl = {
-            fg = colors.yellow,
-            bg = get_hex("NvimTreeNormal", "bg"),
-            style = "bold",
-          },
+  sidebar = {
+    filetype = "NvimTree",
+    components = {
+      {
+        text = "  NvimTree",
+        hl = {
+          fg = colors.yellow,
+          bg = get_hex("NvimTreeNormal", "bg"),
+          style = "bold",
         },
       },
     },
