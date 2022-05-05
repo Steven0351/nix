@@ -1,3 +1,5 @@
 result
 *.log
 .direnv/
+
+shared/fish/fish_variables

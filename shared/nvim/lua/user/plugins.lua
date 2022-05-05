@@ -47,7 +47,7 @@ return packer.startup(function(use)
   use { "numToStr/Comment.nvim" } -- Easily comment stuff
   use { "kyazdani42/nvim-web-devicons" }
   use { "kyazdani42/nvim-tree.lua" }
-  use { "noib3/nvim-cokeline" }
+  use { "noib3/nvim-cokeline", tag = "v0.3.0" }
   use { "moll/vim-bbye" }
   use { "nvim-lualine/lualine.nvim" }
   use { "Famiu/feline.nvim" }
@@ -59,6 +59,7 @@ return packer.startup(function(use)
   use { "folke/which-key.nvim" }
   use { "stevearc/dressing.nvim" }
   use { "mhartington/formatter.nvim" }
+  use { "direnv/direnv.vim" }
 
   use {
     "rmehri01/onenord.nvim",
