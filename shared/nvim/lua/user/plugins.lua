@@ -41,6 +41,12 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use { "wbthomason/packer.nvim" } -- Have packer manage itself
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end
+  }
   use { "nvim-lua/popup.nvim" } -- An implementation of the Popup API from vim in Neovim
   use { "nvim-lua/plenary.nvim" } -- Useful lua functions used ny lots of plugins
   use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
@@ -50,7 +56,7 @@ return packer.startup(function(use)
   use { "noib3/nvim-cokeline", tag = "v0.3.0" }
   use { "moll/vim-bbye" }
   use { "nvim-lualine/lualine.nvim" }
-  use { "Famiu/feline.nvim" }
+  use { "feline-nvim/feline.nvim" }
   use { "akinsho/toggleterm.nvim" }
   use { "ahmedkhalf/project.nvim" }
   use { "lukas-reineke/indent-blankline.nvim" }
@@ -59,7 +65,13 @@ return packer.startup(function(use)
   use { "folke/which-key.nvim" }
   use { "stevearc/dressing.nvim" }
   use { "mhartington/formatter.nvim" }
-  use { "direnv/direnv.vim" }
+
+  use {
+    "Steven0351/dotnvim",
+    config = function()
+      require("dotnvim").setup {}
+    end
+  }
 
   use {
     "rmehri01/onenord.nvim",

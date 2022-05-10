@@ -1,5 +1,10 @@
-{ pkgs, ...}: {
-    
+{ pkgs, ...}: 
+let
+  firaCode = pkgs.nerdfonts.override {
+    fonts = [ "FiraCode" ];
+  };
+in
+{
   home.packages = with pkgs; [
     _1password
     ansible
@@ -20,7 +25,6 @@
     minikube
     neofetch
     neovim
-    nerdfonts
     nixpkgs-fmt
     nixpkgs-review
     nix-prefetch-github # Useful for getting sha256 hashes for github repos
@@ -39,7 +43,7 @@
     youtube-dl
     yubikey-manager
     zathura
-  ];
+  ] ++ [ firaCode ];
   
   imports = [
     ../shared/home-manager/bat.nix
