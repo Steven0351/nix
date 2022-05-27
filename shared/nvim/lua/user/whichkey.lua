@@ -100,10 +100,7 @@ local mappings = {
   ["Q"] = { ":q<CR>", "Quit" },
   ["c"] = { "<cmd>:Bdelete<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  ["f"] = {
-    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Find files",
-  },
+  ["f"] = { "<cmd>Telescope find_files<cr>", "Find files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["o"] = { ":SymbolsOutline<cr>", "Toggle Symbols Outline" },
   ["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
@@ -158,6 +155,7 @@ local mappings = {
       '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<cr>',
       "Next Diagnostic",
     },
+    K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover" },
     k = {
       '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<cr>',
       "Prev Diagnostic",

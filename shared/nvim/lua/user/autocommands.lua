@@ -1,14 +1,16 @@
 local au_opts = { clear = true }
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
-local general_settings = vim.api.nvim_create_augroup("_general_settings", au_opts)
+local general_settings = augroup("_general_settings", au_opts)
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   group = general_settings,
   pattern = { "qf", "help", "man", "lspinfo" },
   command = "nnoremap <silent> <buffer> q :close<CR>"
 })
 
-vim.api.nvim_create_autocmd("TextYankPost", {
+autocmd("TextYankPost", {
   group = general_settings,
   pattern = "*",
   callback = function()
@@ -19,21 +21,21 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end
 })
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
+autocmd("BufWinEnter", {
   group = general_settings,
   pattern = "*",
   command = ":set formatoptions-=ro"
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   group = general_settings,
   pattern = "qf",
   command = "set nobuflisted"
 })
 
-local prose = vim.api.nvim_create_augroup("_prose", au_opts)
+local prose = augroup("_prose", au_opts)
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   group = prose,
   pattern = { "gitcommit", "markdown" },
   callback = function()
@@ -42,12 +44,40 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
-local auto_resize = vim.api.nvim_create_augroup("_auto_resize", au_opts)
+local auto_resize = augroup("_auto_resize", au_opts)
 
-vim.api.nvim_create_autocmd("VimResized", {
+autocmd("VimResized", {
   group = auto_resize,
   pattern = "*",
   command = "tabdo wincmd ="
+})
+
+local file_types = augroup("_file_types", au_opts)
+
+autocmd("BufRead,BufNewFile", {
+  group = file_types,
+  pattern = { "Podfile", "*.podspec" },
+  command = "set filetype=ruby"
+})
+
+local lsp_signature = augroup("_lsp_signature", au_opts)
+
+autocmd("InsertEnter", {
+  group = lsp_signature,
+  pattern = "*",
+  callback = function()
+    require("lsp_signature").on_attach()
+  end
+})
+
+local rust_tools = augroup("_rust_tools", au_opts)
+
+autocmd("BufRead,BufNewFile", {
+  group = rust_tools,
+  pattern = "*.rs",
+  callback = function()
+    require("rust-tools").setup {}
+  end
 })
 
 vim.cmd [[

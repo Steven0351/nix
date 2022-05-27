@@ -65,35 +65,12 @@ return packer.startup(function(use)
   use { "folke/which-key.nvim" }
   use { "stevearc/dressing.nvim" }
   use { "mhartington/formatter.nvim" }
+  use { "mfussenegger/nvim-lint" }
 
-  use {
-    "Steven0351/dotnvim",
-    config = function()
-      require("dotnvim").setup {}
-    end
-  }
-
-  use {
-    "rmehri01/onenord.nvim",
-    config = function()
-      local colors = require "onenord.colors"
-
-      require("onenord").setup {
-        custom_highlights = {
-          TSNamespace = { fg = colors.purple },
-        },
-      }
-    end,
-  }
-
-  use {
-    "simrat39/symbols-outline.nvim",
-    config = function()
-      vim.g.symbols_outline = {
-        width = 50,
-      }
-    end,
-  }
+  use { "nvim-telescope/telescope-file-browser.nvim" }
+  use { "akinsho/git-conflict.nvim" }
+  use { "rmehri01/onenord.nvim" }
+  use { "simrat39/symbols-outline.nvim" }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp" } -- The completion plugin
@@ -109,45 +86,28 @@ return packer.startup(function(use)
 
   -- LSP
   use { "neovim/nvim-lspconfig" } -- enable LSP
-  use { "tamago324/nlsp-settings.nvim" } -- language server settings defined in json for
+  use { "tamago324/nlsp-settings.nvim" }
+
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
 
-  use {
-    "ray-x/lsp_signature.nvim",
-    config = function()
-      require("lsp_signature").on_attach()
-    end,
-    event = "InsertEnter",
-  }
+  use { "ray-x/lsp_signature.nvim" }
 
   use {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup()
-    end,
+    requires = "kyazdani42/nvim-web-devicons"
   }
 
   -- Makes sumneko_lua lsp configuration for working with neovim configuration
   -- and plugin development easier
   use { "folke/lua-dev.nvim" }
 
-  use {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      require("rust-tools").setup {}
-    end,
-    ft = "rust",
-  }
+  use { "simrat39/rust-tools.nvim" }
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim" }
 
   -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
+  use { "nvim-treesitter/nvim-treesitter" }
 
   use { "JoosepAlviste/nvim-ts-context-commentstring" }
 
@@ -159,14 +119,11 @@ return packer.startup(function(use)
     requires = "nvim-lua/plenary.nvim",
   }
 
-  use {
-    "blackCauldron7/surround.nvim",
-    config = function()
-      require("surround").setup { mappings_style = "sandwich" }
-    end,
-  }
+  use { "blackCauldron7/surround.nvim" }
 
   use { "ggandor/lightspeed.nvim" }
+  use { "Steven0351/dotnvim" }
+  use { "nvim-neorg/neorg", tag = "*" }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
