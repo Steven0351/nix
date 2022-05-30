@@ -43,6 +43,7 @@ in
     youtube-dl
     yubikey-manager
     zathura
+    zk
   ] ++ [ firaCode ];
   
   imports = [

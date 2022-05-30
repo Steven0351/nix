@@ -41,6 +41,7 @@
       fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/current-system/sw/bin /nix/var/nix/profiles/default/bin 
     '' + lib.optionalString pkgs.stdenv.isDarwin ''
       set -x SSH_AUTH_SOCK ~/.ssh/agent
+      set -x ZK_NOTEBOOK_DIR ~/notes
     '';
 
     plugins = [{

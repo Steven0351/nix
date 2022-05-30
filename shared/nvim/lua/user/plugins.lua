@@ -108,6 +108,7 @@ return packer.startup(function(use)
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter" }
+  use { "nvim-treesitter/playground" }
 
   use { "JoosepAlviste/nvim-ts-context-commentstring" }
 
@@ -124,6 +125,7 @@ return packer.startup(function(use)
   use { "ggandor/lightspeed.nvim" }
   use { "Steven0351/dotnvim" }
   use { "nvim-neorg/neorg", tag = "*" }
+  use { "mickael-menu/zk-nvim" }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

@@ -22,6 +22,7 @@ let
     yubikey-manager
     zathura
     zellij
+    zk
   ];
 in 
 {
