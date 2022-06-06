@@ -1,9 +1,9 @@
-{ pkgs, ...}:
-let 
+{ pkgs, ... }:
+let
   firaCode = pkgs.nerdfonts.override {
     fonts = [ "FiraCode" ];
-  }; 
-  
+  };
+
   packages = with pkgs; [
     btop
     fzf
@@ -24,9 +24,9 @@ let
     zellij
     zk
   ];
-in 
+in
 {
-  home.packages = [ firaCode ] ++ packages; 
+  home.packages = [ firaCode ] ++ packages;
 
   programs.git = {
     enable = true;
@@ -63,6 +63,6 @@ in
     ../shared/home-manager/zellij.nix
     ../shared/home-manager/macos/direnv.nix
     ../shared/home-manager/macos/gpg-agent.nix
-    ../shared/home-manager/macos/kitty
+    ./kitty.nix
   ];
 }
