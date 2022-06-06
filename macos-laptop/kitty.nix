@@ -51,7 +51,7 @@
     inactive_tab_background = "#3B4252";
     inactive_tab_font_style = "italic";
 
-    kitty_mod = "opt+shift";
+    kitty_mod = "opt+cmd";
 
     # black
     color0 = "#3B4252";

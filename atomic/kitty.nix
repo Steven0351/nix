@@ -3,7 +3,7 @@
   programs.kitty.settings = {
     font_family = "FiraCode Nerd Font"; 
     italic_font = "FiraCode Nerd Font Italic";
-    font_size = "13";
+    font_size = "13.5";
     adjust_line_height = "-1";
     adjust_column_width = "0";
 
@@ -51,7 +51,7 @@
     inactive_tab_background = "#3B4252";
     inactive_tab_font_style = "italic";
 
-    kitty_mod = "opt+shift";
+    kitty_mod = "opt+cmd";
 
     # black
     color0 = "#3B4252";
