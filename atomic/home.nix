@@ -63,5 +63,6 @@ in
     ../shared/home-manager/zellij.nix
     ../shared/home-manager/macos/direnv.nix
     ../shared/home-manager/macos/gpg-agent.nix
+    ../shared/home-manager/macos/kitty
   ];
 }

@@ -59,5 +59,6 @@ in
     ../shared/home-manager/starship.nix
     ../shared/home-manager/macos/direnv.nix
     ../shared/home-manager/macos/gpg-agent.nix
+    ../shared/home-manager/macos/kitty
   ];
 }

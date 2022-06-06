@@ -13,10 +13,10 @@
     taps = [ "homebrew/cask" ];
 
     casks = [
-      "1password"
       "amethyst"
       "firefox"
       "iterm2"
+      "kitty"
       "notion"
       "slack"
       "zoom"
