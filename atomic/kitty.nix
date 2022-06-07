@@ -18,8 +18,8 @@
     bell_on_tab = true;
 
     enabled_layouts = "tall,horizontal";
-    window_border_width = "3";
-    window_margin_width = "2";
+    window_border_width = "2";
+    window_margin_width = "1";
     window_padding_width = "0 5 3";
     tab_bar_margin_width = "4";
     tab_bar_style = "fade";
@@ -34,7 +34,7 @@
 
     # Theme
     active_border_color = "#A3BE8C";
-    inactive_border_color = "#2E3440";
+    inactive_border_color = "#3B4252";
 
     foreground = "#D8DEE9";
     background = "#2E3440";
