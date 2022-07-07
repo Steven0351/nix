@@ -1,10 +1,11 @@
 { pkgs, ... }:
 let
   firaCode = pkgs.nerdfonts.override {
-    fonts = [ "FiraCode" ];
+    fonts = [ "FiraCode" "VictorMono" ];
   };
 
   packages = with pkgs; [
+    _1password
     btop
     fzf
     gcc

@@ -1,10 +1,12 @@
 { config, ... }: {
   programs.kitty.enable = true;
   programs.kitty.settings = {
-    font_family = "FiraCode Nerd Font"; 
-    italic_font = "FiraCode Nerd Font Italic";
+    font_family = "VictorMono Nerd Font Mono";
+    italic_font = "VictorMono Nerd Font Mono SemiBold Italic";
+    bold_font = "VictorMono Nerd Font Mono Bold";
+    bold_italic_font = "VictorMono Nerd Font Mono Bold Italic";
     font_size = "13.5";
-    adjust_line_height = "-1";
+    adjust_line_height = "1";
     adjust_column_width = "0";
 
     symbol_map = "U+f8e1 Font Awesome 5 Brands";
@@ -89,7 +91,7 @@
   programs.kitty.keybindings = {
     "kitty_mod+b" = "scroll_page_up";
     "kitty_mod+f" = "scroll_page_down";
-    "kitty_mod+enter" = "new_window_with_cwd"; 
+    "kitty_mod+enter" = "new_window_with_cwd";
     "kitty_mod+j" = "previous_window";
     "kitty_mod+k" = "next_window";
     "kitty_mod+l" = "next_tab";
