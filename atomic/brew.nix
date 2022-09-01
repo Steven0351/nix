@@ -19,6 +19,7 @@
       "kitty"
       "notion"
       "slack"
+      "tailscale"
       "zoom"
     ];
 

@@ -1,10 +1,10 @@
 { config, ... }: {
   programs.kitty.enable = true;
   programs.kitty.settings = {
-    font_family = "VictorMono Nerd Font Mono";
-    italic_font = "VictorMono Nerd Font Mono SemiBold Italic";
-    bold_font = "VictorMono Nerd Font Mono Bold";
-    bold_italic_font = "VictorMono Nerd Font Mono Bold Italic";
+    font_family = "VictorMono Nerd Font";
+    italic_font = "VictorMono Nerd Font SemiBold Italic";
+    bold_font = "VictorMono Nerd Font Bold";
+    bold_italic_font = "VictorMono Nerd Font Bold Italic";
     font_size = "13.5";
     adjust_line_height = "1";
     adjust_column_width = "0";
@@ -35,22 +35,22 @@
     macos_quit_when_last_window_closed = true;
 
     # Theme
-    active_border_color = "#A3BE8C";
-    inactive_border_color = "#3B4252";
+    active_border_color = "#9EC183";
+    inactive_border_color = "#2E3440";
 
-    foreground = "#D8DEE9";
+    foreground = "#E5E9F0";
     background = "#2E3440";
     selection_foreground = "#000000";
-    selection_background = "#FFFACD";
-    url_color = "#0087BD";
-    cursor = "#E5E9F0";
+    selection_background = "#3F4758";
+    url_color = "#88C0D0";
+    cursor = "#81A1C1";
 
-    active_tab_foreground = "#A3BE8C";
-    active_tab_background = "#3B4252";
+    active_tab_foreground = "#88C0D0";
+    active_tab_background = "#434C5E";
     active_tab_font_style = "bold";
 
-    inactive_tab_foreground = "#E5E9F0";
-    inactive_tab_background = "#3B4252";
+    inactive_tab_foreground = "#6C7A96";
+    inactive_tab_background = "#2E3440";
     inactive_tab_font_style = "italic";
 
     kitty_mod = "opt+cmd";
@@ -60,12 +60,12 @@
     color8 = "#4C566A";
 
     # red
-    color1 = "#BF616A";
-    color9 = "#BF616A";
+    color1 = "#E06C75";
+    color9 = "#E06C75";
 
     # green
-    color2 = "#A3BE8C";
-    color10 = "#A3BE8C";
+    color2 = "#9EC183";
+    color10 = "#9EC183";
 
     # yellow
     color3 = "#EBCB8B";
@@ -76,8 +76,8 @@
     color12 = "#81A1C1";
 
     # magenta
-    color5 = "#B48EAD";
-    color13 = "#B48EAD";
+    color5 = "#81A1C1";
+    color13 = "#81A1C1";
 
     # cyan
     color6 = "#88C0D0";
@@ -103,9 +103,4 @@
     "kitty_mod+minus" = "change_font_size current -2.0";
     "kitty_mod+backspace" = "change_font_size current 0";
   };
-
-  # xdg.configFile.kitty."/kitty.conf" = {
-  #   source = ./config;
-  #   recursive = true;
-  # };
 }

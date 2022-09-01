@@ -28,6 +28,7 @@ let
 in
 {
   home.packages = [ firaCode ] ++ packages;
+  home.stateVersion = "22.05";
 
   programs.git = {
     enable = true;
