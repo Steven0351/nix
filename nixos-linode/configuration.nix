@@ -150,8 +150,11 @@
     vim
     wget
     git
+    tailscale
   ];
 
+  # enable the tailscale service
+  services.tailscale.enable = true;
   nixpkgs.config.allowUnfree = true;
 
   nix = {
