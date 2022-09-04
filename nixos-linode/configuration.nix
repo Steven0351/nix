@@ -27,6 +27,7 @@
         terminal_output serial;
       '';
     };
+  };
 
   fileSystems."/" =
     { device = "/dev/sda";
@@ -43,7 +44,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   # networking.interfaces.enp0s5.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware; };
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
