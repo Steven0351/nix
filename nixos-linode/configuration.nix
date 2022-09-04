@@ -148,7 +148,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.steven0351 = import ./home.nix
+    users.steven0351 = import ./home.nix;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
