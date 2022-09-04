@@ -26,11 +26,15 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    nixos-pkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    nixos-pkgs.url = "github:nixos/nixpkgs/nixos-22.05";
 
     home-manager-nixos = {
-      url = "github:nix-community/home-manager/release-21.11";
+      url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixos-pkgs";
+    };
+
+    oxilica-nil = {
+      url = "github:oxalica/nil";
     };
   };
 
@@ -74,28 +78,31 @@
           inputs.home-manager-nixos.nixosModules.home-manager
         ];
       };
+      nixos-linode = inputs.nixos-pkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          (import ./nixos-linode/configuration.nix inputs)
+          inputs.home-manager-nixos.nixosModules.home-manager
+        ];
+      };
     };
 
     devShell =
       let
-        mkDevShell = pkgs:
-          pkgs.mkShell {
-            buildInputs = with pkgs; [
-              sumneko-lua-language-server
-              # (callPackage ./shared/sumneko-lua-ls {})
-              rnix-lsp
+        mkDevShell = arch:
+          let pkgs = inputs.unstable.legacyPackages."${arch}";
+          in pkgs.mkShell {
+            buildInputs = [
+              pkgs.sumneko-lua-language-server
+              inputs.oxilica-nil.packages."${arch}".nil
             ];
           };
       in
       {
-        "x86_64-darwin" = mkDevShell
-          inputs.unstable.legacyPackages."x86_64-darwin";
-        "aarch64-darwin" = mkDevShell
-          inputs.unstable.legacyPackages."aarch64-darwin";
-        "x86_64-linux" = mkDevShell
-          inputs.nixos-pkgs.legacyPackages."x86_64-linux";
-        "aarch64-linux" = mkDevShell
-          inputs.nixos-pkgs.legacyPackages."aarch64-linux";
+        "x86_64-darwin" = mkDevShell "x86_64-darwin";
+        "aarch64-darwin" = mkDevShell "aarch64-darwin";
+        "x86_64-linux" = mkDevShell "x86_64-linux";
+        "aarch64-linux" = mkDevShell "aarch64-linux";
       };
   };
 }

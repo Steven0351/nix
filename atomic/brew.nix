@@ -18,8 +18,10 @@
       "iterm2"
       "kitty"
       "notion"
+      "qutebrowser"
       "slack"
       "tailscale"
+      "vlc"
       "zoom"
     ];
 
