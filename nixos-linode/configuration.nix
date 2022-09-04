@@ -2,15 +2,48 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ nixos-pkgs, ... }: { config, pkgs, ... }:
+{ nixos-pkgs, ... }: { config, pkgs, lib, ... }:
 {
   # Use the GRUB 2 boot loader.
   boot = {
+    initrd = {
+      availableKernelModules = [ "virtio_pci" "virtio_scsi" "ahci" "sd_mod" ];
+      kernelModules = [ ];
+    };
+
+    kernelParams = [ "console=tty50,19200n8" ];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
+
     loader.grub = {
       enable = true;
+      forceInstall = true;
+      device = "nodev";
+      timeout = 10;
       version = 2;
+      extraConfig = ''
+        serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1;
+        terminal_input serial;
+        terminal_output serial;
+      '';
     };
-  };
+
+  fileSystems."/" =
+    { device = "/dev/sda";
+      fsType = "ext4";
+    };
+
+  swapDevices =
+    [ { device = "/dev/sdb"; }
+    ];
+
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  # networking.interfaces.enp0s5.useDHCP = lib.mkDefault true;
+
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware; };
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
