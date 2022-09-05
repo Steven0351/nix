@@ -59,8 +59,8 @@
 
       virtualHosts."nixos.panda-enigmatic.ts.net" = {
         forceSSL = true;
-        sslCertificate = "/home/steven0351/nixos.panda-enigmatic.ts.net.crt";
-        sslCertificateKey = "/home/steven0351/nixos.panda-enigmatic.ts.net.key";
+        sslCertificate = "/etc/ssl/certs/nixos.panda-enigmatic.ts.net.crt";
+        sslCertificateKey = "/etc/ssl/certs/nixos.panda-enigmatic.ts.net.key";
         locations."/git" = {
           proxyPass = "http://localhost:3333";
         };
