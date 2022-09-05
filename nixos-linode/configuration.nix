@@ -42,6 +42,22 @@
 
   services.tailscale.enable = true;
 
+  services.gitea = {
+    enable = true;
+    domain = "nixos.panda-enigmatic.ts.net";
+    rootUrl = "https://nixos.panda-enigmatic.ts.net/git";
+    httpPort = "3333";
+  };
+
+  services.nginx.virtualHosts."nixos.panda-enigmatic.ts.net" = {
+    forceSSL = true;
+    sslCertificate = "/home/steven0351/nixos.panda-enigmatic.ts.net.crt";
+    sslCertificateKey = "/home/steven0351/nixos.panda-enigmatic.ts.net.key";
+    locations."/git" = {
+      proxyPass = "http://localhost:3333";
+    };
+  };
+
   networking = {
     usePredictableInterfaceNames = false;
     useDHCP = false;
