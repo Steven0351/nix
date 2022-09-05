@@ -22,7 +22,7 @@ in
 {
   home.packages = packages;
 
-  home.programs.bash = {
+  programs.bash = {
     enable = true;
     enableCompletion = true;
     shellAliases = {
