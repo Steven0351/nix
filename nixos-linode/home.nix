@@ -7,6 +7,7 @@ let
     gcc
     glow
     neofetch
+    neovim
     nixpkgs-fmt
     nixpkgs-review
     nix-prefetch-github
