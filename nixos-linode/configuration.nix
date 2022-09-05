@@ -61,7 +61,7 @@
         forceSSL = true;
         sslCertificate = "/etc/ssl/certs/nixos.panda-enigmatic.ts.net.crt";
         sslCertificateKey = "/etc/ssl/certs/nixos.panda-enigmatic.ts.net.key";
-        locations."/git" = {
+        locations."/git/" = {
           proxyPass = "http://localhost:3333/";
         };
     };
