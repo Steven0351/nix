@@ -58,6 +58,7 @@
       recommendedTlsSettings = true;
 
       virtualHosts."nixos.panda-enigmatic.ts.net" = {
+        http2 = false;
         forceSSL = true;
         sslCertificate = "/etc/ssl/certs/nixos.panda-enigmatic.ts.net.crt";
         sslCertificateKey = "/etc/ssl/certs/nixos.panda-enigmatic.ts.net.key";
