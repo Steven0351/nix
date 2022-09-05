@@ -45,7 +45,7 @@
   services.gitea = {
     enable = true;
     domain = "nixos.panda-enigmatic.ts.net";
-    rootUrl = "https://nixos.panda-enigmatic.ts.net/git";
+    rootUrl = "https://nixos.panda-enigmatic.ts.net/git/";
     httpPort = 3333;
   };
 
