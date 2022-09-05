@@ -46,7 +46,7 @@
     enable = true;
     domain = "nixos.panda-enigmatic.ts.net";
     rootUrl = "https://nixos.panda-enigmatic.ts.net/git";
-    httpPort = "3333";
+    httpPort = 3333;
   };
 
   services.nginx.virtualHosts."nixos.panda-enigmatic.ts.net" = {
