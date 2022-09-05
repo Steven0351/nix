@@ -24,7 +24,6 @@ in
 
   programs.bash = {
     enable = true;
-    enableCompletion = true;
     shellAliases = {
       ls = "exa -G --color auto --icons -a -s type";
       ll = "exa -l --color always --icons -a -s type";
