@@ -1,25 +1,42 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 let
-  firaCode = pkgs.nerdfonts.override {
-    fonts = [ "FiraCode" "VictorMono" ];
+  nerdFonts = pkgs.nerdfonts.override {
+    fonts = [ "FiraCode" "VictorMono" "SourceCodePro" "JetBrainsMono" ];
+  };
+
+  aspell = pkgs.aspellWithDicts (d: [
+    d.en
+    d.en-computers
+    d.en-science
+  ]);
+
+  lvim = pkgs.callPackage ../shared/lvim {
+      dataHome = config.xdg.dataHome;
+      configHome = config.xdg.configHome;
+      cacheHome = config.xdg.cacheHome;
   };
 
   packages = with pkgs; [
     _1password
     btop
+    fira
     fzf
     gcc
     glow
+    languagetool
     neofetch
     neovim
     nix-prefetch-github
     nodejs
     openssh
     pinentry-curses
+    python3
     ripgrep
     stylua
+    sqlite
     tree-sitter
     wget
+    wordnet
     yubikey-manager
     zathura
     zellij
@@ -27,7 +44,7 @@ let
   ];
 in
 {
-  home.packages = [ firaCode ] ++ packages;
+  home.packages = [ nerdFonts aspell lvim ] ++ packages;
   home.stateVersion = "22.05";
 
   programs.git = {
@@ -43,12 +60,28 @@ in
       };
     };
 
-    ignores = [ ".DS_Store" ];
+    ignores = [
+      ".DS_Store"
+      "*.log"
+      ".idea"
+      "tmp/"
+    ];
 
     signing = {
       key = "5BE85414B74F99B1";
       signByDefault = true;
     };
+  };
+
+  programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: [ epkgs.vterm ];
+  };
+
+  launchd.agents."dev.stevensherry.emacsd".config = {
+    ProgramArguments = [ "sh" "-c" "${pkgs.emacs}/bin/emacs" "--daemon" ];
+    Label = "dev.stevensherry.emacsd";
+    RunAtLoad = true;
   };
 
   imports = [
@@ -59,6 +92,7 @@ in
     ../shared/home-manager/gpg.nix
     ../shared/home-manager/home-manager.nix
     ../shared/home-manager/jq.nix
+    ../shared/home-manager/lvim
     ../shared/home-manager/nvim.nix
     ../shared/home-manager/starship.nix
     ../shared/home-manager/wallpapers.nix

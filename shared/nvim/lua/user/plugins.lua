@@ -66,6 +66,7 @@ return packer.startup(function(use)
   use { "stevearc/dressing.nvim" }
   use { "mhartington/formatter.nvim" }
   use { "mfussenegger/nvim-lint" }
+  use { "mfussenegger/nvim-dap" }
 
   use { "nvim-telescope/telescope-file-browser.nvim" }
   use { "akinsho/git-conflict.nvim" }

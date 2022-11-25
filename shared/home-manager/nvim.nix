@@ -4,8 +4,8 @@
     recursive = true;
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    MANPAGER = "nvim +Man!";
-  };
+  # home.sessionVariables = {
+  #   EDITOR = "nvim";
+  #   MANPAGER = "nvim +Man!";
+  # };
 }

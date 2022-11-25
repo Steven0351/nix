@@ -2,12 +2,14 @@
   homebrew = {
     enable = true;
 
-    autoUpdate = true;
-    cleanup = "zap";
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+    };
 
     global = {
       brewfile = true;
-      noLock = true;
     };
 
     taps = [ "homebrew/cask" ];
@@ -16,7 +18,6 @@
       "amethyst"
       "firefox"
       "iterm2"
-      "kitty"
       "notion"
       "qutebrowser"
       "slack"

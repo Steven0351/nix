@@ -1,11 +1,11 @@
 { config, ... }: {
   programs.kitty.enable = true;
   programs.kitty.settings = {
-    font_family = "VictorMono Nerd Font";
-    italic_font = "VictorMono Nerd Font SemiBold Italic";
-    bold_font = "VictorMono Nerd Font Bold";
-    bold_italic_font = "VictorMono Nerd Font Bold Italic";
-    font_size = "13.5";
+    font_family = "JetBrainsMono Nerd Font";
+    italic_font = "JetBrainsMono Nerd Font Italic";
+    bold_font = "JetBrainsMono Nerd Font SemiBold";
+    bold_italic_font = "JetBrainsMono Nerd Font SemiBold Italic";
+    font_size = "14";
     adjust_line_height = "1";
     adjust_column_width = "0";
 
