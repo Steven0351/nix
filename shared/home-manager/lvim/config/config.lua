@@ -14,9 +14,22 @@ lvim.format_on_save.enabled = true
 lvim.colorscheme = "onenord"
 vim.opt.relativenumber = true
 
+local devicons = require("nvim-web-devicons")
+local svg = devicons.get_icons().svg
+devicons.set_icon {
+  svg = {
+    icon = "",
+    color = svg.color,
+    cterm_color = svg.cterm_color,
+    name = svg.name
+  }
+}
+
 require("user.alpha")
 require("user.autocommands")
 require("user.keys")
 require("user.lsp")
 require("user.lvim-builtins")
 require("user.plugins")
+
+-- local icons = require()

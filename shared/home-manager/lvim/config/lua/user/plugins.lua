@@ -6,4 +6,5 @@ lvim.plugins = {
     end
   },
   { "rmehri01/onenord.nvim" },
+  { "github/copilot.vim" }
 }

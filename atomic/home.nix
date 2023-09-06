@@ -16,6 +16,8 @@ let
       cacheHome = config.xdg.cacheHome;
   };
 
+  lazyvim = pkgs.callPackage ../shared/lazyvim {};
+
   packages = with pkgs; [
     _1password
     btop
@@ -23,7 +25,9 @@ let
     fzf
     gcc
     glow
+    httpie
     languagetool
+    mitmproxy
     neofetch
     neovim
     nix-prefetch-github
@@ -44,7 +48,7 @@ let
   ];
 in
 {
-  home.packages = [ nerdFonts aspell lvim ] ++ packages;
+  home.packages = [ nerdFonts aspell lvim lazyvim ] ++ packages;
   home.stateVersion = "22.05";
 
   programs.git = {
