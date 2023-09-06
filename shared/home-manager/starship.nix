@@ -28,7 +28,7 @@
         format = "([$conflicted$stashed$deleted$modified$staged$untracked$ahead_behind]($style))"; 
         conflicted = "[ $count](bold fg:red)]";
         staged = "[ $count ](fg:green)";
-        modified = "[ $count ](fg:yellow)";
+        modified = "[󰙏 $count ](fg:yellow)";
         deleted = "[ $count ](fg:red)";
         untracked = "[ $count ](fg:#D08770)";
         stashed = "[  $count ](fg:blue)";
@@ -56,7 +56,7 @@
       };
 
       golang = {
-        symbol = "ﳑ ";
+        symbol = "󰟓 ";
       }; 
 
       java = {
