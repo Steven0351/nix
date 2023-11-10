@@ -58,11 +58,11 @@
       };
 
       cosmic = inputs.darwin.lib.darwinSystem {
+        inherit inputs;
         system = "aarch64-darwin";
-        inputs = inputs;
         modules = [
           ./shared/modules/nix-darwin
-          (import ./cosmic/configuration.nix)
+          (import ./cosmic/configuration.nix inputs)
           inputs.home-manager.darwinModules.home-manager
         ];
       };
