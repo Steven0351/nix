@@ -56,6 +56,16 @@
           inputs.home-manager.darwinModules.home-manager
         ];
       };
+
+      cosmic = inputs.darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        inputs = inputs;
+        modules = [
+          ./shared/modules/nix-darwin
+          (import ./cosmic/configuration.nix)
+          inputs.home-manager.darwinModules.home-manager
+        ];
+      };
     };
 
     nixosConfigurations = {
