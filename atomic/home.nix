@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ oxilica-nil, ... }: { pkgs, config, ... }:
 let
   nerdFonts = pkgs.nerdfonts.override {
     fonts = [ "FiraCode" "VictorMono" "SourceCodePro" "JetBrainsMono" ];
@@ -21,7 +21,6 @@ let
   packages = with pkgs; [
     _1password
     btop
-    fira
     fzf
     gcc
     glow
@@ -38,9 +37,13 @@ let
     ripgrep
     stylua
     sqlite
+    sqlite.dev
+    sqlite.out
+    sumneko-lua-language-server
     tree-sitter
     wget
     wordnet
+    xcodes
     yubikey-manager
     zathura
     zellij
@@ -48,7 +51,7 @@ let
   ];
 in
 {
-  home.packages = [ nerdFonts aspell lvim lazyvim ] ++ packages;
+  home.packages = [ nerdFonts aspell lvim lazyvim oxilica-nil.packages.aarch64-darwin.nil ] ++ packages;
   home.stateVersion = "22.05";
 
   programs.git = {

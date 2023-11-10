@@ -11,15 +11,14 @@
 }:
 
 let 
-  lvimSrc = stdenv.mkDerivation rec {
-    pname = "lvim";
-    version = "1.2.0";
+  lvimSrc = stdenv.mkDerivation {
+    name = "lvim";
 
     src = fetchFromGitHub {
       owner = "LunarVim";
       repo = "LunarVim";
-      rev = version;
-      sha256 = "xlQ4qOUG1+wXyr1xVO2Mni/L3bKyrIlPFmve5w2Xoss=";
+      rev = "15dc5292922b8b6009db645225bfee1f26796a68";
+      sha256 = "sha256-4j17K7TCa9JF52T8s+iK6ftcuv00H2GtPlXEDNXgVWE=";
     };
 
     dontConfigure = true;
@@ -34,11 +33,12 @@ let
 in
 
 writeShellScriptBin "lvim" ''
+  export NVIM_APPNAME="lvim"
   export LUNARVIM_RUNTIME_DIR=${dataHome}/lunarvim
   export LUNARVIM_CONFIG_DIR=${configHome}/lvim
   export LUNARVIM_CACHE_DIR=${cacheHome}/lvim
   export LUNARVIM_BASE_DIR=${lvimSrc}/lvim
   export PATH=${neovim}/bin:${ripgrep}/bin:${fd}/bin:${git}/bin:/usr/bin:$PATH
-  exec -a lvim nvim -u $LUNARVIM_BASE_DIR/init.lua $@
+  exec -a $NVIM_APPNAME nvim -u $LUNARVIM_BASE_DIR/init.lua $@
 ''
 

@@ -3,8 +3,8 @@
     enable = true;
 
     shellAliases = {
-      ls = "exa -G --color auto --icons -a -s type";
-      ll = "exa -l --color always --icons -a -s type";
+      ls = "eza -G --color auto --icons -a -s type";
+      ll = "eza -l --color always --icons -a -s type";
       cat = "bat";
     };
 
@@ -38,7 +38,7 @@
       set fish_pager_color_prefix normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
       set fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 
-      fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/current-system/sw/bin /nix/var/nix/profiles/default/bin 
+      set SHELL (which fish)
     '' + lib.optionalString pkgs.stdenv.isDarwin ''
       set -x SSH_AUTH_SOCK ~/.ssh/agent
       set -x ZK_NOTEBOOK_DIR ~/notes

@@ -13,7 +13,7 @@ let
     name = "lazy.nvim";
     branch = "stable";
 
-    patch = ./help.patch;
+    patches = [ ./help.patch ];
 
     src = fetchFromGitHub {
       owner = "folke";
@@ -39,14 +39,21 @@ let
     lazypath = "${lazyNvimSrc}/lazy.nvim"
   end
   vim.opt.rtp:prepend(vim.env.LAZY or lazypath);
-  vim.opt.rtp:prepend(vim.env.LAZY_CONFIG or vim.fn.stdpath("config") .. "/lazyvim");
+  -- vim.opt.rtp:prepend(vim.env.LAZY_CONFIG or vim.fn.stdpath("config") .. "/lazyvim");
+
+  local spec = {
+      { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+      { import = "plugins" }
+  }
+
+  local lazycore_ok, lazycore = pcall(require, "lazycore")
+  if lazycore_ok then
+    vim.list_extend(spec, lazycore.imports)
+  end
+
   -- do something here to conditionally get a lazy config table and merge it with these defaults
   require("lazy").setup({
-    spec = {
-      { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-      -- import/overide with your plugins
-      { import = "plugins" }
-    },
+    spec = spec,
     defaults = {
       lazy = false,
       version = false,

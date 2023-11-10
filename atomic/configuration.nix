@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ...}: {
+{...}@inputs: { config, pkgs, ...}: {
   imports = [ ./brew.nix ];
   environment.systemPackages = [];
 
@@ -43,7 +43,7 @@
   };
 
   home-manager.useGlobalPkgs = true;
-  home-manager.users.steven0351 = import ./home.nix;
+  home-manager.users.steven0351 = import ./home.nix inputs;
 
   nixpkgs.config.allowUnfree = true;
 

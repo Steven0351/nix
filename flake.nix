@@ -1,18 +1,6 @@
 {
   description = "My Nix Environment";
 
-  nixConfig = {
-    extra-substituters = [
-      "https://cachix.cachix.org"
-      "https://nix-community.cachix.org"
-    ];
-
-    extra-trusted-public-keys = [
-      "cachix.cachix.org-1:eWNHQldwUO7G2VkjpnjDbWwy4KQ/HNxht7H4SSoMckM="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-  };
-
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
@@ -60,11 +48,11 @@
       };
       
       atomic = inputs.darwin.lib.darwinSystem {
+        inherit inputs;
         system = "aarch64-darwin";
-        inputs = inputs;
         modules = [
           ./shared/modules/nix-darwin
-          (import ./atomic/configuration.nix)
+          (import ./atomic/configuration.nix inputs)
           inputs.home-manager.darwinModules.home-manager
         ];
       };

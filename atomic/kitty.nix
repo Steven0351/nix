@@ -11,6 +11,7 @@
 
     symbol_map = "U+f8e1 Font Awesome 5 Brands";
 
+    shell_integration = "no-cursor";
     cursor_shape = "block";
     cursor_blink_interval = "1.0";
     cursor_stop_blinking_after = "15.0";

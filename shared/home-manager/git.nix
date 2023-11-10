@@ -12,7 +12,12 @@
       };
     };
 
-    ignores = [".DS_Store"];
+    ignores = [
+      ".DS_Store"
+      ".envrc"
+      ".direnv"
+      ".lazyconf"
+    ];
 
     signing = {
       key = "5BE85414B74F99B1";
