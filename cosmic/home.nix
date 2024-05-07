@@ -26,7 +26,7 @@ let
     glow
     httpie
     languagetool
-    mitmproxy
+#    mitmproxy
     neofetch
     neovim
     nix-prefetch-github
@@ -46,7 +46,6 @@ let
     xcodes
     yubikey-manager
     zathura
-    zellij
     zk
   ];
 in
@@ -72,6 +71,8 @@ in
       "*.log"
       ".idea"
       "tmp/"
+      ".envrc"
+      ".direnv"
     ];
 
     signing = {
@@ -99,6 +100,7 @@ in
     ../shared/home-manager/gpg.nix
     ../shared/home-manager/home-manager.nix
     ../shared/home-manager/jq.nix
+    ../shared/home-manager/lazyvim
     ../shared/home-manager/lvim
     ../shared/home-manager/nvim.nix
     ../shared/home-manager/starship.nix

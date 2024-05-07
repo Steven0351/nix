@@ -11,15 +11,14 @@
 let
   lazyNvimSrc = stdenv.mkDerivation {
     name = "lazy.nvim";
-    branch = "stable";
 
     patches = [ ./help.patch ];
 
     src = fetchFromGitHub {
       owner = "folke";
       repo = "lazy.nvim";
-      rev = "3ad55ae678876516156cca2f361c51f7952a924b";
-      sha256 = "L8x23jox8fLZTt17sDG21N2sqsSdmtLeUUp0h2Py7fs=";
+      rev = "v10.15.1";
+      sha256 = "sha256-adBcg8iSSO5eRLuZJnmU6m7IiRJXjoMDzN6yH2JrQIc=";
     };
 
     dontConfigure = true;
@@ -39,7 +38,7 @@ let
     lazypath = "${lazyNvimSrc}/lazy.nvim"
   end
   vim.opt.rtp:prepend(vim.env.LAZY or lazypath);
-  -- vim.opt.rtp:prepend(vim.env.LAZY_CONFIG or vim.fn.stdpath("config") .. "/lazyvim");
+  vim.opt.rtp:prepend(vim.env.LAZY_CONFIG or vim.fn.stdpath("config") .. "/lazyvim");
 
   local spec = {
       { "LazyVim/LazyVim", import = "lazyvim.plugins" },
@@ -48,7 +47,10 @@ let
 
   local lazycore_ok, lazycore = pcall(require, "lazycore")
   if lazycore_ok then
+    print("lazycore is loaded")
     vim.list_extend(spec, lazycore.imports)
+  else
+    print("lazycore is not loaded")
   end
 
   -- do something here to conditionally get a lazy config table and merge it with these defaults
@@ -81,3 +83,4 @@ writeShellScriptBin "lazyvim" ''
   export PATH=${neovim}/bin:${fd}/bin:${ripgrep}/bin:${git}/bin:$PATH
   exec -a lazyvim nvim -u ${lazyInit} $@
 ''
+

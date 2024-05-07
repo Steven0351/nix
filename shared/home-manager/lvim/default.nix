@@ -5,7 +5,7 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "lvim";
-    MANPAGER = "lvim +Man!";
+    # EDITOR = "lvim";
+    # MANPAGER = "lvim +Man!";
   };
 }
