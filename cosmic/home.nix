@@ -40,6 +40,7 @@ let
     sqlite.dev
     sqlite.out
     sumneko-lua-language-server
+    termpdfpy
     tree-sitter
     wget
     wordnet
