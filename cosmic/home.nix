@@ -1,7 +1,7 @@
 { oxilica-nil, ... }: { pkgs, config, ... }:
 let
   nerdFonts = pkgs.nerdfonts.override {
-    fonts = [ "FiraCode" "VictorMono" "SourceCodePro" "JetBrainsMono" ];
+    fonts = [ "FiraCode" "VictorMono" "SourceCodePro" "JetBrainsMono" "Monaspace" ];
   };
 
   aspell = pkgs.aspellWithDicts (d: [

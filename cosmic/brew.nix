@@ -12,8 +12,6 @@
       brewfile = true;
     };
 
-    taps = [ "homebrew/cask" ];
-
     casks = [
       "iterm2"
       "notion"

@@ -17,8 +17,8 @@ let
     src = fetchFromGitHub {
       owner = "folke";
       repo = "lazy.nvim";
-      rev = "v10.15.1";
-      sha256 = "sha256-adBcg8iSSO5eRLuZJnmU6m7IiRJXjoMDzN6yH2JrQIc=";
+      rev = "v11.14.1";
+      sha256 = "sha256-Rd5r7AcdXYJ+gIsvh0N3WIAgg7xXqEVo+62VzIT5QHo=";
     };
 
     dontConfigure = true;
