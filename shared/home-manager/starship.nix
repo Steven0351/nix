@@ -6,11 +6,11 @@
       command_timeout = 5000;
 
       character = {
-        success_symbol = "[❯](bold green)";
-        error_symbol = "[✗](bold red)";
+        success_symbol = "[ ](bold green)";
+        error_symbol = "[ ](bold red)";
       };
-       
-      directory = { 
+
+      directory = {
         read_only = " ";
       };
 
@@ -20,7 +20,7 @@
 
       git_commit = {
         tag_disabled = false;
-        tag_symbol = "  "; 
+        tag_symbol = "  ";
         format = "[on](fg:white) [ $hash](bold fg:purple)[$tag](fg:blue) ";
       };
 
@@ -34,6 +34,18 @@
         stashed = "[  $count ](fg:blue)";
         ahead = "[ $count ](fg:white)";
         behind = "[ $count ](fg:white)";
+      };
+
+      hostname = {
+        ssh_symbol = "󱄄 ";
+      };
+
+      package = {
+        symbol = " ";
+      };
+
+      c = {
+        symbol = " ";
       };
 
       elixir = {
@@ -57,11 +69,23 @@
 
       golang = {
         symbol = "󰟓 ";
-      }; 
+      };
 
       java = {
         symbol = " ";
         style = "bold red";
+      };
+
+      kotlin = {
+        symbol = " ";
+      };
+
+      nix_shell = {
+        symbol = "󱄅 ";
+      };
+
+      purescript = {
+        symbol = " ";
       };
 
       python = {
@@ -82,6 +106,14 @@
       swift = {
         symbol = " ";
         style = "bold #D08770";
+      };
+
+      terraform = {
+        symbol = "󱁢 ";
+      };
+
+      zig = {
+        symbol = " ";
       };
     };
   };

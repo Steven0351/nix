@@ -11,7 +11,6 @@
 
     symbol_map = "U+f8e1 Font Awesome 5 Brands";
 
-    shell_integration = "no-cursor";
     cursor_shape = "block";
     cursor_blink_interval = "1.0";
     cursor_stop_blinking_after = "15.0";
@@ -88,6 +87,9 @@
     color7 = "#E5E9F0";
     color15 = "#ECEFF4";
   };
+
+  programs.kitty.shellIntegration.mode = "no-cursor";
+  programs.kitty.shellIntegration.enableFishIntegration = true;
 
   programs.kitty.keybindings = {
     "kitty_mod+b" = "scroll_page_up";
