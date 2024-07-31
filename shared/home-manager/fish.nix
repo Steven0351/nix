@@ -5,6 +5,7 @@
     shellAliases = {
       ls = "eza -G --color auto --icons -a -s type";
       ll = "eza -l --color always --icons -a -s type";
+      tree = "eza --tree --icons";
       cat = "bat";
     };
 
