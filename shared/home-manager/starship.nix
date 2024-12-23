@@ -11,7 +11,7 @@
       };
 
       directory = {
-        read_only = " ";
+        read_only = "  ";
       };
 
       git_branch = {

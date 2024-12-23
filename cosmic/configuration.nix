@@ -3,6 +3,12 @@
   environment.systemPackages = [];
 
   services.nix-daemon.enable = true;
+  services.jankyborders = {
+    enable = true;
+    active_color = "0xff88c1cf";
+    inactive_color = "0xff2e3440";
+    width = 7.0;
+  };
 
   programs.bash.enable = true;
   programs.fish.enable = true;
@@ -14,6 +20,7 @@
 
   environment.pathsToLink = [ "/share/fish" ];
   system.stateVersion = 4;
+  ids.gids.nixbld = 350;
 
   nix = {
     settings = {

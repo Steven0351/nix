@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ ... }: {
   xdg.configFile."zellij/config.yaml".text = ''
     themes:
       nord:

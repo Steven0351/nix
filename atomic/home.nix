@@ -80,17 +80,6 @@ in
     };
   };
 
-  programs.emacs = {
-    enable = true;
-    extraPackages = epkgs: [ epkgs.vterm ];
-  };
-
-  launchd.agents."dev.stevensherry.emacsd".config = {
-    ProgramArguments = [ "sh" "-c" "${pkgs.emacs}/bin/emacs" "--daemon" ];
-    Label = "dev.stevensherry.emacsd";
-    RunAtLoad = true;
-  };
-
   imports = [
     ../shared/home-manager/bat.nix
     ../shared/home-manager/exa.nix

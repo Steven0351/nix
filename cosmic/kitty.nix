@@ -1,13 +1,8 @@
 { config, ... }: {
   programs.kitty.enable = true;
   programs.kitty.settings = {
-    font_family = "JetBrainsMono Nerd Font";
-    italic_font = "JetBrainsMono Nerd Font Italic";
-    bold_font = "JetBrainsMono Nerd Font SemiBold";
-    bold_italic_font = "JetBrainsMono Nerd Font SemiBold Italic";
-    font_size = "14";
-    adjust_line_height = "1";
-    adjust_column_width = "0";
+    font_family = "BerkeleyMono Nerd Font";
+    font_size = "15";
 
     symbol_map = "U+f8e1 Font Awesome 5 Brands";
 
@@ -28,7 +23,7 @@
     tab_fade = "1 1 1";
 
     shell = "${config.home.homeDirectory}/.nix-profile/bin/fish";
-    editor = "nvim";
+    editor = "lazyvim";
 
     macos_titlebar_color = "background";
     macos_hide_titlebar = false;

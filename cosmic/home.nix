@@ -40,14 +40,15 @@ let
     sqlite.dev
     sqlite.out
     sumneko-lua-language-server
-    termpdfpy
+#    termpdfpy
     tree-sitter
     wget
     wordnet
     xcodes
     yubikey-manager
-    zathura
-    zk
+    zellij
+#    zathura
+#    zk
   ];
 in
 {
@@ -80,17 +81,6 @@ in
       key = "5BE85414B74F99B1";
       signByDefault = true;
     };
-  };
-
-  programs.emacs = {
-    enable = true;
-    extraPackages = epkgs: [ epkgs.vterm ];
-  };
-
-  launchd.agents."dev.stevensherry.emacsd".config = {
-    ProgramArguments = [ "sh" "-c" "${pkgs.emacs}/bin/emacs" "--daemon" ];
-    Label = "dev.stevensherry.emacsd";
-    RunAtLoad = true;
   };
 
   imports = [

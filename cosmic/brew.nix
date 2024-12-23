@@ -13,12 +13,12 @@
     };
 
     casks = [
-      "iterm2"
       "notion"
       "slack"
       "tailscale"
       "vlc"
       "zoom"
+      "wezterm"
     ];
 
     extraConfig = ''
