@@ -13,6 +13,7 @@
     };
 
     casks = [
+      "ghostty"
       "notion"
       "slack"
       "tailscale"

@@ -10,6 +10,14 @@
     width = 7.0;
   };
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+    nerd-fonts.victor-mono
+    nerd-fonts.sauce-code-pro
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.monaspace
+  ];
+
   programs.bash.enable = true;
   programs.fish.enable = true;
   programs.openssh = {

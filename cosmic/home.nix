@@ -1,9 +1,5 @@
 { oxilica-nil, ... }: { pkgs, config, ... }:
 let
-  nerdFonts = pkgs.nerdfonts.override {
-    fonts = [ "FiraCode" "VictorMono" "SourceCodePro" "JetBrainsMono" "Monaspace" ];
-  };
-
   aspell = pkgs.aspellWithDicts (d: [
     d.en
     d.en-computers
@@ -33,6 +29,7 @@ let
     nodejs
     openssh
     pinentry-curses
+    pinentry_mac
     python3
     ripgrep
     stylua
@@ -52,11 +49,12 @@ let
   ];
 in
 {
-  home.packages = [ nerdFonts aspell lvim lazyvim oxilica-nil.packages.aarch64-darwin.nil ] ++ packages;
+  home.packages = [ aspell lvim lazyvim oxilica-nil.packages.aarch64-darwin.nil ] ++ packages;
   home.stateVersion = "22.05";
 
   programs.git = {
     enable = true;
+    lfs.enable = true;
     userName = "Steven Sherry";
     userEmail = "steven.r.sherry@gmail.com";
 
