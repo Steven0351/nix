@@ -1,16 +1,10 @@
-{ oxilica-nil, ... }: { pkgs, config, ... }:
+{ oxilica-nil, neovim-nightly, nixd, ... }: { pkgs, config, ... }:
 let
   aspell = pkgs.aspellWithDicts (d: [
     d.en
     d.en-computers
     d.en-science
   ]);
-
-  lvim = pkgs.callPackage ../shared/lvim {
-      dataHome = config.xdg.dataHome;
-      configHome = config.xdg.configHome;
-      cacheHome = config.xdg.cacheHome;
-  };
 
   lazyvim = pkgs.callPackage ../shared/lazyvim {};
 
@@ -24,7 +18,6 @@ let
     languagetool
 #    mitmproxy
     neofetch
-    neovim
     nix-prefetch-github
     nodejs
     openssh
@@ -49,7 +42,13 @@ let
   ];
 in
 {
-  home.packages = [ aspell lvim lazyvim oxilica-nil.packages.aarch64-darwin.nil ] ++ packages;
+  home.packages = [
+    aspell
+    lazyvim
+    oxilica-nil.packages.aarch64-darwin.nil
+    nixd.packages.aarch64-darwin.nixd
+    neovim-nightly.packages.aarch64-darwin.default
+  ] ++ packages;
   home.stateVersion = "22.05";
 
   programs.git = {

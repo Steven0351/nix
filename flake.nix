@@ -24,6 +24,9 @@
     oxilica-nil = {
       url = "github:oxalica/nil";
     };
+
+    nixd.url = "github:nix-community/nixd";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = inputs: {
@@ -46,7 +49,7 @@
           inputs.home-manager.darwinModules.home-manager
         ];
       };
-      
+
       atomic = inputs.darwin.lib.darwinSystem {
         inherit inputs;
         system = "aarch64-darwin";
