@@ -16,7 +16,7 @@ let
     glow
     httpie
     languagetool
-#    mitmproxy
+    lua-language-server
     neofetch
     nix-prefetch-github
     nodejs
@@ -24,21 +24,18 @@ let
     pinentry-curses
     pinentry_mac
     python3
+    qmk
     ripgrep
     stylua
     sqlite
     sqlite.dev
     sqlite.out
-    sumneko-lua-language-server
-#    termpdfpy
     tree-sitter
     wget
     wordnet
     xcodes
     yubikey-manager
     zellij
-#    zathura
-#    zk
   ];
 in
 {
@@ -96,6 +93,5 @@ in
     ../shared/home-manager/zellij.nix
     ../shared/home-manager/macos/direnv.nix
     ../shared/home-manager/macos/gpg-agent.nix
-    ./kitty.nix
   ];
 }

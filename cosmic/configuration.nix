@@ -2,7 +2,6 @@
   imports = [ ./brew.nix ];
   environment.systemPackages = [];
 
-  services.nix-daemon.enable = true;
   services.jankyborders = {
     enable = true;
     active_color = "0xff88c1cf";
@@ -37,7 +36,6 @@
       cores = 10;
     };
 
-    configureBuildUsers = true;
     package = pkgs.nix;
     extraOptions = ''
       experimental-features = nix-command flakes

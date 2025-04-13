@@ -1,7 +1,7 @@
 { config, ... }: {
   programs.kitty.enable = true;
   programs.kitty.settings = {
-    font_family = "BerkeleyMono Nerd Font";
+    font_family = "TX02 Nerd Font";
     font_size = "15";
 
     symbol_map = "U+f8e1 Font Awesome 5 Brands";
