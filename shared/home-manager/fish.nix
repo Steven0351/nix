@@ -43,6 +43,7 @@
     '' + lib.optionalString pkgs.stdenv.isDarwin ''
       set -x SSH_AUTH_SOCK ~/.ssh/agent
       set -x ZK_NOTEBOOK_DIR ~/notes
+      fish_add_path ~/.local/bin
     '';
 
     plugins = [{

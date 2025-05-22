@@ -17,6 +17,7 @@
       ".envrc"
       ".direnv"
       ".lazyconf"
+      ".lazy.lua"
     ];
 
     signing = {

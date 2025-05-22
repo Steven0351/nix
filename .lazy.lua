@@ -1,6 +1,6 @@
+vim.lsp.enable("nixd")
 return {
 	{ "williamboman/mason.nvim", enabled = false },
 	{ "williamboman/mason-lspconfig.nvim", enabled = false },
-	{ import = "lazyvim.plugins.extras.lang.nix" },
-	{ import = "lazyvim.plugins.extras.lang.markdown" },
+	{ "WhoIsSethDaniel/mason-tool-installer.nvim", enabled = false },
 }

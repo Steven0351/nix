@@ -1,4 +1,4 @@
-{ oxilica-nil, neovim-nightly, nixd, ... }: { pkgs, config, ... }:
+{ oxilica-nil, nixd, ... }: { pkgs, ... }:
 let
   aspell = pkgs.aspellWithDicts (d: [
     d.en
@@ -9,15 +9,20 @@ let
   lazyvim = pkgs.callPackage ../shared/lazyvim {};
 
   packages = with pkgs; [
-    _1password
+    _1password-cli
+    aerospace
+    bash-language-server
     btop
+    fastfetch
+    fd
     fzf
     gcc
     glow
     httpie
     languagetool
+    lazygit
     lua-language-server
-    neofetch
+    neovim
     nix-prefetch-github
     nodejs
     openssh
@@ -26,14 +31,26 @@ let
     python3
     qmk
     ripgrep
+    rubyPackages.xcodeproj
+    sad
+    sesh
+    shellcheck
+    shfmt
     stylua
     sqlite
     sqlite.dev
     sqlite.out
+    # TODO use home-manager for this after settling on the options
+    tmux
     tree-sitter
+    vectorcode
+    # This is codelldb
+    vscode-extensions.vadimcn.vscode-lldb.adapter
     wget
     wordnet
     xcodes
+    xcbeautify
+    yq
     yubikey-manager
     zellij
   ];
@@ -44,7 +61,6 @@ in
     lazyvim
     oxilica-nil.packages.aarch64-darwin.nil
     nixd.packages.aarch64-darwin.nixd
-    neovim-nightly.packages.aarch64-darwin.default
   ] ++ packages;
   home.stateVersion = "22.05";
 
@@ -77,7 +93,13 @@ in
     };
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   imports = [
+    ./kitty.nix
     ../shared/home-manager/bat.nix
     ../shared/home-manager/exa.nix
     ../shared/home-manager/fish.nix

@@ -1,6 +1,6 @@
 { ... }: {
   home.sessionVariables = {
-    EDITOR = "lazyvim";
-    MANPAGER = "lazyvim +Man!";
+    EDITOR = "stevenvim";
+    MANPAGER = "stevenvim +Man!";
   };
 }

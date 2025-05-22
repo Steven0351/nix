@@ -4,9 +4,23 @@
 
   services.jankyborders = {
     enable = true;
-    active_color = "0xff88c1cf";
-    inactive_color = "0xff2e3440";
+    inactive_color = "0xff313244";
+    active_color = "0xffb4befe";
     width = 7.0;
+  };
+
+  services.yabai = {
+    enable = false;
+    config = {
+      layout = "bsp";
+      window_placement = "second_child";
+      top_padding = 16;
+      bottom_padding = 16;
+      left_padding = 16;
+      right_padding = 16;
+      window_gap = 20;
+    };
+    enableScriptingAddition = false;
   };
 
   fonts.packages = with pkgs; [

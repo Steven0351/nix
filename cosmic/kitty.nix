@@ -1,14 +1,18 @@
 { config, ... }: {
   programs.kitty.enable = true;
+  programs.kitty.font = {
+    name = "TX-02-Kitty";
+    size = 15;
+  };
+  programs.kitty.themeFile = "Catppuccin-Mocha";
   programs.kitty.settings = {
-    font_family = "TX02 Nerd Font";
-    font_size = "15";
-
-    symbol_map = "U+f8e1 Font Awesome 5 Brands";
-
+    background_opacity = 0.95;
+    background_blur = 30;
     cursor_shape = "block";
     cursor_blink_interval = "1.0";
     cursor_stop_blinking_after = "15.0";
+    cursor_trail = 1;
+    cursor_trail_start_threshold = 0;
 
     enable_audio_bell = true;
     window_alert_on_bell = true;
@@ -17,86 +21,46 @@
     enabled_layouts = "tall,horizontal";
     window_border_width = "2";
     window_margin_width = "1";
-    window_padding_width = "0 5 3";
-    tab_bar_margin_width = "4";
-    tab_bar_style = "fade";
-    tab_fade = "1 1 1";
+    window_padding_width = "10 5 5";
 
     shell = "${config.home.homeDirectory}/.nix-profile/bin/fish";
-    editor = "lazyvim";
+    editor = "stevenvim";
 
-    macos_titlebar_color = "background";
-    macos_hide_titlebar = false;
+    hide_window_decorations = "titlebar-only";
     macos_quit_when_last_window_closed = true;
 
-    # Theme
-    active_border_color = "#9EC183";
-    inactive_border_color = "#2E3440";
-
-    foreground = "#E5E9F0";
-    background = "#2E3440";
-    selection_foreground = "#000000";
-    selection_background = "#3F4758";
-    url_color = "#88C0D0";
-    cursor = "#81A1C1";
-
-    active_tab_foreground = "#88C0D0";
-    active_tab_background = "#434C5E";
-    active_tab_font_style = "bold";
-
-    inactive_tab_foreground = "#6C7A96";
-    inactive_tab_background = "#2E3440";
-    inactive_tab_font_style = "italic";
-
     kitty_mod = "opt+cmd";
-
-    # black
-    color0 = "#3B4252";
-    color8 = "#4C566A";
-
-    # red
-    color1 = "#E06C75";
-    color9 = "#E06C75";
-
-    # green
-    color2 = "#9EC183";
-    color10 = "#9EC183";
-
-    # yellow
-    color3 = "#EBCB8B";
-    color11 = "#EBCB8B";
-
-    # blue
-    color4 = "#81A1C1";
-    color12 = "#81A1C1";
-
-    # magenta
-    color5 = "#81A1C1";
-    color13 = "#81A1C1";
-
-    # cyan
-    color6 = "#88C0D0";
-    color14 = "#8FBCBB";
-
-    # white
-    color7 = "#E5E9F0";
-    color15 = "#ECEFF4";
   };
 
   programs.kitty.shellIntegration.mode = "no-cursor";
   programs.kitty.shellIntegration.enableFishIntegration = true;
 
+  programs.kitty.extraConfig = ''
+symbol_map U+23FB-U+23FE TX02 Nerd Font
+symbol_map U+2665 TX02 Nerd Font
+symbol_map U+26a1 TX02 Nerd Font
+symbol_map U+2b58 TX02 Nerd Font
+symbol_map U+E000-U+E00A TX02 Nerd Font
+symbol_map U+E0A0-U+E0A2 TX02 Nerd Font
+symbol_map U+E0A3 TX02 Nerd Font
+symbol_map U+E0B0-U+E0B3 TX02 Nerd Font
+symbol_map U+E0B4-U+E0C8 TX02 Nerd Font
+symbol_map U+E0CA TX02 Nerd Font
+symbol_map U+E0CC-U+E0D7 TX02 Nerd Font
+symbol_map U+E000-U+E0A9 TX02 Nerd Font
+symbol_map U+E300-U+E3E3 TX02 Nerd Font
+symbol_map U+E5FA-U+E6B7 TX02 Nerd Font
+symbol_map U+E700-U+E8EF TX02 Nerd Font
+symbol_map U+EA60-U+EC1E TX02 Nerd Font
+symbol_map U+ED00-U+EFCE TX02 Nerd Font
+symbol_map U+F000-U+F2FF TX02 Nerd Font
+symbol_map U+F300-U+F381 TX02 Nerd Font
+symbol_map U+F400-U+F533 TX02 Nerd Font
+symbol_map U+F500-U+FD46 TX02 Nerd Font
+symbol_map U+F0001-U+F1AF0 TX02 Nerd Font
+  '';
+
   programs.kitty.keybindings = {
-    "kitty_mod+b" = "scroll_page_up";
-    "kitty_mod+f" = "scroll_page_down";
-    "kitty_mod+enter" = "new_window_with_cwd";
-    "kitty_mod+j" = "previous_window";
-    "kitty_mod+k" = "next_window";
-    "kitty_mod+l" = "next_tab";
-    "kitty_mod+h" = "previous_tab";
-    "kitty_mod+t" = "new_tab_with_cwd";
-    "kitty_mod+0" = "goto_layout tall";
-    "kitty_mod+1" = "goto_layout horizontal";
     "kitty_mod+equal" = "change_font_size current +2.0";
     "kitty_mod+minus" = "change_font_size current -2.0";
     "kitty_mod+backspace" = "change_font_size current 0";
