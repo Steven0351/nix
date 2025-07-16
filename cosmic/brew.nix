@@ -2,6 +2,20 @@
   homebrew = {
     enable = true;
 
+    brews = [
+      {
+        name = "sketchybar";
+        restart_service = true;
+        start_service = true;
+      }
+    ];
+
+    taps = [
+      { 
+        name = "FelixKratz/formulae";
+      }
+    ];
+
     onActivation = {
       autoUpdate = true;
       cleanup = "zap";

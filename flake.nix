@@ -9,6 +9,8 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
+    catppuccin.url = "github:catppuccin/nix";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "unstable";
@@ -19,10 +21,6 @@
     home-manager-nixos = {
       url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixos-pkgs";
-    };
-
-    oxilica-nil = {
-      url = "github:oxalica/nil";
     };
 
     nixd.url = "github:nix-community/nixd";
@@ -66,7 +64,11 @@
         modules = [
           ./shared/modules/nix-darwin
           (import ./cosmic/configuration.nix inputs)
-          inputs.home-manager.darwinModules.home-manager
+          inputs.home-manager.darwinModules.home-manager {
+            home-manager.sharedModules = [
+              inputs.catppuccin.homeModules.catppuccin
+            ];
+          }
         ];
       };
     };
@@ -95,7 +97,6 @@
           in pkgs.mkShell {
             buildInputs = [
               pkgs.sumneko-lua-language-server
-              inputs.oxilica-nil.packages."${arch}".nil
             ];
           };
       in

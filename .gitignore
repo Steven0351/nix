@@ -3,8 +3,3 @@ result
 .direnv/
 
 shared/fish/fish_variables
-# For testing neovim config from this repo and not affecting the real one
-state
-cache
-config
-store

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sudo ./result/sw/bin/darwin-rebuild switch --flake .#cosmic
+sudo yabai --load-sa
+yabai --restart-service

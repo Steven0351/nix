@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+# Set up paths
+export PATH=/Users/steven0351/.nix-profile/bin:$PATH
+export CONFIG_DIR="/Users/steven0351/.config/sketchybar"
+export PLUGIN_DIR="$CONFIG_DIR/plugins"
+echo $PATH
+echo $CONFIG_DIR
+# Source colors
+source "$CONFIG_DIR/colors.sh"
+
+# Bar Configuration - make the bar completely transparent and minimal
+sketchybar --bar position=top \
+                 topmost=true \
+                 height=24 \
+                 color=0x00000000 \
+                 border_width=0 \
+                 corner_radius=0 \
+                 margin=0 \
+                 y_offset=0 \
+                 blur_radius=0 \
+                 padding_left=0 \
+                 padding_right=0 \
+                 display=main
+
+# Default settings
+sketchybar --default updates=when_changed \
+                     icon.font="TX02 Nerd Font:Semibold:15.0" \
+                     icon.color=$TEXT \
+                     icon.padding_left=6 \
+                     icon.padding_right=6 \
+                     label.drawing=off \
+                     background.drawing=off
+
+# Space configuration
+SPACE_ICONS=($(yabai -m query --spaces --display 1 | jq -r '.[] | select(.label != "") | .index' | tr '\n' ' '))
+# SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8")
+SPACE_NAMES=($(yabai -m query --spaces --display 1 | jq -r '.[] | select(.label != "") | .label | if . == "iOS" then . else (.[0:1] | ascii_upcase) + .[1:] end' | tr '\n' ' '))
+# SPACE_NAMES=("Dev" "Chat" "Work" "Web" "iOS" "Notes" "3D" "Media")
+SPACE_ITEMS=()
+
+# Create all space items first
+for i in "${!SPACE_ICONS[@]}"
+do
+  sid=$(($i+1))
+  SPACE_ITEMS+=(space.$sid)
+
+  sketchybar --add space space.$sid center \
+             --set space.$sid associated_space=$sid \
+                              icon="${SPACE_NAMES[i]}" \
+                              script="$PLUGIN_DIR/space.sh" \
+                              click_script="yabai -m space --focus $sid" \
+             --subscribe space.$sid space_change
+done
+
+# Create a bracket that groups all spaces together with a background
+sketchybar --add bracket spaces_bracket "${SPACE_ITEMS[@]}" \
+           --set spaces_bracket background.color=$SUMI_INK_3 \
+                               background.corner_radius=12 \
+                               background.border_width=2 \
+                               background.border_color=$FUJI_GRAY \
+                               background.height=24 \
+                               background.padding_left=8 \
+                               background.padding_right=8
+
+# Update the bar
+sketchybar --update
+sketchybar --hotload true

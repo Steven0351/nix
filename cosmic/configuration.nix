@@ -1,26 +1,13 @@
 {...}@inputs: { config, pkgs, ...}: {
+  system.primaryUser = "steven0351";
   imports = [ ./brew.nix ];
   environment.systemPackages = [];
 
   services.jankyborders = {
     enable = true;
-    inactive_color = "0xff313244";
-    active_color = "0xffb4befe";
+    inactive_color = "0xFF2A2A37";
+    active_color = "0xFFC8C093";
     width = 7.0;
-  };
-
-  services.yabai = {
-    enable = false;
-    config = {
-      layout = "bsp";
-      window_placement = "second_child";
-      top_padding = 16;
-      bottom_padding = 16;
-      left_padding = 16;
-      right_padding = 16;
-      window_gap = 20;
-    };
-    enableScriptingAddition = false;
   };
 
   fonts.packages = with pkgs; [

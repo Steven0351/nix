@@ -1,4 +1,4 @@
-{ oxilica-nil, nixd, ... }: { pkgs, ... }:
+{ nixd, ... }: { pkgs, ... }:
 let
   aspell = pkgs.aspellWithDicts (d: [
     d.en
@@ -10,17 +10,12 @@ let
 
   packages = with pkgs; [
     _1password-cli
-    aerospace
+    ast-grep
     bash-language-server
-    btop
-    fastfetch
-    fd
-    fzf
     gcc
     glow
     httpie
     languagetool
-    lazygit
     lua-language-server
     neovim
     nix-prefetch-github
@@ -30,18 +25,24 @@ let
     pinentry_mac
     python3
     qmk
-    ripgrep
     rubyPackages.xcodeproj
     sad
-    sesh
     shellcheck
     shfmt
     stylua
     sqlite
     sqlite.dev
     sqlite.out
+
     # TODO use home-manager for this after settling on the options
     tmux
+    sesh
+
+    yabai
+
+    jujutsu
+    lazyjj
+
     tree-sitter
     vectorcode
     # This is codelldb
@@ -52,51 +53,78 @@ let
     xcbeautify
     yq
     yubikey-manager
-    zellij
   ];
 in
 {
   home.packages = [
     aspell
     lazyvim
-    oxilica-nil.packages.aarch64-darwin.nil
     nixd.packages.aarch64-darwin.nixd
   ] ++ packages;
   home.stateVersion = "22.05";
 
-  programs.git = {
-    enable = true;
-    lfs.enable = true;
-    userName = "Steven Sherry";
-    userEmail = "steven.r.sherry@gmail.com";
-
-    delta = {
+  programs = {
+    git = {
       enable = true;
-      options = {
-        syntax-theme = "Nord";
-        line-numbers = true;
+      lfs.enable = true;
+      userName = "Steven Sherry";
+      userEmail = "steven.r.sherry@gmail.com";
+
+      delta = {
+        enable = true;
+        options = {
+          features = "kanagawa-wave";
+          syntax-theme = "kanagawa";
+          line-numbers = true;
+        };
+      };
+
+      includes = [
+        { path = "~/.config/git/kanagawa.gitconfig"; }
+      ];
+
+      ignores = [
+        ".DS_Store"
+        "*.log"
+        ".idea"
+        "tmp/"
+        ".envrc"
+        ".direnv"
+      ];
+
+      signing = {
+        key = "5BE85414B74F99B1";
+        signByDefault = true;
       };
     };
 
-    ignores = [
-      ".DS_Store"
-      "*.log"
-      ".idea"
-      "tmp/"
-      ".envrc"
-      ".direnv"
-    ];
-
-    signing = {
-      key = "5BE85414B74F99B1";
-      signByDefault = true;
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
     };
+
+    yazi.enable = true;
+    btop.enable = true;
+    lazygit.enable = true;
+    fastfetch.enable = true;
+    ripgrep.enable = true;
+    zathura.enable = true;
+
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    fd.enable = true;
   };
 
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
+  catppuccin = {
+    flavor = "mocha";
+    enable = false;
   };
+
+  home.file.".config/sketchybar".source = ./config/sketchybar;
+  home.file.".config/yabai/yabairc".source = ./config/yabai/yabairc;
 
   imports = [
     ./kitty.nix

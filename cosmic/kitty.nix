@@ -1,13 +1,11 @@
 { config, ... }: {
   programs.kitty.enable = true;
+  programs.kitty.themeFile = "kanagawa_dragon";
   programs.kitty.font = {
     name = "TX-02-Kitty";
     size = 15;
   };
-  programs.kitty.themeFile = "Catppuccin-Mocha";
   programs.kitty.settings = {
-    background_opacity = 0.95;
-    background_blur = 30;
     cursor_shape = "block";
     cursor_blink_interval = "1.0";
     cursor_stop_blinking_after = "15.0";

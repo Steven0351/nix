@@ -11,33 +11,48 @@
 
     shellInit = ''
       set -x GPG_TTY (tty)
-      set fish_color_autosuggestion 4c566a
+      set -l foreground DCD7BA normal
+      set -l selection 2D4F67 brcyan
+      set -l comment 727169 brblack
+      set -l red C34043 red
+      set -l orange FF9E64 brred
+      set -l yellow C0A36E yellow
+      set -l green 76946A green
+      set -l purple 957FB8 magenta
+      set -l cyan 7AA89F cyan
+      set -l pink D27E99 brmagenta
+
+      # Syntax Highlighting Colors
+      set -g fish_color_normal $foreground
+      set -g fish_color_command $cyan
+      set -g fish_color_keyword $pink
+      set -g fish_color_quote $yellow
+      set -g fish_color_redirection $foreground
+      set -g fish_color_end $orange
+      set -g fish_color_error $red
+      set -g fish_color_param $purple
+      set -g fish_color_comment $comment
+      set -g fish_color_selection --background=$selection
+      set -g fish_color_search_match --background=$selection
+      set -g fish_color_operator $green
+      set -g fish_color_escape $pink
+      set -g fish_color_autosuggestion $comment
+
+      # Completion Pager Colors
+      set -g fish_pager_color_progress $comment
+      set -g fish_pager_color_prefix $cyan
+      set -g fish_pager_color_completion $foreground
+      set -g fish_pager_color_description $comment
       set fish_color_cancel \x2dr
-      set fish_color_command 81a1c1
-      set fish_color_comment 434c5e
       set fish_color_cwd green
       set fish_color_cwd_root red
-      set fish_color_end 88c0d0
-      set fish_color_error ebcb8b
-      set fish_color_escape 00a6b2
       set fish_color_history_current \x2d\x2dbold
       set fish_color_host normal
       set fish_color_host_remote yellow
       set fish_color_match \x2d\x2dbackground\x3dbrblue
-      set fish_color_normal normal
-      set fish_color_operator 00a6b2
-      set fish_color_param eceff4
-      set fish_color_quote a3be8c
-      set fish_color_redirection b48ead
-      set fish_color_search_match bryellow\x1e\x2d\x2dbackground\x3dbrblack
-      set fish_color_selection white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
       set fish_color_status red
       set fish_color_user brgreen
       set fish_color_valid_path \x2d\x2dunderline
-      set fish_pager_color_completion normal
-      set fish_pager_color_description B3A06D\x1eyellow
-      set fish_pager_color_prefix normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
-      set fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
 
       set SHELL (which fish)
     '' + lib.optionalString pkgs.stdenv.isDarwin ''
