@@ -11,16 +11,16 @@
 
     shellInit = ''
       set -x GPG_TTY (tty)
-      set -l foreground DCD7BA normal
+      set -l foreground c5c9c5 normal
       set -l selection 2D4F67 brcyan
-      set -l comment 727169 brblack
-      set -l red C34043 red
-      set -l orange FF9E64 brred
-      set -l yellow C0A36E yellow
-      set -l green 76946A green
-      set -l purple 957FB8 magenta
-      set -l cyan 7AA89F cyan
-      set -l pink D27E99 brmagenta
+      set -l comment a6a69c brblack
+      set -l red c4746e red
+      set -l orange b6927b brred
+      set -l yellow c4b28a yellow
+      set -l green 8a9a7b green
+      set -l purple 8992a7 magenta
+      set -l cyan 8ea4a2 cyan
+      set -l pink a292a3 brmagenta
 
       # Syntax Highlighting Colors
       set -g fish_color_normal $foreground
