@@ -2,7 +2,7 @@
   programs.kitty.enable = true;
   programs.kitty.themeFile = "kanagawa_dragon";
   programs.kitty.font = {
-    name = "TX-02-Kitty";
+    name = "TX-02";
     size = 15;
   };
   programs.kitty.settings = {
