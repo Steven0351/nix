@@ -2,5 +2,7 @@ result
 *.log
 .direnv/
 *.bk
+*.qcow2
+keys/
 
 shared/fish/fish_variables

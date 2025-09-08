@@ -25,6 +25,18 @@
 
     nixd.url = "github:nix-community/nixd";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+
+    nixos-unstable.url = "github:nixos/nixpkgs/nixos-25.05";
+
+    nixos-wsl = {
+      url = "github:nix-community/nixos-wsl/main";
+      inputs.nixpkgs.follows = "nixos-unstable";
+    };
+
+    home-manager-nixos-unstable = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixos-unstable";
+    };
   };
 
   outputs = inputs: {
@@ -86,6 +98,14 @@
         modules = [
           (import ./nixos-linode/configuration.nix inputs)
           inputs.home-manager-nixos.nixosModules.home-manager
+        ];
+      };
+      nixos-wsl = inputs.nixos-unstable.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          inputs.home-manager-nixos-unstable.nixosModules.home-manager
+          inputs.nixos-wsl.nixosModules.wsl
+          (import ./nixos-wsl/wsl.nix inputs)
         ];
       };
     };
