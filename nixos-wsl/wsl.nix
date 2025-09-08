@@ -1,4 +1,4 @@
-{ nixos-unstable, ... }: { pkgs, ... }: {
+{ nixos-unstable, ... }@inputs: { pkgs, ... }: {
   time.timeZone = "America/Chicago";
 
   networking.hostName = "work";
@@ -41,7 +41,7 @@
 
   home-manager.users."nixos" = {
     imports = [
-      ./home.nix
+      (import ./home.nix inputs)
     ];
   };
 

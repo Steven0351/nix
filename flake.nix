@@ -37,6 +37,8 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixos-unstable";
     };
+
+    stevenvim.url = "github:Steven0351/steve.nvim";
   };
 
   outputs = inputs: {

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ stevenvim, ... }: { pkgs, ... }:
 let
   packages = with pkgs; [
     ast-grep
@@ -20,7 +20,7 @@ let
 in
 {
 
-  home.packages = packages;
+  home.packages = packages ++ [ stevenvim.packages."x86_64-linux".stevenvim ];
   home.stateVersion = "25.05";
 
   programs = {

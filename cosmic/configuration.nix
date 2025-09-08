@@ -1,4 +1,4 @@
-{...}@inputs: { config, pkgs, ...}: {
+{...}@inputs: { pkgs, ...}: {
   system.primaryUser = "steven0351";
   imports = [ ./brew.nix ];
   environment.systemPackages = [];
@@ -32,6 +32,7 @@
 
   nix = {
     settings = {
+      trusted-users = ["@admin" "@wheel" "steven0351"];
       sandbox = false;
       max-jobs = 10;
       cores = 10;
