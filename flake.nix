@@ -103,9 +103,9 @@
       nixos-wsl = inputs.nixos-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          inputs.home-manager-nixos-unstable.nixosModules.home-manager
           inputs.nixos-wsl.nixosModules.wsl
           (import ./nixos-wsl/wsl.nix inputs)
+          inputs.home-manager-nixos-unstable.nixosModules.home-manager
         ];
       };
     };

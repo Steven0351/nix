@@ -82,7 +82,7 @@ in
     ../shared/home-manager/exa.nix
     ../shared/home-manager/fish.nix
     ../shared/home-manager/gh.nix
-    ../shared/home-manager/gpg.nix
+    ../shared/home-manager/gpg-wsl.nix
     ../shared/home-manager/linux/gpg-agent.nix
     ../shared/home-manager/home-manager.nix
     ../shared/home-manager/starship.nix

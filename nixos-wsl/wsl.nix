@@ -4,19 +4,37 @@
   networking.hostName = "work";
 
   programs.fish.enable = true;
+  programs.ssh.startAgent = true;
   environment.pathsToLink = [ "/share/fish" ];
   environment.shells = [ pkgs.fish ];
   environment.enableAllTerminfo = true;
+  environment.systemPackages = with pkgs; [
+    yubikey-manager
+    libfido2
+  ];
+
+  services = {
+    openssh.enable = true;
+    pcscd.enable = true;
+    udev = {
+      enable = true;
+      packages = [pkgs.yubikey-personalization];
+      extraRules = ''
+        SUBSYSTEM=="usb", MODE="0666"
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", TAG+="uaccess", MODE="0666"
+      '';
+    };
+  };
 
   security.sudo.wheelNeedsPassword = false;
 
-  users.users."steven0351" = {
+  users.users."nixos" = {
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [ "wheel" ];
   };
 
-  home-manager.users."steven0351" = {
+  home-manager.users."nixos" = {
     imports = [
       ./home.nix
     ];
@@ -26,14 +44,18 @@
 
   wsl = {
     enable = true;
-    defaultUser = "steven0351";
+    defaultUser = "nixos";
+    usbip = {
+      enable = true;
+      autoAttach = ["6-2"];
+    };
     startMenuLaunchers = true;
     wslConf.interop.appendWindowsPath = false;
   };
 
   nix = {
     settings = {
-      trusted-users = ["steven0351"];
+      trusted-users = ["nixos"];
       accept-flake-config = true;
       auto-optimise-store = true;
 
