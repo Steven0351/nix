@@ -4,7 +4,12 @@
   networking.hostName = "work";
 
   programs.fish.enable = true;
-  programs.ssh.startAgent = true;
+  programs.ssh = {
+    startAgent = true;
+    extraConfig = ''
+    IdentityAgent none
+    '';
+  };
   environment.pathsToLink = [ "/share/fish" ];
   environment.shells = [ pkgs.fish ];
   environment.enableAllTerminfo = true;
