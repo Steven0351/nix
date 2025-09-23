@@ -1,13 +1,15 @@
-{ nixos-unstable, ... }@inputs: { pkgs, ... }: {
+{ nixos-unstable, ... }@inputs:
+{ pkgs, ... }:
+{
   time.timeZone = "America/Chicago";
 
   networking.hostName = "work";
 
   programs.fish.enable = true;
   programs.ssh = {
-    startAgent = true;
+    startAgent = false;
     extraConfig = ''
-    IdentityAgent none
+      IdentityAgent none
     '';
   };
   environment.pathsToLink = [ "/share/fish" ];
@@ -19,11 +21,11 @@
   ];
 
   services = {
-    openssh.enable = true;
-    pcscd.enable = true;
+    openssh.enable = false;
+    pcscd.enable = false;
     udev = {
-      enable = true;
-      packages = [pkgs.yubikey-personalization];
+      enable = false;
+      packages = [ pkgs.yubikey-personalization ];
       extraRules = ''
         SUBSYSTEM=="usb", MODE="0666"
         KERNEL=="hidraw*", SUBSYSTEM=="hidraw", TAG+="uaccess", MODE="0666"
@@ -45,22 +47,26 @@
     ];
   };
 
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+
   system.stateVersion = "25.05";
 
   wsl = {
     enable = true;
     defaultUser = "nixos";
     usbip = {
-      enable = true;
-      autoAttach = ["6-2"];
+      enable = false;
+      autoAttach = [ "6-2" ];
     };
     startMenuLaunchers = true;
-    wslConf.interop.appendWindowsPath = false;
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   nix = {
     settings = {
-      trusted-users = ["nixos"];
+      trusted-users = [ "nixos" ];
       accept-flake-config = true;
       auto-optimise-store = true;
 

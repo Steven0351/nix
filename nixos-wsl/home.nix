@@ -1,6 +1,8 @@
-{ stevenvim, ... }: { pkgs, ... }:
+{ stevenvim, jj, ... }:
+{ pkgs, ... }:
 let
   packages = with pkgs; [
+    _1password-cli
     ast-grep
     bash-language-server
     gcc
@@ -9,10 +11,10 @@ let
     shellcheck
     shfmt
 
+    socat
+
     tmux
     sesh
-
-    jujutsu
 
     yq
     jq
@@ -20,43 +22,15 @@ let
 in
 {
 
-  home.packages = packages ++ [ stevenvim.packages."x86_64-linux".stevenvim ];
+  home.packages = packages ++ [
+    stevenvim.packages."x86_64-linux".stevenvim
+    jj.packages.x86_64-linux.jujutsu
+  ];
   home.stateVersion = "25.05";
+  home.sessionVariables.WIN_HOME = "/mnt/c/Users/Steven.Sherry";
+  home.sessionVariables.EDITOR = "stevenvim";
 
   programs = {
-    git = {
-      enable = true;
-      lfs.enable = true;
-      userName = "Steven Sherry";
-      userEmail = "steven.sherry@abbyy.com";
-
-      delta = {
-        enable = true;
-        options = {
-          features = "kanagawa-wave";
-          syntax-theme = "kanagawa";
-          line-numbers = true;
-        };
-      };
-
-      includes = [
-        { path = "~/.config/git/kanagawa.gitconfig"; }
-      ];
-
-      ignores = [
-        "*.log"
-        ".idea"
-        "tmp/"
-        ".envrc"
-        ".direnv"
-      ];
-
-      signing = {
-        key = "5BE85414B74F99B1";
-        signByDefault = true;
-      };
-    };
-
     zoxide = {
       enable = true;
       enableFishIntegration = true;
@@ -78,7 +52,12 @@ in
 
   imports = [
     ./kitty.nix
-    ../shared/home-manager/bat.nix
+    (import ../shared/home-manager/git.nix {
+      overrides = {
+        userEmail = "steven.sherry@abbyy.com";
+      };
+    })
+    ../shared/home-manager/bat
     ../shared/home-manager/exa.nix
     ../shared/home-manager/fish.nix
     ../shared/home-manager/gh.nix

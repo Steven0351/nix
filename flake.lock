@@ -538,17 +538,33 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1756381814,
-        "narHash": "sha256-tzo7YvAsGlzo4WiIHT0ooR59VHu+aKRQdHk7sIyoia4=",
+        "lastModified": 1759632233,
+        "narHash": "sha256-krgZxGAIIIKFJS+UB0l8do3sYUDWJc75M72tepmVMzE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "aca2499b79170038df0dbaec8bf2f689b506ad32",
+        "rev": "d7f52a7a640bc54c7bb414cca603835bf8dd4b10",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "plugins-codecompanion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759860463,
+        "narHash": "sha256-IeZOGnTc1eg4aGRXWwuENVEuJaGNOVuAgohkTvKtSJg=",
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
+        "rev": "946e18627271e008635d53f96a56af459ebb40da",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
         "type": "github"
       }
     },
@@ -581,6 +597,22 @@
       "original": {
         "owner": "elanmed",
         "repo": "fzf-lua-frecency.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-nvim-lspconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759548517,
+        "narHash": "sha256-K56vjTUkQ/NdA6vq5942zUknPiCUbMByiEW540dR8R0=",
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "rev": "e688b486fe9291f151eae7e5c0b5a5c4ef980847",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
         "type": "github"
       }
     },
@@ -658,17 +690,19 @@
       "inputs": {
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_5",
+        "plugins-codecompanion": "plugins-codecompanion",
         "plugins-fzf-lua": "plugins-fzf-lua",
         "plugins-fzf-lua-frecency": "plugins-fzf-lua-frecency",
+        "plugins-nvim-lspconfig": "plugins-nvim-lspconfig",
         "plugins-volt": "plugins-volt",
         "plugins-xcodebuild": "plugins-xcodebuild"
       },
       "locked": {
-        "lastModified": 1758644504,
-        "narHash": "sha256-G5V0f1XteUru2HsNls4uf6rwBKwOifbENa1gJaALUcg=",
+        "lastModified": 1760121361,
+        "narHash": "sha256-IgSfYrKZG0+AGt6cwoXENiy7PLLpgoaCGSGCdaTJXbY=",
         "owner": "Steven0351",
         "repo": "steve.nvim",
-        "rev": "3aa65eae960d337bc285a71a59e4ebee5abcd4d0",
+        "rev": "1642f2aca97c0b3de697d22a4833fb37f2087c7c",
         "type": "github"
       },
       "original": {
