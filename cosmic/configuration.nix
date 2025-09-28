@@ -1,7 +1,9 @@
-{...}@inputs: { pkgs, ...}: {
+{ ... }@inputs:
+{ pkgs, ... }:
+{
   system.primaryUser = "steven0351";
   imports = [ ./brew.nix ];
-  environment.systemPackages = [];
+  environment.systemPackages = [ ];
 
   services.jankyborders = {
     enable = true;
@@ -32,7 +34,11 @@
 
   nix = {
     settings = {
-      trusted-users = ["@admin" "@wheel" "steven0351"];
+      trusted-users = [
+        "@admin"
+        "@wheel"
+        "steven0351"
+      ];
       sandbox = false;
       max-jobs = 10;
       cores = 10;

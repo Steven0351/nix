@@ -1,4 +1,5 @@
-{ nixd, ... }: { pkgs, ... }:
+{ nixd, ... }:
+{ pkgs, ... }:
 let
   aspell = pkgs.aspellWithDicts (d: [
     d.en
@@ -6,7 +7,7 @@ let
     d.en-science
   ]);
 
-  lazyvim = pkgs.callPackage ../shared/lazyvim {};
+  lazyvim = pkgs.callPackage ../shared/lazyvim { };
 
   packages = with pkgs; [
     _1password-cli
@@ -60,7 +61,8 @@ in
     aspell
     lazyvim
     nixd.packages.aarch64-darwin.nixd
-  ] ++ packages;
+  ]
+  ++ packages;
   home.stateVersion = "22.05";
 
   programs = {
@@ -90,6 +92,7 @@ in
         "tmp/"
         ".envrc"
         ".direnv"
+        ".nvim.lua"
       ];
 
       signing = {
