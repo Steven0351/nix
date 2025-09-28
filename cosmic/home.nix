@@ -13,6 +13,7 @@ let
     _1password-cli
     ast-grep
     bash-language-server
+    devenv
     gcc
     glow
     httpie

@@ -78,7 +78,8 @@
         modules = [
           ./shared/modules/nix-darwin
           (import ./cosmic/configuration.nix inputs)
-          inputs.home-manager.darwinModules.home-manager {
+          inputs.home-manager.darwinModules.home-manager
+          {
             home-manager.sharedModules = [
               inputs.catppuccin.homeModules.catppuccin
             ];
@@ -114,9 +115,12 @@
 
     devShell =
       let
-        mkDevShell = arch:
-          let pkgs = inputs.unstable.legacyPackages."${arch}";
-          in pkgs.mkShell {
+        mkDevShell =
+          arch:
+          let
+            pkgs = inputs.unstable.legacyPackages."${arch}";
+          in
+          pkgs.mkShell {
             buildInputs = [
               pkgs.sumneko-lua-language-server
             ];
