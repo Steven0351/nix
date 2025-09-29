@@ -1,4 +1,4 @@
-{ nixd, ... }:
+{ nixd, jj, ... }:
 { pkgs, ... }:
 let
   aspell = pkgs.aspellWithDicts (d: [
@@ -42,9 +42,6 @@ let
 
     yabai
 
-    jujutsu
-    lazyjj
-
     tree-sitter
     vectorcode
     # This is codelldb
@@ -61,6 +58,7 @@ in
   home.packages = [
     aspell
     lazyvim
+    jj.packages.aarch64-darwin.jujutsu
     nixd.packages.aarch64-darwin.nixd
   ]
   ++ packages;

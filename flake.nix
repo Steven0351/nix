@@ -3,6 +3,7 @@
 
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    jj.url = "github:jj-vcs/jj/main";
 
     darwin = {
       url = "github:LnL7/nix-darwin/master";
