@@ -1,0 +1,20 @@
+[delta "kanagawa-wave"]
+	blame-palette = "#1F1F28" "#181820" "#16161D" "#2A2A37" "#363646"
+	commit-decoration-style = "#727169" bold box ul
+	dark = true
+	file-decoration-style = "#727169"
+	file-style = "#C8C093"
+	hunk-header-decoration-style = "#727169" bold box ul
+	hunk-header-file-style = bold
+	hunk-header-line-number-style = bold "#717C7C"
+	hunk-header-style = file line-number syntax
+	line-numbers-left-style = "#727169"
+	line-numbers-minus-style = bold "#E46876"
+	line-numbers-plus-style = bold "#76946A"
+	line-numbers-right-style = "#727169"
+	line-numbers-zero-style = "#727169"
+	minus-style = syntax "#43242B"
+	minus-emph-style = bold syntax "#63242B"
+	plus-emph-style = syntax "#2b4428"
+	plus-style = syntax "#2B3328"
+	syntax-theme = "kanagawa"

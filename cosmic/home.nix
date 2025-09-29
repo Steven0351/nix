@@ -65,41 +65,6 @@ in
   home.stateVersion = "22.05";
 
   programs = {
-    git = {
-      enable = true;
-      lfs.enable = true;
-      userName = "Steven Sherry";
-      userEmail = "steven.r.sherry@gmail.com";
-
-      delta = {
-        enable = true;
-        options = {
-          features = "kanagawa-wave";
-          syntax-theme = "kanagawa";
-          line-numbers = true;
-        };
-      };
-
-      includes = [
-        { path = "~/.config/git/kanagawa.gitconfig"; }
-      ];
-
-      ignores = [
-        ".DS_Store"
-        "*.log"
-        ".idea"
-        "tmp/"
-        ".envrc"
-        ".direnv"
-        ".nvim.lua"
-      ];
-
-      signing = {
-        key = "5BE85414B74F99B1";
-        signByDefault = true;
-      };
-    };
-
     zoxide = {
       enable = true;
       enableFishIntegration = true;
@@ -130,7 +95,8 @@ in
 
   imports = [
     ./kitty.nix
-    ../shared/home-manager/bat.nix
+    (import ../shared/home-manager/git.nix { })
+    ../shared/home-manager/bat
     ../shared/home-manager/exa.nix
     ../shared/home-manager/fish.nix
     ../shared/home-manager/gh.nix

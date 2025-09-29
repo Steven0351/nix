@@ -1,28 +1,44 @@
-{ ... }: {
+{
+  overrides ? { },
+}:
+{ ... }:
+{
   programs.git = {
     enable = true;
+    lfs.enable = true;
     userName = "Steven Sherry";
-    userEmail = "steven.sherry@affinityforapps.com";
+    userEmail = "steven.r.sherry@gmail.com";
 
     delta = {
       enable = true;
       options = {
-        syntax-theme = "Nord";
+        features = "kanagawa-wave";
+        syntax-theme = "kanagawa";
         line-numbers = true;
       };
     };
 
     ignores = [
       ".DS_Store"
-      ".envrc"
       ".direnv"
       ".lazyconf"
       ".lazy.lua"
+      ".idea"
+      "tmp/"
+      ".envrc"
+      ".direnv"
+      ".nvim.lua"
+      ".log"
+    ];
+
+    includes = [
+      { path = ./kanagawa.gitconfig; }
     ];
 
     signing = {
       key = "5BE85414B74F99B1";
       signByDefault = true;
     };
-  };
+  }
+  // overrides;
 }
