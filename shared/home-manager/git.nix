@@ -22,6 +22,7 @@
       ".direnv"
       ".nvim.lua"
       ".log"
+      "tags"
     ];
 
     includes = [

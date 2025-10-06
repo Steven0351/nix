@@ -1,6 +1,6 @@
 { ... }@inputs:
 { pkgs, ... }:
-{
+rec {
   system.primaryUser = "steven0351";
   imports = [ ./brew.nix ];
   environment.systemPackages = [ ];
@@ -10,6 +10,37 @@
     inactive_color = "0xFF2A2A37";
     active_color = "0xFFC8C093";
     width = 7.0;
+  };
+
+  services.yabai = {
+    enable = true;
+    enableScriptingAddition = true;
+    config = {
+      layout = "bsp";
+      window_placement = "second_child";
+      top_padding = 16;
+      bottom_padding = 16;
+      left_padding = 16;
+      right_padding = 16;
+      window_gap = 20;
+      window_shadow = "off";
+    };
+
+    extraConfig = ''
+      yabai -m space 1 --label dev
+      yabai -m space 2 --label chat
+      yabai -m space 3 --label work
+      yabai -m space 4 --label web
+      yabai -m space 5 --label iOS
+      yabai -m space 6 --label notes
+      yabai -m space 7 --label 3d
+      yabai -m space 8 --label media
+      yabai -m space 9 --label scratch
+
+      if [[ -f ${users.users.steven0351.home}/.config/yabai/yabai.user ]]; then
+        source ${users.users.steven0351.home}/.config/yabai/yabai.user
+      fi
+    '';
   };
 
   fonts.packages = with pkgs; [

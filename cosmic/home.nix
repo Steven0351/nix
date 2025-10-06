@@ -41,13 +41,10 @@ let
     sqlite.dev
     sqlite.out
 
-    # TODO use home-manager for this after settling on the options
-    # tmux
-    # sesh
-
-    yabai
-
     tree-sitter
+
+    universal-ctags
+
     vectorcode
     # This is codelldb
     vscode-extensions.vadimcn.vscode-lldb.adapter
@@ -109,8 +106,22 @@ in
     ];
   };
 
-  home.file.".config/sketchybar".source = ./config/sketchybar;
-  home.file.".config/yabai/yabairc".source = ./config/yabai/yabairc;
+  programs.sketchybar = {
+    enable = true;
+
+    extraPackages = with pkgs; [
+      yabai
+      jq
+    ];
+
+    config = {
+      source = ./config/sketchybar;
+      recursive = true;
+    };
+
+    includeSystemPath = true;
+    service.enable = true;
+  };
 
   imports = [
     ./kitty.nix

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$CONFIG_DIR/colors.sh"
+source ./colors.sh
 
 PADDING=""
 if [[ $NAME == "space.1" ]]; then

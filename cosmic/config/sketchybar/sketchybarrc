@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 
-# Set up paths
-export PATH=/Users/steven0351/.nix-profile/bin:$PATH
-export CONFIG_DIR="/Users/steven0351/.config/sketchybar"
-export PLUGIN_DIR="$CONFIG_DIR/plugins"
-echo $PATH
-echo $CONFIG_DIR
-# Source colors
-source "$CONFIG_DIR/colors.sh"
+source ./colors.sh
 
 # Bar Configuration - make the bar completely transparent and minimal
 sketchybar --bar position=top \
@@ -48,7 +41,7 @@ do
   sketchybar --add space space.$sid center \
              --set space.$sid associated_space=$sid \
                               icon="${SPACE_NAMES[i]}" \
-                              script="$PLUGIN_DIR/space.sh" \
+                              script="./space.sh" \
                               click_script="yabai -m space --focus $sid" \
              --subscribe space.$sid space_change
 done
@@ -65,4 +58,3 @@ sketchybar --add bracket spaces_bracket "${SPACE_ITEMS[@]}" \
 
 # Update the bar
 sketchybar --update
-sketchybar --hotload true
