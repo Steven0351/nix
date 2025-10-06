@@ -1,4 +1,9 @@
-{ nixd, jj, ... }:
+{
+  nixd,
+  jj,
+  tmux-thumbs,
+  ...
+}:
 { pkgs, ... }:
 let
   aspell = pkgs.aspellWithDicts (d: [
@@ -37,8 +42,8 @@ let
     sqlite.out
 
     # TODO use home-manager for this after settling on the options
-    tmux
-    sesh
+    # tmux
+    # sesh
 
     yabai
 
@@ -88,6 +93,20 @@ in
   catppuccin = {
     flavor = "mocha";
     enable = false;
+  };
+
+  programs.mytmux = {
+    kanagawaFlavor = "dragon";
+    enable = true;
+    additionalPlugins = [
+      {
+        plugin = tmux-thumbs.packages.aarch64-darwin.default;
+        extraConfig = ''
+          set -g @thumbs-alphabet engram
+          set -g @thumbs-command 'echo -n {} | pbcopy'
+        '';
+      }
+    ];
   };
 
   home.file.".config/sketchybar".source = ./config/sketchybar;

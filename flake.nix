@@ -40,6 +40,7 @@
     };
 
     stevenvim.url = "github:Steven0351/steve.nvim";
+    tmux-thumbs.url = "github:Steven0351/tmux-thumbs";
   };
 
   outputs = inputs: {
@@ -83,6 +84,7 @@
           {
             home-manager.sharedModules = [
               inputs.catppuccin.homeModules.catppuccin
+              ./shared/home-manager/tmux
             ];
           }
         ];

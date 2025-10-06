@@ -6,16 +6,9 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "Steven Sherry";
-    userEmail = "steven.r.sherry@gmail.com";
-
-    delta = {
-      enable = true;
-      options = {
-        features = "kanagawa-wave";
-        syntax-theme = "kanagawa";
-        line-numbers = true;
-      };
+    settings.user = {
+      name = "Steven Sherry";
+      email = "steven.r.sherry@gmail.com";
     };
 
     ignores = [
@@ -41,4 +34,14 @@
     };
   }
   // overrides;
+
+  programs.delta = {
+    enable = true;
+    options = {
+      features = "kanagawa-wave";
+      syntax-theme = "kanagawa";
+      line-numbers = true;
+    };
+  };
+
 }
