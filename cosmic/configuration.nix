@@ -1,4 +1,3 @@
-{ ... }@inputs:
 { pkgs, ... }:
 rec {
   system.primaryUser = "steven0351";
@@ -43,13 +42,13 @@ rec {
     '';
   };
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-    nerd-fonts.victor-mono
-    nerd-fonts.sauce-code-pro
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.monaspace
-  ];
+  # fonts.packages = with pkgs; [
+  #   nerd-fonts.fira-code
+  #   nerd-fonts.victor-mono
+  #   nerd-fonts.sauce-code-pro
+  #   nerd-fonts.jetbrains-mono
+  #   nerd-fonts.monaspace
+  # ];
 
   programs.bash.enable = true;
   programs.fish.enable = true;
@@ -94,7 +93,7 @@ rec {
   };
 
   home-manager.useGlobalPkgs = true;
-  home-manager.users.steven0351 = import ./home.nix inputs;
+  home-manager.users.steven0351 = import ./home.nix;
 
   nixpkgs.config.allowUnfree = true;
 
