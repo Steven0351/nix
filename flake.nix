@@ -3,14 +3,12 @@
 
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    jj.url = "github:jj-vcs/jj/main";
+    jj.url = "github:jj-vcs/jj/v0.34.0";
 
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "unstable";
     };
-
-    catppuccin.url = "github:catppuccin/nix";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -23,9 +21,6 @@
       url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixos-pkgs";
     };
-
-    nixd.url = "github:nix-community/nixd";
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     nixos-unstable.url = "github:nixos/nixpkgs/nixos-25.05";
 
@@ -43,97 +38,82 @@
     tmux-thumbs.url = "github:Steven0351/tmux-thumbs";
   };
 
-  outputs = inputs: {
-    darwinConfigurations = {
-      macos-laptop = inputs.darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        inputs = inputs;
-        modules = [
-          ./shared/modules/nix-darwin
-          (import ./macos-laptop/configuration.nix)
-          inputs.home-manager.darwinModules.home-manager
+  outputs =
+    {
+      self,
+      darwin,
+      home-manager,
+      home-manager-nixos,
+      home-manager-nixos-unstable,
+      nixos-pkgs,
+      nixos-unstable,
+      nixos-wsl,
+      tmux-thumbs,
+      jj,
+      stevenvim,
+      ...
+    }@inputs:
+    let
+      overlay = final: prev: {
+        prev.tmuxPlugins.thumbs = tmux-thumbs.packages."${prev.system}".default;
+        jj = jj.packages."${prev.system}".jujutsu;
+        stevenvim = stevenvim.packages."${prev.system}".default;
+        jjedit = stevenvim.packages."${prev.system}".jjedit;
+      };
+      alteredPkgs =
+        { ... }:
+        {
+          nixpkgs.overlays = [ overlay ];
+        };
+      homeManagerModules = {
+        home-manager.sharedModules = [
+          ./modules/home-manager/wallpapers
+          ./modules/home-manager/terminal
         ];
       };
+    in
+    {
+      darwinConfigurations = {
+        mac-mini = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          inputs = inputs;
+          modules = [
+            alteredPkgs
+            (import ./mac-mini/configuration.nix)
+            home-manager.darwinModules.home-manager
+            homeManagerModules
+          ];
+        };
 
-      mac-mini = inputs.darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        inputs = inputs;
-        modules = [
-          (import ./mac-mini/configuration.nix)
-          inputs.home-manager.darwinModules.home-manager
-        ];
+        cosmic = darwin.lib.darwinSystem {
+          inherit inputs;
+          system = "aarch64-darwin";
+          modules = [
+            alteredPkgs
+            ./modules/nix-darwin
+            (import ./cosmic/configuration.nix)
+            home-manager.darwinModules.home-manager
+            homeManagerModules
+          ];
+        };
       };
 
-      atomic = inputs.darwin.lib.darwinSystem {
-        inherit inputs;
-        system = "aarch64-darwin";
-        modules = [
-          ./shared/modules/nix-darwin
-          (import ./atomic/configuration.nix inputs)
-          inputs.home-manager.darwinModules.home-manager
-        ];
-      };
-
-      cosmic = inputs.darwin.lib.darwinSystem {
-        inherit inputs;
-        system = "aarch64-darwin";
-        modules = [
-          ./shared/modules/nix-darwin
-          (import ./cosmic/configuration.nix inputs)
-          inputs.home-manager.darwinModules.home-manager
-          {
-            home-manager.sharedModules = [
-              inputs.catppuccin.homeModules.catppuccin
-              ./shared/home-manager/tmux
-            ];
-          }
-        ];
+      nixosConfigurations = {
+        nixos-linode = nixos-pkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            (import ./nixos-linode/configuration.nix inputs)
+            home-manager-nixos.nixosModules.home-manager
+          ];
+        };
+        nixos-wsl = nixos-unstable.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            nixos-wsl.nixosModules.wsl
+            (import ./nixos-wsl/wsl.nix inputs)
+            home-manager-nixos-unstable.nixosModules.home-manager
+          ];
+        };
       };
     };
-
-    nixosConfigurations = {
-      nixos-x86-vm = inputs.nixos-pkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          (import ./nixos-x86-vm/configuration.nix inputs)
-          inputs.home-manager-nixos.nixosModules.home-manager
-        ];
-      };
-      nixos-linode = inputs.nixos-pkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          (import ./nixos-linode/configuration.nix inputs)
-          inputs.home-manager-nixos.nixosModules.home-manager
-        ];
-      };
-      nixos-wsl = inputs.nixos-unstable.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          inputs.nixos-wsl.nixosModules.wsl
-          (import ./nixos-wsl/wsl.nix inputs)
-          inputs.home-manager-nixos-unstable.nixosModules.home-manager
-        ];
-      };
-    };
-
-    devShell =
-      let
-        mkDevShell =
-          arch:
-          let
-            pkgs = inputs.unstable.legacyPackages."${arch}";
-          in
-          pkgs.mkShell {
-            buildInputs = [
-              pkgs.sumneko-lua-language-server
-            ];
-          };
-      in
-      {
-        "x86_64-darwin" = mkDevShell "x86_64-darwin";
-        "aarch64-darwin" = mkDevShell "aarch64-darwin";
-        "x86_64-linux" = mkDevShell "x86_64-linux";
-        "aarch64-linux" = mkDevShell "aarch64-linux";
-      };
-  };
 }

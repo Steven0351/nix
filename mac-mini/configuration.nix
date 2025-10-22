@@ -1,4 +1,5 @@
-{ config, pkgs, inputs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = [ ];
 
   services.nix-daemon.enable = true;
@@ -21,7 +22,9 @@
 
     gc = {
       automatic = true;
-      interval = { Weekday = 7; };
+      interval = {
+        Weekday = 7;
+      };
       options = "--delete-older-than 7d";
     };
   };

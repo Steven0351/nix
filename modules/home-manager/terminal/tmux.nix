@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.programs.mytmux;
+  cfg = config.terminal.tmux;
   kanagawaTmux = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "kanagawa-tmux";
     version = "0.1.0";
@@ -35,29 +35,32 @@ let
         };
       };
     };
+  inherit (lib) mkOption types;
 in
 {
-  options = {
-    programs.mytmux = with lib; {
-      enable = mkEnableOption "mytmux";
+  options.terminal.tmux = {
+    enable = lib.mkOption {
+      description = "enable tmux";
+      type = lib.types.bool;
+      default = true;
+    };
 
-      kanagawaFlavor = mkOption {
-        default = "wave";
-        type = types.enum [
-          "dragon"
-          "wave"
-        ];
-      };
+    kanagawaFlavor = mkOption {
+      default = "wave";
+      type = types.enum [
+        "dragon"
+        "wave"
+      ];
+    };
 
-      additionalPlugins = mkOption {
-        default = [ ];
-        type =
-          with types;
-          listOf (either package pluginModule)
-          // {
-            description = "list of additional plugin packages or submodules";
-          };
-      };
+    additionalPlugins = mkOption {
+      default = [ ];
+      type =
+        with types;
+        listOf (either package pluginModule)
+        // {
+          description = "list of additional plugin packages or submodules";
+        };
     };
   };
   config = lib.mkIf cfg.enable {
