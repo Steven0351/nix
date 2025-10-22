@@ -1,9 +1,0 @@
-print("Hello from dotnvim")
-local lspmanager_ok, lspmanager = pcall(require, "lvim.lsp.manager")
-if lspmanager_ok then
-	lspmanager.setup("nil_ls", {})
-	return
-end
-
-local lspconfig = require("lspconfig")
-lspconfig.nil_ls.setup({})

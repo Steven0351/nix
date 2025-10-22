@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# This isn't perfect, anything spawned from neovim will use the shared
-# directory as XDG_CONFIG_HOME, but this seems to be the only way to actually
-# ignore the ~/.config/nvim directory and load the one in shared.
-XDG_CONFIG_HOME=$PWD/shared nvim $PWD/shared/nvim/init.lua
