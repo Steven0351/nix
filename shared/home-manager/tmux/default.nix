@@ -165,21 +165,37 @@ in
           bind -r -T prefix - resize-pane -D 7
           bind -r -T prefix = resize-pane -U 7
           bind '"' choose-window
+
+          bind-key "T" run-shell "sesh connect \"$(
+            sesh list --icons | fzf --tmux 80%,70% \
+              --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+              --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
+              --bind 'tab:down,btab:up' \
+              --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+              --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list --icons -t)' \
+              --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list --icons -c)' \
+              --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list --icons -z)' \
+              --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+              --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+              --preview-window 'right:55%' \
+              --preview 'sesh preview {}' \
+              -- --ansi
+          )\""
+
           set -g status-position top
           set -g status 2
           set -g status-format[1] ""
         '';
       };
 
+      # We "disable" tmux integration because it requries that
+      # fzf have tmux integration enabled. However, there are
+      # issues with command line history with ctrl-r when FZF_TMUX
+      # tmux is enabled.
       sesh = {
         enable = true;
-        tmuxKey = "T";
+        enableTmuxIntegration = false;
       };
-
-      fzf = {
-        tmux.enableShellIntegration = true;
-      };
-
     };
   };
 }

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
 sudo ./result/sw/bin/darwin-rebuild switch --flake .#cosmic
+# For whatever reason the load-sa job is not rerun when doing a rebuild switch
+# So we need to do it afterwards and re-disable the shadows
 sudo yabai --load-sa
+yabai -m config window_shadow off
