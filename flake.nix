@@ -55,7 +55,9 @@
     }@inputs:
     let
       overlay = final: prev: {
-        prev.tmuxPlugins.thumbs = tmux-thumbs.packages."${prev.system}".default;
+        tmuxPlugins = prev.tmuxPlugins // {
+          thumbs = tmux-thumbs.packages."${prev.system}".default;
+        };
         jj = jj.packages."${prev.system}".jujutsu;
         stevenvim = stevenvim.packages."${prev.system}".default;
         jjedit = stevenvim.packages."${prev.system}".jjedit;

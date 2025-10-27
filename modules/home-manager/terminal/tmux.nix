@@ -138,6 +138,14 @@ in
                 set -ag status-right '#{E:@kanagawa_status_uptime}'
               '';
             }
+
+            {
+              plugin = pkgs.tmuxPlugins.thumbs;
+              extraConfig = ''
+                set -g @thumbs-alphabet engram
+                set -g @thumbs-command 'echo -n {} | pbcopy'
+              '';
+            }
           ]
           ++ cfg.additionalPlugins;
 

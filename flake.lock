@@ -541,11 +541,11 @@
         "rust-flake": "rust-flake"
       },
       "locked": {
-        "lastModified": 1760984811,
-        "narHash": "sha256-bQmfB0Bhezz91XIDRtPMH+pK3/iUsHXhBLbAuFMiHts=",
+        "lastModified": 1761542939,
+        "narHash": "sha256-eIiA3ryqOamrU1JR6arVf1kcMsMpc2hCujrlbE8qsoY=",
         "owner": "Steven0351",
         "repo": "tmux-thumbs",
-        "rev": "f4e5510b760a187f23a71984337555cd9fc4d099",
+        "rev": "6d98d6ab450b187687c5df8120e317c1b3470ac5",
         "type": "github"
       },
       "original": {
