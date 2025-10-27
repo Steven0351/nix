@@ -51,7 +51,7 @@ in
         aliases = {
           ls = [
             "log"
-            "r"
+            "-r"
             "::"
           ];
         };
