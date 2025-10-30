@@ -29,14 +29,13 @@ in
       ignores = [
         ".DS_Store"
         ".direnv"
-        ".lazyconf"
-        ".lazy.lua"
-        ".idea"
-        "tmp/"
         ".envrc"
-        ".direnv"
-        ".nvim.lua"
+        ".idea"
         ".log"
+        ".nvim.lua"
+        "*.bk"
+        "*.old"
+        "tmp/"
         "tags"
       ];
 
