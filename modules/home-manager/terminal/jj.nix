@@ -22,7 +22,7 @@ in
       default = {
         user = {
           name = "Steven Sherry";
-          email = "steven.r.sherry@gmail.com";
+          email = "mail@stevensherry.dev";
         };
 
         ui = {
@@ -40,7 +40,7 @@ in
         signing = {
           behavior = "own";
           backend = "gpg";
-          key = "5BE85414B74F99B1";
+          key = "BCDD4DA011238CC5";
         };
 
         colors = {

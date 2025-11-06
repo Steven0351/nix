@@ -22,7 +22,7 @@ in
       enable = true;
       publicKeys = [
         {
-          source = ./me.gpg.pub;
+          source = ./BCDD4DA011238CC5-2025-11-05.asc;
           trust = "ultimate";
         }
       ];

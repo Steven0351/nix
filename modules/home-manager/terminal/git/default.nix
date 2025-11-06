@@ -23,7 +23,7 @@ in
       lfs.enable = true;
       settings.user = {
         name = "Steven Sherry";
-        email = "steven.r.sherry@gmail.com";
+        email = "mail@stevensherry.dev";
       };
 
       ignores = [
@@ -44,7 +44,7 @@ in
       ];
 
       signing = {
-        key = "5BE85414B74F99B1";
+        key = "BCDD4DA011238CC5";
         signByDefault = true;
       };
     }
