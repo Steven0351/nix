@@ -36,6 +36,10 @@
 
     stevenvim.url = "github:Steven0351/steve.nvim";
     tmux-thumbs.url = "github:Steven0351/tmux-thumbs";
+    kanagawa-tmux = {
+      url = "github:Steven0351/kanagawa-tmux/kanagawa";
+      flake = false;
+    };
   };
 
   outputs =
@@ -51,16 +55,28 @@
       tmux-thumbs,
       jj,
       stevenvim,
+      kanagawa-tmux,
       ...
     }@inputs:
     let
       overlay = final: prev: {
         tmuxPlugins = prev.tmuxPlugins // {
           thumbs = tmux-thumbs.packages."${prev.system}".default;
+          kanagawa = prev.tmuxPlugins.mkTmuxPlugin {
+            pluginName = "kanagawa-tmux";
+            version = "0.1.0";
+            rtpFilePath = "kanagawa.tmux";
+            src = kanagawa-tmux;
+          };
         };
         jj = jj.packages."${prev.system}".jujutsu;
         stevenvim = stevenvim.packages."${prev.system}".default;
         jjedit = stevenvim.packages."${prev.system}".jjedit;
+        kitty-themes = prev.kitty-themes.overrideAttrs (oldAttrs: {
+          postInstall = ''
+            cp -r ${kanagawa-tmux}/extras/kitty/* $out/share/kitty-themes/themes
+          '';
+        });
       };
       alteredPkgs =
         { ... }:

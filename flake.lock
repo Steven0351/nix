@@ -172,6 +172,23 @@
         "type": "github"
       }
     },
+    "kanagawa-tmux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763535256,
+        "narHash": "sha256-jjYYbeKUmOoXZtuX1eKLTpd7znZ/p8nN91zR9/ST7RY=",
+        "owner": "Steven0351",
+        "repo": "kanagawa-tmux",
+        "rev": "df87797c92d1d4a15686c840eb69e01af1f00dd1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Steven0351",
+        "ref": "kanagawa",
+        "repo": "kanagawa-tmux",
+        "type": "github"
+      }
+    },
     "nixCats": {
       "locked": {
         "lastModified": 1756502529,
@@ -423,6 +440,7 @@
         "home-manager-nixos": "home-manager-nixos",
         "home-manager-nixos-unstable": "home-manager-nixos-unstable",
         "jj": "jj",
+        "kanagawa-tmux": "kanagawa-tmux",
         "nixos-pkgs": "nixos-pkgs",
         "nixos-unstable": "nixos-unstable",
         "nixos-wsl": "nixos-wsl",

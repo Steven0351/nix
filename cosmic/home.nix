@@ -15,10 +15,16 @@ in
   ];
 
   home.stateVersion = "22.05";
+  home.sessionVariables.EDITOR = "stevenvim";
 
   terminal = {
     enable = true;
-    tmux.kanagawaFlavor = "dragon";
+    tmux.kanagawaFlavor = "conifer";
+    kitty.themeFile = "conifer";
+    kitty.font = {
+      name = "TX-02-Kitty";
+      size = 16;
+    };
   };
 
   wallpapers.enable = true;

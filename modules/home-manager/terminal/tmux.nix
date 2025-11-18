@@ -6,17 +6,6 @@
 }:
 let
   cfg = config.terminal.tmux;
-  kanagawaTmux = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "kanagawa-tmux";
-    version = "0.1.0";
-    rtpFilePath = "kanagawa.tmux";
-    src = pkgs.fetchFromGitHub {
-      owner = "Steven0351";
-      repo = "kanagawa-tmux";
-      rev = "9ea1d3b5d309a486011a69a67f2aad208ce21197";
-      sha256 = "sha256-GowKJPN4pMECCmrqQ4LD28F8hXZgkqtZA7wS0PC2hPc=";
-    };
-  };
   pluginModule =
     with lib;
     types.submodule {
@@ -48,6 +37,7 @@ in
     kanagawaFlavor = mkOption {
       default = "wave";
       type = types.enum [
+        "conifer"
         "dragon"
         "wave"
       ];
@@ -96,7 +86,7 @@ in
             }
 
             {
-              plugin = kanagawaTmux;
+              plugin = kanagawa;
               extraConfig = ''
                 set -g @kanagawa_flavor ${cfg.kanagawaFlavor}
 
