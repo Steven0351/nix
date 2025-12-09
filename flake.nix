@@ -36,6 +36,7 @@
 
     stevenvim.url = "github:Steven0351/steve.nvim";
     tmux-thumbs.url = "github:Steven0351/tmux-thumbs";
+
     kanagawa-tmux = {
       url = "github:Steven0351/kanagawa-tmux/kanagawa";
       flake = false;
@@ -58,6 +59,7 @@
       kanagawa-tmux,
       ...
     }@inputs:
+
     let
       overlay = final: prev: {
         tmuxPlugins = prev.tmuxPlugins // {
@@ -69,20 +71,26 @@
             src = kanagawa-tmux;
           };
         };
+
         jj = jj.packages."${prev.system}".jujutsu;
-        stevenvim = stevenvim.packages."${prev.system}".default;
-        jjedit = stevenvim.packages."${prev.system}".jjedit;
+
         kitty-themes = prev.kitty-themes.overrideAttrs (oldAttrs: {
           postInstall = ''
             cp -r ${kanagawa-tmux}/extras/kitty/* $out/share/kitty-themes/themes
           '';
         });
       };
+
       alteredPkgs =
         { ... }:
         {
-          nixpkgs.overlays = [ overlay ];
+          nixpkgs.overlays = [
+            overlay
+            stevenvim.overlays.default
+            stevenvim.overlays.jjedit
+          ];
         };
+
       homeManagerModules = {
         home-manager.sharedModules = [
           ./modules/home-manager/wallpapers
@@ -90,6 +98,7 @@
         ];
       };
     in
+
     {
       darwinConfigurations = {
         mac-mini = darwin.lib.darwinSystem {
@@ -124,6 +133,7 @@
             home-manager-nixos.nixosModules.home-manager
           ];
         };
+
         nixos-wsl = nixos-unstable.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
