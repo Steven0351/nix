@@ -188,15 +188,10 @@ in
           set -g status-format[1] ""
         '';
       };
-
-      # We "disable" tmux integration because it requries that
-      # fzf have tmux integration enabled. However, there are
-      # issues with command line history with ctrl-r when FZF_TMUX
-      # tmux is enabled.
-      sesh = {
-        enable = true;
-        enableTmuxIntegration = false;
-      };
     };
+
+    home.packages = [
+      pkgs.sesh
+    ];
   };
 }
