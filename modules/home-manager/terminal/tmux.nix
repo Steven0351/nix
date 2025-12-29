@@ -60,7 +60,7 @@ in
         baseIndex = 1;
         keyMode = "vi";
         prefix = "C-M-S-a";
-        terminal = "screen-256color";
+        terminal = "tmux-256color";
         shell = "${pkgs.fish}/bin/fish";
         plugins =
           with pkgs.tmuxPlugins;

@@ -44,8 +44,9 @@ in
         };
 
         colors = {
-          change_id = "bright yellow";
-          rest = "default";
+          bookmarks = {
+            bold = true;
+          };
         };
 
         aliases = {
