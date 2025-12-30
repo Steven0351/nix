@@ -30,11 +30,29 @@ in
           pager = "delta";
           diff-formatter = ":git";
           show-cryptographic-signatures = true;
+          merge-editor = "diffconflicts";
           diff-editor = [
             "${pkgs.jjedit}/bin/jjedit"
             "-c"
             "DiffEditor $left $right $output"
           ];
+        };
+
+        merge-tools = {
+          diffconflicts = {
+            program = "stevenvim";
+            merge-args = [
+              "-c"
+              "let g:jj_diffconflicts_marker_length=$marker_length"
+              "-c"
+              "JJDiffConflicts!"
+              "$output"
+              "$base"
+              "$left"
+              "$right"
+            ];
+            merge-tool-edits-conflict-markers = true;
+          };
         };
 
         signing = {
