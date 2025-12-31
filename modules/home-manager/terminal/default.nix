@@ -11,6 +11,7 @@ in
 {
   imports = [
     ./kitty.nix
+    ./ghostty
     ./tmux.nix
     ./fish.nix
     ./eza.nix
@@ -31,7 +32,6 @@ in
   };
 
   config = mkIf cfg.enable {
-
     home.packages = with pkgs; [
       _1password-cli
       ast-grep
