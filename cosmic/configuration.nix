@@ -42,13 +42,9 @@ rec {
     '';
   };
 
-  # fonts.packages = with pkgs; [
-  #   nerd-fonts.fira-code
-  #   nerd-fonts.victor-mono
-  #   nerd-fonts.sauce-code-pro
-  #   nerd-fonts.jetbrains-mono
-  #   nerd-fonts.monaspace
-  # ];
+  fonts.packages = with pkgs; [
+    nerd-fonts.symbols-only
+  ];
 
   programs.bash.enable = true;
   programs.fish.enable = true;

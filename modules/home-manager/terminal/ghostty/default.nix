@@ -51,7 +51,10 @@ in
     programs.ghostty.settings = {
       command = "${pkgs.fish}/bin/fish";
       theme = "conifer";
-      font-family = "TX-02-Ghostty";
+      font-family = [
+        "TX-02-Ghostty"
+        "Symbols Nerd Font Mono"
+      ];
       font-size = 16;
       font-style = "Light";
       font-style-italic = "Light Oblique";

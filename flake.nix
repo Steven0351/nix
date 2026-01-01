@@ -36,6 +36,7 @@
 
     stevenvim.url = "github:Steven0351/steve.nvim";
     tmux-thumbs.url = "github:Steven0351/tmux-thumbs";
+    nerdfont-search.url = "github:Steven0351/nerdfont-search";
 
     kanagawa-tmux = {
       url = "github:Steven0351/kanagawa-tmux/kanagawa";
@@ -57,6 +58,7 @@
       jj,
       stevenvim,
       kanagawa-tmux,
+      nerdfont-search,
       ...
     }@inputs:
 
@@ -86,6 +88,7 @@
         {
           nixpkgs.overlays = [
             overlay
+            nerdfont-search.overlays.default
             stevenvim.overlays.default
             stevenvim.overlays.jjedit
           ];

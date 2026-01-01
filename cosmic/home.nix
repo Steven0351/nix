@@ -9,6 +9,7 @@ in
 {
   home.packages = with pkgs; [
     qmk
+    nerdfont-search
     xcbeautify
     yubikey-manager
     aspell
