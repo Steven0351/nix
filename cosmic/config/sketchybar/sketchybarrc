@@ -18,8 +18,8 @@ sketchybar --bar position=top \
 
 # Default settings
 sketchybar --default updates=when_changed \
-                     icon.font="TX02 Nerd Font:Semibold:15.0" \
-                     icon.color=$TEXT \
+                     icon.font="TX-02-Ghostty:Semibold:15.0" \
+                     icon.color=0xffbdbbaf \
                      icon.padding_left=6 \
                      icon.padding_right=6 \
                      label.drawing=off \
@@ -48,10 +48,10 @@ done
 
 # Create a bracket that groups all spaces together with a background
 sketchybar --add bracket spaces_bracket "${SPACE_ITEMS[@]}" \
-           --set spaces_bracket background.color=$SUMI_INK_3 \
+           --set spaces_bracket background.color=0xff151515 \
                                background.corner_radius=12 \
                                background.border_width=2 \
-                               background.border_color=$FUJI_GRAY \
+                               background.border_color=0xff576f82 \
                                background.height=24 \
                                background.padding_left=8 \
                                background.padding_right=8
