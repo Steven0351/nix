@@ -37,6 +37,7 @@ in
       ast-grep
       bash-language-server
       devenv
+      difftastic
       glow
       lua-language-server
       nix-prefetch-github

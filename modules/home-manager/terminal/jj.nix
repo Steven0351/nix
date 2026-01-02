@@ -28,7 +28,12 @@ in
         ui = {
           paginate = "auto";
           pager = "delta";
-          diff-formatter = ":git";
+          diff-formatter = [
+            "difft"
+            "--color=always"
+            "$left"
+            "$right"
+          ];
           show-cryptographic-signatures = true;
           merge-editor = "diffconflicts";
           diff-editor = [
@@ -72,6 +77,18 @@ in
             "log"
             "-r"
             "::"
+          ];
+
+          pb = [
+            "git"
+            "push"
+            "--bookmark"
+          ];
+
+          pc = [
+            "git"
+            "push"
+            "--change"
           ];
         };
       };

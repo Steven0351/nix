@@ -65,7 +65,7 @@
     let
       overlay = final: prev: {
         tmuxPlugins = prev.tmuxPlugins // {
-          thumbs = tmux-thumbs.packages."${prev.system}".default;
+          thumbs = tmux-thumbs.packages."${prev.stdenv.hostPlatform.system}".default;
           kanagawa = prev.tmuxPlugins.mkTmuxPlugin {
             pluginName = "kanagawa-tmux";
             version = "0.1.0";
@@ -74,7 +74,7 @@
           };
         };
 
-        jj = jj.packages."${prev.system}".jujutsu;
+        jj = jj.packages."${prev.stdenv.hostPlatform.system}".jujutsu;
 
         kitty-themes = prev.kitty-themes.overrideAttrs (oldAttrs: {
           postInstall = ''
@@ -146,5 +146,7 @@
           ];
         };
       };
+
+      packages.aarch64-darwin.default = self.darwinConfigurations.cosmic.system;
     };
 }

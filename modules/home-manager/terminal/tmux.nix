@@ -153,14 +153,16 @@ in
           bind j select-pane -D
           bind k select-pane -U
           bind l select-pane -R
-          bind c kill-pane
           bind x swap-pane -D
-          bind ^C new-window -c "#{pane_current_path}"
-          bind ^D detach
+          bind c new-window -c "#{pane_current_path}"
+          bind ^c kill-pane
+          bind ^d detach
           bind * list-clients
           bind | split-window
           bind s split-window -v -c "#{pane_current_path}"
           bind v split-window -h -c "#{pane_current_path}"
+          bind C-v select-layout main-vertical-mirrored
+          bind C-h select-layout even-horizontal
           bind -r -T prefix , resize-pane -L 20
           bind -r -T prefix . resize-pane -R 20
           bind -r -T prefix - resize-pane -D 7
@@ -169,15 +171,15 @@ in
 
           bind-key "T" run-shell "sesh connect \"$(
             sesh list --icons | fzf --tmux 80%,70% \
-              --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+              --no-sort --ansi --border-label ' sesh ' --prompt '  ' \
               --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
               --bind 'tab:down,btab:up' \
-              --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
-              --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list --icons -t)' \
-              --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list --icons -c)' \
-              --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list --icons -z)' \
-              --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
-              --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+              --bind 'ctrl-a:change-prompt(  )+reload(sesh list --icons)' \
+              --bind 'ctrl-t:change-prompt(  )+reload(sesh list --icons -t)' \
+              --bind 'ctrl-g:change-prompt(  )+reload(sesh list --icons -c)' \
+              --bind 'ctrl-x:change-prompt(  )+reload(sesh list --icons -z)' \
+              --bind 'ctrl-f:change-prompt(  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+              --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(  )+reload(sesh list --icons)' \
               --preview-window 'right:55%' \
               --preview 'sesh preview {}' \
               -- --ansi

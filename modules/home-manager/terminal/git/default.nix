@@ -32,6 +32,7 @@ in
         ".envrc"
         ".idea"
         ".nvim.lua"
+        ".rgignore"
         ".tmux.session"
         "*.bk"
         "*.log"

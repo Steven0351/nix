@@ -8,6 +8,9 @@ let
 in
 {
   home.packages = with pkgs; [
+    aerc
+    weechat
+    diffnav
     qmk
     nerdfont-search
     xcbeautify
