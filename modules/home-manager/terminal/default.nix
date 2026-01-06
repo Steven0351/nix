@@ -41,6 +41,7 @@ in
       glow
       lua-language-server
       nix-prefetch-github
+      bun
       nodejs
       openssh
       python3

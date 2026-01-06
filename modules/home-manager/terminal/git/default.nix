@@ -37,6 +37,7 @@ in
         "*.bk"
         "*.log"
         "*.old"
+        ".claude/settings.local.json"
         "tmp/"
         "tags"
       ];

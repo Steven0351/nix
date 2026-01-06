@@ -9,6 +9,8 @@ in
 {
   home.packages = with pkgs; [
     aerc
+    cmake
+    glibtool
     weechat
     diffnav
     qmk
@@ -16,6 +18,7 @@ in
     xcbeautify
     yubikey-manager
     aspell
+    terminal-notifier
   ];
 
   home.stateVersion = "22.05";

@@ -73,6 +73,9 @@ in
       clipboard-write = "allow";
       custom-shader = "${./shaders/cursor_warp.glsl}";
       shell-integration-features = "no-cursor";
+      config-file = [
+        "?auto/theme.ghostty"
+      ];
     }
     // cfg.overrides;
 
