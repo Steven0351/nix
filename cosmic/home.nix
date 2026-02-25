@@ -18,6 +18,7 @@ in
     xcbeautify
     yubikey-manager
     aspell
+    quickemu
     terminal-notifier
   ];
 

@@ -37,6 +37,7 @@
     stevenvim.url = "github:Steven0351/steve.nvim";
     tmux-thumbs.url = "github:Steven0351/tmux-thumbs";
     nerdfont-search.url = "github:Steven0351/nerdfont-search";
+    quickemu.url = "github:quickemu-project/quickemu";
 
     kanagawa-tmux = {
       url = "github:Steven0351/kanagawa-tmux/kanagawa";
@@ -57,6 +58,7 @@
       tmux-thumbs,
       jj,
       stevenvim,
+      quickemu,
       kanagawa-tmux,
       nerdfont-search,
       ...
@@ -91,6 +93,7 @@
             nerdfont-search.overlays.default
             stevenvim.overlays.default
             stevenvim.overlays.jjedit
+            quickemu.overlays.default
           ];
         };
 
