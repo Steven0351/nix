@@ -148,6 +148,16 @@
             home-manager-nixos-unstable.nixosModules.home-manager
           ];
         };
+
+        pulsar = nixos-unstable.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            alteredPkgs
+            (import ./pulsar/configuration.nix inputs)
+            home-manager-nixos-unstable.nixosModules.home-manager
+            homeManagerModules
+          ];
+        };
       };
 
       packages.aarch64-darwin.default = self.darwinConfigurations.cosmic.system;
