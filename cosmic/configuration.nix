@@ -28,6 +28,17 @@ rec {
   ids.gids.nixbld = 350;
 
   nix = {
+    linux-builder = {
+      enable = true;
+      config = {
+        boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
+      };
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+    };
+
     settings = {
       trusted-users = [
         "@admin"
