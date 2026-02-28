@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixos-pkgs";
     };
 
-    nixos-unstable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixos-unstable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl/main";
@@ -30,7 +30,7 @@
     };
 
     home-manager-nixos-unstable = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixos-unstable";
     };
 
@@ -156,6 +156,25 @@
             (import ./pulsar/configuration.nix inputs)
             home-manager-nixos-unstable.nixosModules.home-manager
             homeManagerModules
+          ];
+        };
+
+        pulsar-iso = nixos-unstable.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            "${nixos-unstable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            alteredPkgs
+            (import ./pulsar/configuration.nix inputs)
+            home-manager-nixos-unstable.nixosModules.home-manager
+            homeManagerModules
+            (
+              { lib, ... }:
+              {
+                boot.loader.systemd-boot.enable = lib.mkForce false;
+                boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+                boot.supportedFilesystems.zfs = lib.mkForce false;
+              }
+            )
           ];
         };
       };

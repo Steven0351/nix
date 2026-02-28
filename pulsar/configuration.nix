@@ -1,5 +1,10 @@
 { nixos-unstable, ... }@inputs:
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
@@ -39,6 +44,10 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr
+      rocmPackages.clr.icd
+    ];
   };
 
   # GameMode
@@ -142,7 +151,6 @@
     jj
     mangohud
     protonup-qt
-    cpupower
     libfido2
   ];
 
@@ -177,11 +185,7 @@
   };
 
   # Home Manager
-  home-manager.users.steven0351 = {
-    imports = [
-      (import ./home.nix inputs)
-    ];
-  };
+  home-manager.users.steven0351 = import ./home.nix;
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
