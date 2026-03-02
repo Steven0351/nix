@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.terminal.kitty;
   inherit (lib) mkOption mkIf types;
@@ -74,7 +79,7 @@ in
       window_margin_width = "1";
       window_padding_width = "10 5 5";
 
-      shell = "${config.home.homeDirectory}/.nix-profile/bin/fish";
+      shell = "${pkgs.fish}/bin/fish";
       editor = "stevenvim";
 
       hide_window_decorations = "titlebar-only";
@@ -86,32 +91,7 @@ in
 
     programs.kitty.shellIntegration.mode = "no-cursor";
     programs.kitty.shellIntegration.enableFishIntegration = true;
-
-    programs.kitty.extraConfig = ''
-      symbol_map U+23FB-U+23FE TX02 Nerd Font
-      symbol_map U+2665 TX02 Nerd Font
-      symbol_map U+26a1 TX02 Nerd Font
-      symbol_map U+2b58 TX02 Nerd Font
-      symbol_map U+E000-U+E00A TX02 Nerd Font
-      symbol_map U+E0A0-U+E0A2 TX02 Nerd Font
-      symbol_map U+E0A3 TX02 Nerd Font
-      symbol_map U+E0B0-U+E0B3 TX02 Nerd Font
-      symbol_map U+E0B4-U+E0C8 TX02 Nerd Font
-      symbol_map U+E0CA TX02 Nerd Font
-      symbol_map U+E0CC-U+E0D7 TX02 Nerd Font
-      symbol_map U+E000-U+E0A9 TX02 Nerd Font
-      symbol_map U+E300-U+E3E3 TX02 Nerd Font
-      symbol_map U+E5FA-U+E6B7 TX02 Nerd Font
-      symbol_map U+E700-U+E8EF TX02 Nerd Font
-      symbol_map U+EA60-U+EC1E TX02 Nerd Font
-      symbol_map U+ED00-U+EFCE TX02 Nerd Font
-      symbol_map U+F000-U+F2FF TX02 Nerd Font
-      symbol_map U+F300-U+F381 TX02 Nerd Font
-      symbol_map U+F400-U+F533 TX02 Nerd Font
-      symbol_map U+F500-U+FD46 TX02 Nerd Font
-      symbol_map U+F0001-U+F1AF0 TX02 Nerd Font
-    ''
-    + cfg.extraConfig;
+    programs.kitty.extraConfig = cfg.extraConfig;
 
     programs.kitty.keybindings = {
       "kitty_mod+equal" = "change_font_size current +2.0";
