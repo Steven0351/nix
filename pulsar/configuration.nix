@@ -6,6 +6,10 @@
   ...
 }:
 {
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
   boot.kernelParams = [
@@ -20,8 +24,21 @@
     "mitigations=off"
   ];
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+      mplus-outline-fonts.githubRelease
+      dina-font
+      proggyfonts
+    ];
+  };
 
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
