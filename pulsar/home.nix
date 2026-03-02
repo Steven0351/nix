@@ -7,13 +7,29 @@
   terminal = {
     enable = true;
     ghostty.enable = false;
-    kitty.enable = true;
+    kitty = {
+      enable = true;
+      font = {
+        name = "JetBrainsMono Nerd Font";
+        size = 14;
+      };
+    };
   };
 
   hyprland.enable = true;
   wallpapers.enable = true;
 
-  home.packages = with pkgs; [ stevenvim ];
+  home.packages = with pkgs; [
+    stevenvim
+    nerd-fonts.jetbrains-mono
+    qutebrowser
+    vivaldi
+    firefox
+    discord
+  ];
+
+  fonts.fontconfig.enable = true;
+
   home.sessionVariables.EDITOR = "stevenvim";
   home.stateVersion = "25.05";
 }

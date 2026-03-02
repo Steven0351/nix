@@ -83,6 +83,8 @@
             cp -r ${kanagawa-tmux}/extras/kitty/* $out/share/kitty-themes/themes
           '';
         });
+
+        qutebrowser = prev.qutebrowser.override { enableWideVine = true; };
       };
 
       alteredPkgs =
