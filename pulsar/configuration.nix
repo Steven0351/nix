@@ -114,9 +114,13 @@
   environment.shells = [ pkgs.fish ];
   environment.pathsToLink = [ "/share/fish" ];
 
+
   # Users
+  users.mutableUsers = true;
+
   users.users.steven0351 = {
     isNormalUser = true;
+    initialHashedPassword = "$y$j9T$ar/PiNiglR4LVagM4JQLo1$9GCYnNMsPtyPPM2Kjay2g5hWYbezn4KaWZRbZadWgf4";
     shell = pkgs.fish;
     extraGroups = [
       "wheel"
