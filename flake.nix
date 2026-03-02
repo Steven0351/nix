@@ -182,5 +182,6 @@
       };
 
       packages.aarch64-darwin.default = self.darwinConfigurations.cosmic.system;
+      packages.x86_64-linux.default = self.nixosConfigurations.pulsar.config.system.build.toplevel;
     };
 }

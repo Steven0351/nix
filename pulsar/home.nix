@@ -7,11 +7,15 @@
   terminal = {
     enable = true;
     ghostty.enable = false;
+
+    tmux.kanagawaFlavor = "conifer";
+
     kitty = {
       enable = true;
+      themeFile = "conifer";
       font = {
-        name = "JetBrainsMono Nerd Font";
-        size = 14;
+        name = "TX-02 Thin";
+        size = 12;
       };
     };
   };
@@ -20,13 +24,42 @@
   wallpapers.enable = true;
 
   home.packages = with pkgs; [
+    _1password-gui
+    _1password-cli
     stevenvim
     nerd-fonts.jetbrains-mono
+    mpv
+    qmk
     qutebrowser
     vivaldi
     firefox
     discord
   ];
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  xdg.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+    config = {
+      hyprland.default = [
+        "hyprland"
+        "gtk"
+      ];
+    };
+  };
 
   fonts.fontconfig.enable = true;
 

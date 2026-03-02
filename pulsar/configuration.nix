@@ -114,7 +114,6 @@
   environment.shells = [ pkgs.fish ];
   environment.pathsToLink = [ "/share/fish" ];
 
-
   # Users
   users.mutableUsers = true;
 
@@ -140,7 +139,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         user = "greeter";
       };
     };
@@ -154,7 +153,10 @@
 
   # YubiKey
   services.pcscd.enable = true;
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.udev.packages = [
+    pkgs.yubikey-personalization
+    pkgs.qmk-udev-rules
+  ];
 
   security.pam.u2f = {
     enable = true;

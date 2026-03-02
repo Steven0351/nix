@@ -51,7 +51,7 @@ in
         enable = true;
         enableExtraSocket = true;
         defaultCacheTtl = 3600;
-        pinentry.package = pkgs.pinentry-curses;
+        pinentry.package = pkgs.pinentry-qt;
       };
   };
 
