@@ -32,21 +32,4 @@ in
   };
 
   wallpapers.enable = true;
-
-  programs.sketchybar = {
-    enable = true;
-
-    extraPackages = with pkgs; [
-      yabai
-      jq
-    ];
-
-    config = {
-      source = ./config/sketchybar;
-      recursive = true;
-    };
-
-    includeSystemPath = true;
-    service.enable = true;
-  };
 }
