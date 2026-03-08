@@ -39,6 +39,11 @@
     nerdfont-search.url = "github:Steven0351/nerdfont-search";
     quickemu.url = "github:quickemu-project/quickemu";
 
+    _1password-shell-plugins = {
+      url = "github:1Password/shell-plugins";
+      inputs.nixpkgs.follows = "nixos-unstable";
+    };
+
     kanagawa-tmux = {
       url = "github:Steven0351/kanagawa-tmux/kanagawa";
       flake = false;

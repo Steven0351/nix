@@ -45,7 +45,7 @@ in
 
   config = mkIf cfg.enable {
     programs.ghostty.enable = true;
-    programs.ghostty.package = null;
+    programs.ghostty.package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty;
     programs.ghostty.enableFishIntegration = true;
 
     programs.ghostty.settings = {

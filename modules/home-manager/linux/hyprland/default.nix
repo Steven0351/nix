@@ -39,7 +39,7 @@ in
       };
 
       settings = {
-        monitor = ",preferred,auto,1.25";
+        monitor = ",preferred,auto,1";
 
         "$mod" = "SUPER";
         "$terminal" = "kitty";
@@ -60,6 +60,11 @@ in
         env = [
           "XCURSOR_SIZE,24"
           "HYPRCURSOR_SIZE,24"
+        ];
+
+        windowrulev2 = [
+          # Switches to the relevant window that obtains focus, e.g. opening a link
+          "focusonactivate, class:.*"
         ];
 
         general = {
@@ -109,6 +114,13 @@ in
           "$mod, Q, killactive"
           "$mod, Space, exec, $launcher"
 
+          "$mod Control_L, L, exec, hyprlock"
+
+          "$mod ALT, L, resizeactive, 100 0"
+          "$mod ALT, H, resizeactive, -100 0"
+          "$mod ALT, J, resizeactive, 0 100"
+          "$mod ALT, K, resizeactive, 0 -100"
+
           "$mod SHIFT, H, swapwindow, l"
           "$mod SHIFT, L, swapwindow, r"
           "$mod SHIFT, J, swapwindow, d"
@@ -157,12 +169,6 @@ in
           "$mod, mouse:273, resizewindow"
         ];
       };
-    };
-
-    programs.ashell = {
-      enable = true;
-      systemd.enable = true;
-      systemd.target = "hyprland-session.target";
     };
 
     programs.hyprlock = {

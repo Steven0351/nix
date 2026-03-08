@@ -36,7 +36,9 @@ in
       };
 
       settings = {
-        show_hidden = true;
+        mgr = {
+          show_hidden = true;
+        };
       };
 
       theme = {

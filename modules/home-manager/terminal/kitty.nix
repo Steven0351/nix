@@ -32,7 +32,7 @@ in
 
     font = mkOption {
       description = "The font to use";
-      type = lib.hm.types.fontType;
+      type = types.nullOr lib.hm.types.fontType;
       default = {
         name = "TX-02";
         size = 15;

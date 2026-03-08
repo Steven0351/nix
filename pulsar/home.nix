@@ -6,17 +6,28 @@
 
   terminal = {
     enable = true;
-    ghostty.enable = false;
+
+    ghostty = {
+      overrides = {
+        font-family = [
+          "TX-02"
+          "Symbols Nerd Font Mono"
+        ];
+      };
+    };
+
+    gh.enable = false;
 
     tmux.kanagawaFlavor = "conifer";
 
     kitty = {
       enable = true;
       themeFile = "conifer";
-      font = {
-        name = "TX-02 Thin";
-        size = 12;
-      };
+      font = null;
+      extraConfig = ''
+        font_family family=TX-02 style=Light
+        font_size 16.0
+      '';
     };
   };
 
@@ -24,21 +35,26 @@
   wallpapers.enable = true;
 
   home.packages = with pkgs; [
-    _1password-gui
-    _1password-cli
     stevenvim
     nerd-fonts.jetbrains-mono
     mpv
     qmk
+    picotool
     qutebrowser
     vivaldi
     firefox
     discord
+    signal-desktop
+    wiremix
   ];
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
+    };
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
     };
   };
 
@@ -64,5 +80,6 @@
   fonts.fontconfig.enable = true;
 
   home.sessionVariables.EDITOR = "stevenvim";
+  home.sessionPath = [ "$HOME/.local/bin" ];
   home.stateVersion = "25.05";
 }

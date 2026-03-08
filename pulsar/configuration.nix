@@ -5,9 +5,13 @@
   lib,
   ...
 }:
+let
+  me = "steven0351";
+in
 {
   imports = [
     ./hardware-configuration.nix
+    inputs._1password-shell-plugins.nixosModules.default
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -42,6 +46,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.extraModprobeConfig = ''
+    options bluetooth disable_ertm=1
+  '';
+
   boot.kernel.sysctl = {
     "vm.max_map_count" = 2147483642;
     "vm.swappiness" = 10;
@@ -51,12 +59,10 @@
     "kernel.nmi_watchdog" = 0;
   };
 
-  # CPU & Power
   powerManagement.cpuFreqGovernor = "performance";
   hardware.cpu.amd.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
 
-  # Graphics
   hardware.amdgpu.initrd.enable = true;
   hardware.graphics = {
     enable = true;
@@ -66,6 +72,31 @@
       rocmPackages.clr.icd
     ];
   };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+        ControllerMode = "dual";
+        FastConnectable = true;
+        JustWorksRepairing = "always";
+        Class = "0x000100";
+        ReconnectAttempts = 7;
+        ReconnectIntervals = "1,2,4,8,16,32,64";
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
+
+  # TODO: Remove at some point
+  services.blueman.enable = true;
+
+  programs.gpu-screen-recorder.enable = true;
 
   # GameMode
   programs.gamemode = {
@@ -99,6 +130,30 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber = {
+      enable = true;
+      extraConfig."10-bluez" = {
+        "monitor.bluez.properties" = {
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          "bluez5.codecs" = [
+            "sbc"
+            "sbc_xq"
+            "aac"
+            "ldac"
+          ];
+          "bluez5.roles" = [
+            "a2dp_sink"
+            "a2dp_source"
+            "hsp_hs"
+            "hsp_ag"
+            "hfp_hf"
+            "hfp_ag"
+          ];
+        };
+      };
+    };
   };
 
   # Networking
@@ -117,7 +172,7 @@
   # Users
   users.mutableUsers = true;
 
-  users.users.steven0351 = {
+  users.users."${me}" = {
     isNormalUser = true;
     initialHashedPassword = "$y$j9T$ar/PiNiglR4LVagM4JQLo1$9GCYnNMsPtyPPM2Kjay2g5hWYbezn4KaWZRbZadWgf4";
     shell = pkgs.fish;
@@ -155,7 +210,6 @@
   services.pcscd.enable = true;
   services.udev.packages = [
     pkgs.yubikey-personalization
-    pkgs.qmk-udev-rules
   ];
 
   security.pam.u2f = {
@@ -177,12 +231,25 @@
     libfido2
   ];
 
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [ me ];
+
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu.swtpm.enable = true;
+    };
+    spiceUSBRedirection.enable = true;
+  };
+
+  services.spice-vdagentd.enable = true;
+
   # Nix
   nixpkgs.config.allowUnfree = true;
 
   nix = {
     settings = {
-      trusted-users = [ "steven0351" ];
+      trusted-users = [ me ];
       accept-flake-config = true;
       auto-optimise-store = true;
     };
@@ -207,8 +274,31 @@
     };
   };
 
+  programs._1password-shell-plugins = {
+    enable = true;
+    plugins = with pkgs; [ gh ];
+  };
+
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ me ];
+  };
+
+  environment.etc = {
+    "1password/custom_allowed_browsers" = {
+      text = ''
+        vivaldi-bin
+        chromium
+      '';
+      mode = "0755";
+    };
+  };
+
+  programs.nix-ld.enable = true;
+
   # Home Manager
-  home-manager.users.steven0351 = import ./home.nix;
+  home-manager.users."${me}" = import ./home.nix;
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
