@@ -46,6 +46,7 @@
     discord
     signal-desktop
     wiremix
+    remmina
   ];
 
   dconf.settings = {
