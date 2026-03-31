@@ -35,18 +35,28 @@
   wallpapers.enable = true;
 
   home.packages = with pkgs; [
-    stevenvim
-    nerd-fonts.jetbrains-mono
+    aerc
+    hut
     mpv
-    qmk
+
+    nerd-fonts.jetbrains-mono
+
     picotool
+    qmk
+
+    stevenvim
+
     qutebrowser
     vivaldi
     firefox
+
     discord
     signal-desktop
+
     wiremix
+
     remmina
+    nomachine-client
   ];
 
   dconf.settings = {
