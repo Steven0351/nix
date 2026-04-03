@@ -6,3 +6,6 @@ result
 keys/
 
 shared/fish/fish_variables
+modules/home-manager/emacs/emacs/*
+!modules/home-manager/emacs/emacs/early-init.el
+!modules/home-manager/emacs/emacs/init.el

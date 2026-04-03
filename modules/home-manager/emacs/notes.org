@@ -1,0 +1,4 @@
+#+title:Notes
+
+I'm leaving this burgeoning config to mess around with when I feel like it, but for now
+I'm primarily going to just use doom emacs until I get used to emacs generally

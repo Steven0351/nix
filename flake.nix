@@ -108,6 +108,7 @@
         home-manager.sharedModules = [
           ./modules/home-manager/wallpapers
           ./modules/home-manager/terminal
+          ./modules/home-manager/emacs
         ];
       };
     in

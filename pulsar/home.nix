@@ -4,6 +4,8 @@
     ../modules/home-manager/linux/hyprland
   ];
 
+  emacs.enable = true;
+
   terminal = {
     enable = true;
 
@@ -40,6 +42,7 @@
     mpv
 
     nerd-fonts.jetbrains-mono
+    julia-mono
 
     picotool
     qmk

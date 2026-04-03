@@ -15,7 +15,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      swww
+      awww
       grimblast
       dunst
       libnotify
@@ -67,7 +67,7 @@ in
         };
 
         exec-once = [
-          "swww-daemon"
+          "awww-daemon"
           "hypridle"
           "dunst"
           "1password --silent"

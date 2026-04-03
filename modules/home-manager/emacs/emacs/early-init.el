@@ -1,0 +1,12 @@
+(require 'no-littering)
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+(setq inhibit-startup-screen t)
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(set-face-attribute 'default nil :family "TX-02" :height 160 :weight 'light)
+(global-display-line-numbers-mode)
+(global-hl-line-mode)
