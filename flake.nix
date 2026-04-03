@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixos-pkgs";
     };
 
-    nixos-unstable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl/main";
@@ -30,7 +30,7 @@
     };
 
     home-manager-nixos-unstable = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixos-unstable";
     };
 

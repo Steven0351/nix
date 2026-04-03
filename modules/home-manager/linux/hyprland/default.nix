@@ -46,6 +46,15 @@ in
         enable = true;
       };
 
+      extraConfig = ''
+        windowrule {
+            name = gradia
+            match:class = be.alexandervanhee.gradia
+            float = on
+            size = (monitor_w*0.40) (monitor_h*0.75)
+        }
+      '';
+
       settings = {
         monitor = ",preferred,auto,1";
 
@@ -71,9 +80,12 @@ in
           "HYPRCURSOR_SIZE,24"
         ];
 
-        windowrulev2 = [
+        windowrule = [
           # Switches to the relevant window that obtains focus, e.g. opening a link
-          "focusonactivate, class:.*"
+          "match:class .*, focus_on_activate on"
+          # "focusonactivate, class:.*"
+          # "float, class:be.alexandervanhee.gradia"
+          # "size (monitor_w * 0.30) (monitor_h * 0.5), class:be.alexandervanhee.gradia"
         ];
 
         general = {
@@ -169,8 +181,7 @@ in
           "$mod SHIFT, 8, movetoworkspace, 8"
           "$mod SHIFT, 9, movetoworkspace, 9"
 
-          ", Print, exec, grimblast copy area"
-          "$mod SHIFT, S, exec, grimblast copy area"
+          "$mod SHIFT, S, exec, bash -c 'grimblast save area - | gradia'"
         ];
 
         bindm = [

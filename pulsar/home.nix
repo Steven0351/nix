@@ -57,6 +57,8 @@
 
     remmina
     nomachine-client
+
+    gradia
   ];
 
   dconf.settings = {

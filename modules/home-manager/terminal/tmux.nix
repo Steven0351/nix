@@ -133,7 +133,12 @@ in
               plugin = pkgs.tmuxPlugins.thumbs;
               extraConfig = ''
                 set -g @thumbs-alphabet engram
+              ''
+              + lib.optionalString pkgs.stdenv.isDarwin ''
                 set -g @thumbs-command 'echo -n {} | pbcopy'
+              ''
+              + lib.optionalString pkgs.stdenv.isLinux ''
+                set -g @thumbs-command 'echo -n {} | wl-copy'
               '';
             }
           ]
