@@ -79,6 +79,15 @@ in
             "::"
           ];
 
+          tug = [
+            "bookmark"
+            "move"
+            "--from"
+            "heads(::@- & bookmarks())"
+            "--to"
+            "@-"
+          ];
+
           pb = [
             "git"
             "push"

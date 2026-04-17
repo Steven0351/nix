@@ -177,6 +177,7 @@ in
     initialHashedPassword = "$y$j9T$ar/PiNiglR4LVagM4JQLo1$9GCYnNMsPtyPPM2Kjay2g5hWYbezn4KaWZRbZadWgf4";
     shell = pkgs.fish;
     extraGroups = [
+      "docker"
       "wheel"
       "networkmanager"
       "video"
@@ -200,6 +201,8 @@ in
     };
   };
 
+  services.guix.enable = true;
+  
   # XDG portals
   xdg.portal = {
     enable = true;
@@ -235,6 +238,7 @@ in
   users.groups.libvirtd.members = [ me ];
 
   virtualisation = {
+    docker.enable = true;
     libvirtd = {
       enable = true;
       qemu.swtpm.enable = true;

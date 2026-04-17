@@ -64,6 +64,10 @@ in
           symbol = " ";
         };
 
+	aws = {
+	  disabled = true;
+	};
+	
         c = {
           symbol = " ";
         };
