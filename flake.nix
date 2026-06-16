@@ -44,6 +44,11 @@
       inputs.nixpkgs.follows = "nixos-stable";
     };
 
+    mango = {
+      url = "github:mangowm/mango/24fb167";
+      inputs.nixpkgs.follows = "nixos-stable";
+    };
+
     kanagawa-tmux = {
       url = "github:Steven0351/kanagawa-tmux/kanagawa";
       flake = false;
@@ -90,6 +95,7 @@
         });
 
         qutebrowser = prev.qutebrowser.override { enableWideVine = true; };
+        mango = inputs.mango.packages."${prev.stdenv.hostPlatform.system}".default;
       };
 
       alteredPkgs =

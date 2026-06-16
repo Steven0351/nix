@@ -15,10 +15,11 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
+      qt6Packages.qt6ct
       awww
-      grimblast
       dunst
       libnotify
+      swappy
       vicinae
       wl-clipboard
     ];
@@ -27,6 +28,8 @@ in
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
       QT_QPA_PLATFORM = "wayland";
+      QT_QPA_PLATFORMTHEME = "qt6ct";
+
       GDK_BACKEND = "wayland";
       XDG_SESSION_TYPE = "wayland";
     };

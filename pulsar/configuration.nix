@@ -1,4 +1,4 @@
-{ nixos-unstable, ... }@inputs:
+{ nixos-stable, ... }@inputs:
 {
   config,
   pkgs,
@@ -12,6 +12,7 @@ in
   imports = [
     ./hardware-configuration.nix
     inputs._1password-shell-plugins.nixosModules.default
+    inputs.mango.nixosModules.mango
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -95,7 +96,7 @@ in
       };
     };
   };
-
+  
   # TODO: Remove at some point
   services.blueman.enable = true;
 
@@ -192,27 +193,30 @@ in
     ];
   };
 
+  # Mango
+  programs.mango.enable = true;
+  
   # Hyprland
-  programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true;
+  programs.hyprland.enable = false;
+  programs.hyprland.xwayland.enable = false;
 
   # Display manager
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd start-hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd mango";
         user = "greeter";
       };
     };
   };
 
   services.guix.enable = true;
-  
+
   # XDG portals
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
 
   # YubiKey
@@ -318,7 +322,7 @@ in
   programs.nix-ld.enable = true;
 
   # Home Manager
-  home-manager.users."${me}" = import ./home.nix;
+  home-manager.users."${me}" = (import ./home.nix inputs);
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;

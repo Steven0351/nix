@@ -1,7 +1,10 @@
+{ mango, ... }@inputs:
 { pkgs, ... }:
 {
   imports = [
+    mango.hmModules.mango
     ../modules/home-manager/linux/desktop
+    ../modules/home-manager/linux/mango
     ../modules/home-manager/linux/hyprland
   ];
 
@@ -34,7 +37,8 @@
     };
   };
 
-  hyprland.enable = true;
+  mango.enable = true;
+  hyprland.enable = false;
   wallpapers.enable = true;
 
   home.packages = with pkgs; [
@@ -84,15 +88,15 @@
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-wlr
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-wlr
     ];
     config = {
       hyprland.default = [
-        "hyprland"
+        "wlr"
         "gtk"
       ];
     };
