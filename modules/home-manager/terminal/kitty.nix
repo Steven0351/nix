@@ -65,7 +65,7 @@ in
 
     programs.kitty.settings = {
       cursor_shape = "block";
-      cursor_blink_interval = "1.0";
+      cursor_blink_interval = "0";
       cursor_stop_blinking_after = "15.0";
       cursor_trail = 1;
       cursor_trail_start_threshold = 0;

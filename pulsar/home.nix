@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ../modules/home-manager/linux/desktop
     ../modules/home-manager/linux/hyprland
   ];
 
@@ -43,6 +44,7 @@
 
     nerd-fonts.jetbrains-mono
     julia-mono
+    google-fonts
 
     picotool
     qmk
@@ -52,21 +54,24 @@
     qutebrowser
     vivaldi
     firefox
+    brave
 
     discord
     signal-desktop
+    teams-for-linux
 
     wiremix
 
     remmina
-    nomachine-client
 
     gradia
+    swappy
   ];
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
+      gtk-key-theme = "Emacs";
     };
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///system" ];
@@ -96,6 +101,9 @@
   fonts.fontconfig.enable = true;
 
   home.sessionVariables.EDITOR = "stevenvim";
-  home.sessionPath = [ "$HOME/.local/bin" ];
+  home.sessionPath = [
+    "$HOME/.local/bin"
+    "$HOME/.config/guix/current/bin"
+  ];
   home.stateVersion = "25.05";
 }

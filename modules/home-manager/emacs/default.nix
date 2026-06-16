@@ -33,29 +33,31 @@ in
       package = pkgs.emacs;
       extraPackages = e: [
         e.base16-theme
-	e.change-inner
-	e.direnv
+        e.change-inner
+        e.direnv
         e.dirvish
         e.doom-themes
         e.company
         e.consult
         e.embark
-	e.expand-region
-	e.font-utils
-	e.ligature
+        e.expand-region
+        e.font-utils
+        e.go-mode
+        e.ligature
         e.magit
         e.marginalia
-	e.nerd-icons
+        e.nerd-icons
         e.no-littering
         e.nix-ts-mode
         e.orderless
-	e.pcache
-	e.persp-mode
-	e.popwin
-	e.projectile
+        e.pcache
+        e.persp-mode
+        e.popwin
+        e.projectile
+        e.systemd
         e.treesit-grammars.with-all-grammars
-	e.ucs-utils
-	e.unicode-fonts
+        e.ucs-utils
+        e.unicode-fonts
         e.vertico
         e.vterm
       ];

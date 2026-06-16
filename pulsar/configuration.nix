@@ -39,6 +39,9 @@ in
       mplus-outline-fonts.githubRelease
       dina-font
       proggyfonts
+      roboto
+      montserrat
+      libre-baskerville
     ];
   };
 
@@ -176,6 +179,9 @@ in
     isNormalUser = true;
     initialHashedPassword = "$y$j9T$ar/PiNiglR4LVagM4JQLo1$9GCYnNMsPtyPPM2Kjay2g5hWYbezn4KaWZRbZadWgf4";
     shell = pkgs.fish;
+    openssh.authorizedKeys.keys = [
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIJn6obGcqYpbFKmFEPeoviI3VuHbHf2puMwRi/+LeKUzAAAABHNzaDo= ssh:"
+    ];
     extraGroups = [
       "docker"
       "wheel"
@@ -222,7 +228,8 @@ in
 
   security.pam.services.sudo.u2fAuth = true;
   security.pam.services.login.u2fAuth = true;
-  security.pam.services.hyprlock = { };
+  security.pam.services.hyprlock = {};
+  security.pam.services.swaylock = {};
 
   services.dbus.enable = true;
 
@@ -248,6 +255,15 @@ in
 
   services.spice-vdagentd.enable = true;
 
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+      AllowUsers = [ me ];
+    };
+  };
+
   # Nix
   nixpkgs.config.allowUnfree = true;
 
@@ -260,12 +276,12 @@ in
 
     registry = {
       nixpkgs = {
-        flake = nixos-unstable;
+        flake = nixos-stable;
       };
     };
 
     nixPath = [
-      "nixpkgs=${nixos-unstable.outPath}"
+      "nixpkgs=${nixos-stable.outPath}"
       "nixos-config=/etc/nixos/configuration.nix"
     ];
 

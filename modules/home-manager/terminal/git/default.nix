@@ -33,6 +33,7 @@ in
         ".idea"
         ".nvim.lua"
         ".rgignore"
+        ".project"
         ".tmux.session"
         "*.bk"
         "*.log"

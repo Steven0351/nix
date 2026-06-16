@@ -10,7 +10,7 @@
 (scroll-bar-mode 0)
 
 (global-display-line-numbers-mode)
-(global-hl-line-mode)
+(hl-line-mode)
 
 (setq my-early-init-file "~/.config/emacs.user/early-init.el")
 (when (file-exists-p my-early-init-file)

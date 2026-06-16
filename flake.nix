@@ -22,16 +22,16 @@
       inputs.nixpkgs.follows = "nixos-pkgs";
     };
 
-    nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-stable.url = "github:nixos/nixpkgs/nixos-26.05";
 
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl/main";
-      inputs.nixpkgs.follows = "nixos-unstable";
+      inputs.nixpkgs.follows = "nixos-stable";
     };
 
-    home-manager-nixos-unstable = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixos-unstable";
+    home-manager-nixos-stable = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixos-stable";
     };
 
     stevenvim.url = "github:Steven0351/steve.nvim";
@@ -41,7 +41,7 @@
 
     _1password-shell-plugins = {
       url = "github:1Password/shell-plugins";
-      inputs.nixpkgs.follows = "nixos-unstable";
+      inputs.nixpkgs.follows = "nixos-stable";
     };
 
     kanagawa-tmux = {
@@ -56,9 +56,9 @@
       darwin,
       home-manager,
       home-manager-nixos,
-      home-manager-nixos-unstable,
+      home-manager-nixos-stable,
       nixos-pkgs,
-      nixos-unstable,
+      nixos-stable,
       nixos-wsl,
       tmux-thumbs,
       jj,
@@ -148,32 +148,32 @@
           ];
         };
 
-        nixos-wsl = nixos-unstable.lib.nixosSystem {
+        nixos-wsl = nixos-stable.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             nixos-wsl.nixosModules.wsl
             (import ./nixos-wsl/wsl.nix inputs)
-            home-manager-nixos-unstable.nixosModules.home-manager
+            home-manager-nixos-stable.nixosModules.home-manager
           ];
         };
 
-        pulsar = nixos-unstable.lib.nixosSystem {
+        pulsar = nixos-stable.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             alteredPkgs
             (import ./pulsar/configuration.nix inputs)
-            home-manager-nixos-unstable.nixosModules.home-manager
+            home-manager-nixos-stable.nixosModules.home-manager
             homeManagerModules
           ];
         };
 
-        pulsar-iso = nixos-unstable.lib.nixosSystem {
+        pulsar-iso = nixos-stable.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            "${nixos-unstable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            "${nixos-stable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             alteredPkgs
             (import ./pulsar/configuration.nix inputs)
-            home-manager-nixos-unstable.nixosModules.home-manager
+            home-manager-nixos-stable.nixosModules.home-manager
             homeManagerModules
             (
               { lib, ... }:
