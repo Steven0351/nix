@@ -57,14 +57,14 @@ in
         mouse_natural_scrolling = 1;
         new_is_master = 0;
         
-        bind = [
+        bind = with pkgs; [
           "SUPER,Return,spawn,kitty"
           "SUPER,e,spawn,emacs"
           "SUPER,r,reload_config"
           "SUPER,q,killclient"
           "SUPER,Space,spawn,vicinae open"
 
-          "SUPER+CTRL,l,spawn,swaylock"
+          "SUPER+CTRL,l,spawn,swaylock -i ${../../wallpapers/wallpapers/moon.png} -u"
 
           "${hyper},c,setlayout,center_tile"
           "${hyper},d,setlayout,dwindle"
@@ -76,7 +76,7 @@ in
           "SUPER,m,minimized"
           "SUPER+SHIFT,m,restore_minimized"
 
-          "SUPER+SHIFT,s,spawn_shell,grim -g (slurp) - | swappy -f -"
+          "SUPER+SHIFT,s,spawn,fish -c '${grim}/bin/grim -g (${slurp}/bin/slurp) - | ${swappy}/bin/swappy -f -'"
 
           "SUPER,h,focusdir,left"
           "SUPER,l,focusdir,right"
@@ -126,6 +126,10 @@ in
           "SUPER+ALT,7,tagsilent,7"
           "SUPER+ALT,8,tagsilent,8"
           "SUPER+ALT,9,tagsilent,9"
+
+          "NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume @DEFAULT_SINK@ 5%+"
+          "NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_SINK@ 5%-"
+          "NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_SINK@ toggle"
         ];
 
         tagrule = [
@@ -145,24 +149,52 @@ in
       enable = true;
     };
 
-    services.swayidle = {
+    # swayidle does not inhibit sleep OOTB when audio is playing, hypridle does
+    # there are some solutions like https://github.com/rafaelrc7/wayland-pipewire-idle-inhibit and 
+    # services.swayidle = {
+    #   enable = false;
+    #   events = {
+    #     # This is a hack to get force swayidle to connect to the bus properly
+    #     # https://github.com/swaywm/swayidle/issues/198#issuecomment-4232600377
+    #     "before-sleep" = "true";
+    #   };
+      
+    #   timeouts = [
+    #     {
+    #       timeout = 30;
+    #       command = "${pkgs.swaylock}/bin/swaylock -fF -i ${../../wallpapers/wallpapers/moon.png} -u";
+    #     }
+    #     {
+    #       timeout = 600;
+    #       command = "${pkgs.mango}/bin/mmsg dispatch disable_monitor,DP-2";
+    #       resumeCommand = "${pkgs.mango}/bin/mmsg dispatch enable_monitor,DP-2";
+    #     }
+    #   ];
+    # };
+
+    services.hypridle = let
+      lock_cmd = "${pkgs.swaylock}/bin/swaylock -fF -i ${../../wallpapers/wallpapers/moon.png} -u";
+    in
+    {
       enable = true;
-      events = {
-        # This is a hack to get force swayidle to connect to the bus properly
-        # https://github.com/swaywm/swayidle/issues/198#issuecomment-4232600377
-        "before-sleep" = "true";
+      settings = {
+        general = {
+          inherit lock_cmd;
+          before_sleep_cmd = lock_cmd;
+        };
+
+        listener = [
+          {
+            timeout = 300;
+            on-timeout = lock_cmd;
+          }
+          {
+            timeout = 600;
+            on-timeout = "${pkgs.mango}/bin/mmsg dispatch disable_monitor,DP-2";
+            on-resume = "${pkgs.mango}/bin/mmsg dispatch enable_monitor,DP-2";
+          }
+        ];
       };
-      timeouts = [
-        {
-          timeout = 300;
-          command = "${pkgs.swaylock}/bin/swaylock -fF";
-        }
-        {
-          timeout = 600;
-          command = "${pkgs.mango}/bin/mmsg dispatch disable_monitor,DP-2";
-          resumeCommand = "${pkgs.mango}/bin/mmsg dispatch enable_monitor,DP-2";
-        }
-      ];
     };
   };
 }
