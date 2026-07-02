@@ -12,7 +12,6 @@ in
   imports = [
     ./hardware-configuration.nix
     inputs._1password-shell-plugins.nixosModules.default
-    inputs.mango.nixosModules.mango
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -193,19 +192,18 @@ in
     ];
   };
 
-  # Mango
-  programs.mango.enable = true;
-  
-  # Hyprland
-  programs.hyprland.enable = false;
-  programs.hyprland.xwayland.enable = false;
+  # Sway
+  programs.sway = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
   # Display manager
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd mango";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
         user = "greeter";
       };
     };
@@ -217,6 +215,15 @@ in
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = {
+          chooser_type = "dmenu";
+          chooser_cmd = "${pkgs.vicinae}/bin/vicinae dmenu";
+        };
+      };
+    };
   };
 
   # YubiKey
@@ -243,6 +250,7 @@ in
     mangohud
     protonup-qt
     libfido2
+    vicinae
   ];
 
   programs.virt-manager.enable = true;
@@ -322,7 +330,7 @@ in
   programs.nix-ld.enable = true;
 
   # Home Manager
-  home-manager.users."${me}" = (import ./home.nix inputs);
+  home-manager.users."${me}" = import ./home.nix;
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;

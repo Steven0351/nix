@@ -38,14 +38,13 @@
     tmux-thumbs.url = "github:Steven0351/tmux-thumbs";
     nerdfont-search.url = "github:Steven0351/nerdfont-search";
     quickemu.url = "github:quickemu-project/quickemu";
-
-    _1password-shell-plugins = {
-      url = "github:1Password/shell-plugins";
+    sway = {
+      url = "sourcehut:~steven0351/sway/v1.12-ifs";
       inputs.nixpkgs.follows = "nixos-stable";
     };
 
-    mango = {
-      url = "github:mangowm/mango/24fb167";
+    _1password-shell-plugins = {
+      url = "github:1Password/shell-plugins";
       inputs.nixpkgs.follows = "nixos-stable";
     };
 
@@ -93,9 +92,8 @@
             cp -r ${kanagawa-tmux}/extras/kitty/* $out/share/kitty-themes/themes
           '';
         });
-
+ 
         qutebrowser = prev.qutebrowser.override { enableWideVine = true; };
-        mango = inputs.mango.packages."${prev.stdenv.hostPlatform.system}".default;
       };
 
       alteredPkgs =
@@ -167,6 +165,18 @@
           system = "x86_64-linux";
           modules = [
             alteredPkgs
+            
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [
+                  (final: prev: {
+                    sway-unwrapped = inputs.sway.packages.x86_64-linux.default;
+                  })
+                ];
+              }
+            )
+
             (import ./pulsar/configuration.nix inputs)
             home-manager-nixos-stable.nixosModules.home-manager
             homeManagerModules

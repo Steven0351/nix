@@ -50,6 +50,8 @@ in
       mkIf stdenv.isLinux {
         enable = true;
         enableExtraSocket = true;
+        enableSshSupport = true;
+        sshKeys = ["F3A5D6CD454A0024FAFFAA00A5ED503A25DF77F9"];
         defaultCacheTtl = 3600;
         pinentry.package = pkgs.pinentry-qt;
       };

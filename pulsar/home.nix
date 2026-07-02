@@ -1,11 +1,8 @@
-{ mango, ... }@inputs:
 { pkgs, ... }:
 {
   imports = [
-    mango.hmModules.mango
     ../modules/home-manager/linux/desktop
-    ../modules/home-manager/linux/mango
-    ../modules/home-manager/linux/hyprland
+    ../modules/home-manager/linux/sway
   ];
 
   emacs.enable = true;
@@ -37,8 +34,7 @@
     };
   };
 
-  mango.enable = true;
-  hyprland.enable = false;
+  sway.enable = true;
   wallpapers.enable = true;
 
   home.packages = with pkgs; [
@@ -54,6 +50,7 @@
     qmk
 
     stevenvim
+    vis
 
     qutebrowser
     vivaldi
@@ -70,6 +67,8 @@
 
     gradia
     swappy
+
+    unzip
   ];
 
   dconf.settings = {
@@ -87,27 +86,37 @@
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-termfilechooser
     ];
+    config.common = {
+      "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+    };
+    
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
     ];
-    config = {
-      hyprland.default = [
-        "wlr"
-        "gtk"
-      ];
-    };
   };
 
   fonts.fontconfig.enable = true;
 
   home.sessionVariables.EDITOR = "stevenvim";
+  
+  home.sessionVariables.TERMCMD = "kitty --class=file_chooser";
+  xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
+    force = true;
+    text =
+      ''
+        [filechooser]
+        cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+      '';
+  };
+  
   home.sessionPath = [
     "$HOME/.local/bin"
     "$HOME/.config/guix/current/bin"
   ];
+  
   home.stateVersion = "25.05";
 }

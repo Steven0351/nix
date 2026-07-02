@@ -10,6 +10,7 @@ let
 in
 {
   imports = [
+    ./foot.nix
     ./kitty.nix
     ./ghostty
     ./tmux.nix
