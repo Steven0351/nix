@@ -180,7 +180,7 @@ in
     initialHashedPassword = "$y$j9T$ar/PiNiglR4LVagM4JQLo1$9GCYnNMsPtyPPM2Kjay2g5hWYbezn4KaWZRbZadWgf4";
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [
-      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIJn6obGcqYpbFKmFEPeoviI3VuHbHf2puMwRi/+LeKUzAAAABHNzaDo= ssh:"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBhsy7UsQDUIWs8lfCyk8/Dz6vQHfb775OocHGx1rKbU openpgp:0xE8192D68"
     ];
     extraGroups = [
       "docker"
@@ -271,6 +271,7 @@ in
     enable = true;
     settings = {
       PasswordAuthentication = false;
+      StreamLocalBindUnlink = "yes";
       PermitRootLogin = "no";
       AllowUsers = [ me ];
     };
